@@ -1,9 +1,13 @@
-plugins{
-    id "java-library"
+plugins {
+    id "java"
     id "maven-publish"
 }
 
+group = "com.github.malczuuu"
+version = "1.0.0"
+
 sourceCompatibility = "17"
+targetCompatibility = "17"
 
 repositories {
     mavenCentral()
@@ -19,21 +23,9 @@ tasks.named("test") {
     useJUnitPlatform()
 }
 
-tasks.register('sourcesJar', Jar) {
-    dependsOn classes
-    archiveAppendix = "sources"
-    from sourceSets.main.allSource
-}
-
-tasks.register('javadocJar', Jar) {
-    dependsOn javadoc
-    archiveAppendix = "javadoc"
-    from javadoc.destinationDir
-}
-
-artifacts {
-    archives sourcesJar
-    archives javadocJar
+java {
+    withSourcesJar()
+    withJavadocJar()
 }
 
 publishing {
