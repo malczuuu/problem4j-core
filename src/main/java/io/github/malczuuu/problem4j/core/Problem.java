@@ -1,16 +1,21 @@
 package io.github.malczuuu.problem4j.core;
 
+import java.io.Serial;
 import java.io.Serializable;
 import java.net.URI;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Collections;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.Objects;
 import java.util.Set;
 import java.util.stream.Collectors;
 
 public class Problem implements Serializable {
+
+  @Serial private static final long serialVersionUID = 1L;
 
   public static final URI BLANK_TYPE = URI.create("about:blank");
   public static final String CONTENT_TYPE = "application/problem+json";
@@ -20,13 +25,18 @@ public class Problem implements Serializable {
   }
 
   public static ProblemBuilder builder(Problem problem) {
-    ProblemBuilder builder = new ProblemBuilderImpl();
-    builder.type(problem.getType());
-    builder.title(problem.getTitle());
-    builder.status(problem.getStatus());
-    builder.detail(problem.getDetail());
-    builder.instance(problem.getInstance());
-    problem.getExtensions().forEach(e -> builder.extension(e, problem.getExtensionValue(e)));
+    ProblemBuilder builder =
+        builder()
+            .type(problem.getType())
+            .title(problem.getTitle())
+            .status(problem.getStatus())
+            .detail(problem.getDetail())
+            .instance(problem.getInstance());
+
+    for (String extension : problem.getExtensions()) {
+      builder = builder.extension(extension, problem.getExtensionValue(extension));
+    }
+
     return builder;
   }
 
@@ -53,7 +63,7 @@ public class Problem implements Serializable {
     this.status = status;
     this.detail = detail;
     this.instance = instance;
-    this.extensions = Collections.unmodifiableMap(new HashMap<>(extensions));
+    this.extensions = Map.copyOf(extensions);
   }
 
   public Problem(
@@ -64,6 +74,11 @@ public class Problem implements Serializable {
   public Problem(
       URI type, String title, int status, String detail, URI instance, Extension... extensions) {
     this(type, title, status, detail, instance, buildMapFromExtensions(extensions));
+  }
+
+  public Problem(
+      URI type, String title, int status, String detail, URI instance, Object... extensions) {
+    this(type, title, status, detail, instance, buildMapFromRawArgs(extensions));
   }
 
   private static Map<String, Object> buildMapFromExtensions(Set<Extension> extensions) {
@@ -77,6 +92,23 @@ public class Problem implements Serializable {
     for (Problem.Extension e : extensions) {
       map.put(e.getKey(), e.getValue());
     }
+    return map;
+  }
+
+  private static Map<String, Object> buildMapFromRawArgs(Object[] arguments) {
+    Map<String, Object> map = new HashMap<>(arguments.length / 2);
+
+    List<Object> valuesAsList = new ArrayList<>(Arrays.asList(arguments));
+    if (valuesAsList.size() % 2 != 0) {
+      valuesAsList.add(valuesAsList.size() - 1);
+    }
+
+    for (int i = 0; i < arguments.length; i += 2) {
+      String key = arguments[i].toString();
+      Object value = arguments[i + 1];
+      map.put(key, value);
+    }
+
     return map;
   }
 
@@ -113,17 +145,36 @@ public class Problem implements Serializable {
   }
 
   @Override
+  public boolean equals(Object o) {
+    if (o == null || getClass() != o.getClass()) {
+      return false;
+    }
+    Problem problem = (Problem) o;
+    return Objects.equals(getType(), problem.getType())
+        && Objects.equals(getTitle(), problem.getTitle())
+        && getStatus() == problem.getStatus()
+        && Objects.equals(getDetail(), problem.getDetail())
+        && Objects.equals(getInstance(), problem.getInstance())
+        && Objects.equals(extensions, problem.extensions);
+  }
+
+  @Override
+  public int hashCode() {
+    return Objects.hash(getType(), getTitle(), getStatus(), getDetail(), getInstance(), extensions);
+  }
+
+  @Override
   public String toString() {
     List<String> lines = new ArrayList<>(4);
-    if (type != null) {
-      lines.add("\"type\": \"" + quote(type.toString()) + "\"");
+    if (getType() != null) {
+      lines.add("\"type\": \"" + quote(getType().toString()) + "\"");
     }
-    if (title != null) {
-      lines.add("\"title\": \"" + quote(title) + "\"");
+    if (getTitle() != null) {
+      lines.add("\"title\": \"" + quote(getTitle()) + "\"");
     }
-    lines.add("\"status\": " + status);
-    if (detail != null) {
-      lines.add("\"detail\": \"" + quote(detail) + "\"");
+    lines.add("\"status\": " + getStatus());
+    if (getDetail() != null) {
+      lines.add("\"detail\": \"" + quote(getDetail()) + "\"");
     }
     return lines.stream().collect(Collectors.joining(", ", "{ ", " }"));
   }
@@ -159,14 +210,29 @@ public class Problem implements Serializable {
     }
 
     @Override
+    public boolean equals(Object obj) {
+      if (obj == null || getClass() != obj.getClass()) {
+        return false;
+      }
+      Extension extension = (Extension) obj;
+      return Objects.equals(getKey(), extension.getKey())
+          && Objects.equals(getValue(), extension.getValue());
+    }
+
+    @Override
+    public int hashCode() {
+      return Objects.hash(getKey(), getValue());
+    }
+
+    @Override
     public String toString() {
       String valueLine;
-      if (value instanceof Number || value instanceof Boolean) {
-        valueLine = "\"value\": " + value;
+      if (getValue() instanceof Number || getValue() instanceof Boolean) {
+        valueLine = "\"value\": " + getValue();
       } else {
-        valueLine = "\"value\": " + "\"" + quote(value.toString()) + "\"";
+        valueLine = "\"value\": " + "\"" + quote(getValue().toString()) + "\"";
       }
-      return "{ \"key\": \"" + quote(key) + "\", " + valueLine + " }";
+      return "{ \"key\": \"" + quote(getKey()) + "\", " + valueLine + " }";
     }
   }
 }
