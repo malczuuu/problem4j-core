@@ -1,6 +1,7 @@
 # Problem4J Core
 
-[![](https://jitpack.io/v/malczuuu/problem4j-core.svg)](https://jitpack.io/#malczuuu/problem4j-core)
+[![JitPack](https://jitpack.io/v/malczuuu/problem4j-core.svg)](https://jitpack.io/#malczuuu/problem4j-core)
+[![Build Status](https://github.com/malczuuu/problem4j-jackson/actions/workflows/gradle.yml/badge.svg)](https://github.com/malczuuu/problem4j-jackson/actions/workflows/gradle.yml)
 
 > Part of [`problem4j`][problem4j] package of libraries.
 
