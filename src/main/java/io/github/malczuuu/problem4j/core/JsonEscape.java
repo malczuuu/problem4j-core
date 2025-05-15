@@ -18,7 +18,7 @@ final class JsonEscape {
     REPLACEMENTS.put('/', "\\/");
   }
 
-  public static String escape(String value) {
+  static String escape(String value) {
     StringBuilder result = new StringBuilder();
 
     for (char character : value.toCharArray()) {
