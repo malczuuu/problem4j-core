@@ -55,7 +55,7 @@ repositories {
 
 dependencies {
     // ...
-    implementation("com.github.malczuuu:problem4j-core::<version>")
+    implementation("com.github.malczuuu:problem4j-core:<version>")
 }
 ```
 
