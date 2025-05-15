@@ -6,6 +6,8 @@ public interface ProblemBuilder {
 
   ProblemBuilder type(URI type);
 
+  ProblemBuilder type(String type);
+
   ProblemBuilder title(String title);
 
   ProblemBuilder status(int status);
@@ -13,6 +15,8 @@ public interface ProblemBuilder {
   ProblemBuilder detail(String detail);
 
   ProblemBuilder instance(URI instance);
+
+  ProblemBuilder instance(String instance);
 
   ProblemBuilder extension(String name, Object value);
 

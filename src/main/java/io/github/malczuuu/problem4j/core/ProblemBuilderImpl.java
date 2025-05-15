@@ -22,6 +22,11 @@ final class ProblemBuilderImpl implements ProblemBuilder {
   }
 
   @Override
+  public ProblemBuilder type(String type) {
+    return type(URI.create(type));
+  }
+
+  @Override
   public ProblemBuilder title(String title) {
     this.title = title;
     return this;
@@ -43,6 +48,11 @@ final class ProblemBuilderImpl implements ProblemBuilder {
   public ProblemBuilder instance(URI instance) {
     this.instance = instance;
     return this;
+  }
+
+  @Override
+  public ProblemBuilder instance(String instance) {
+    return instance(URI.create(instance));
   }
 
   @Override
