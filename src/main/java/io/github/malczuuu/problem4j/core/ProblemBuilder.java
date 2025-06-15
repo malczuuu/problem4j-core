@@ -12,6 +12,8 @@ public interface ProblemBuilder {
 
   ProblemBuilder status(int status);
 
+  ProblemBuilder status(ProblemStatus status);
+
   ProblemBuilder detail(String detail);
 
   ProblemBuilder instance(URI instance);

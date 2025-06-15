@@ -3,6 +3,7 @@ package io.github.malczuuu.problem4j.core;
 import java.net.URI;
 import java.util.LinkedHashMap;
 import java.util.Map;
+import java.util.Optional;
 
 final class ProblemBuilderImpl implements ProblemBuilder {
 
@@ -39,6 +40,13 @@ final class ProblemBuilderImpl implements ProblemBuilder {
   }
 
   @Override
+  public ProblemBuilder status(ProblemStatus status) {
+    this.title = status.getTitle();
+    this.status = status.getStatus();
+    return this;
+  }
+
+  @Override
   public ProblemBuilder detail(String detail) {
     this.detail = detail;
     return this;
@@ -62,6 +70,13 @@ final class ProblemBuilderImpl implements ProblemBuilder {
   }
 
   public Problem build() {
+    String title = this.title;
+    if (title == null) {
+      Optional<ProblemStatus> status = StatusCode.findValue(this.status);
+      if (status.isPresent()) {
+        title = status.get().getTitle();
+      }
+    }
     return new Problem(type, title, status, detail, instance, extensions);
   }
 }
