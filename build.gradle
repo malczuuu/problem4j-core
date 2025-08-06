@@ -1,7 +1,7 @@
 plugins {
-    id "java"
+    id "java-library"
     id "maven-publish"
-    id "com.github.sherter.google-java-format" version "0.9"
+    id "com.diffplug.spotless" version "7.1.0"
 }
 
 group = "com.github.malczuuu"
@@ -35,8 +35,28 @@ publishing {
     }
 }
 
-googleJavaFormat {
-    toolVersion = "1.26.0"
+spotless {
+    format "misc", {
+        target "*.gradle", ".gitattributes", ".gitignore"
+
+        trimTrailingWhitespace()
+        leadingTabsToSpaces(4)
+        endWithNewline()
+    }
+
+    format "yaml", {
+        target "**/*.yml", "**/*.yaml"
+
+        trimTrailingWhitespace()
+        leadingTabsToSpaces(2)
+        endWithNewline()
+    }
+
+    java {
+        target "src/**/*.java"
+
+        googleJavaFormat("1.27.0")
+    }
 }
 
 tasks.named("test") {
