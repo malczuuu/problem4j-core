@@ -1,0 +1,54 @@
+# --- Text and line endings ---
+# Force all text files to use LF line endings
+* text=auto eol=lf
+
+# --- Java source files ---
+*.java     text diff=java
+
+# --- Gradle files ---
+*.gradle   text
+*.gradle.kts text
+gradlew    text eol=lf
+gradlew.bat text eol=crlf
+
+# --- Configuration / properties ---
+*.xml      text
+*.yml      text
+*.yaml     text
+*.properties text
+
+# --- Scripts ---
+*.sh       text eol=lf
+*.bat      text eol=crlf
+
+# --- Markdown / documentation ---
+*.md       text
+*.adoc     text
+
+# --- Ignore generated binaries and archives ---
+*.jar      binary
+*.war      binary
+*.ear      binary
+*.class    binary
+
+# --- Images / media ---
+*.png      binary
+*.jpg      binary
+*.jpeg     binary
+*.gif      binary
+*.ico      binary
+*.svg      text
+
+# --- Misc ---
+*.pdf      binary
+*.zip      binary
+*.tar.gz   binary
+
+# --- IntelliJ / IDE project files ---
+*.iml      text
+*.ipr      text
+*.iws      text
+
+# --- Optional: Custom diff drivers (if configured in .git/config) ---
+# For better Java diffs (requires git config setup)
+# diff=java defined in .git/config
