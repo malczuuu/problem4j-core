@@ -80,7 +80,7 @@ spotless {
 
 tasks.register("printVersion") {
     doLast {
-        println "Project version: ${Versioning.getVersion(version)}"
+        println "Project version: ${version}"
     }
 }
 
