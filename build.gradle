@@ -69,13 +69,6 @@ spotless {
         googleJavaFormat("1.28.0")
         lineEndings = LineEnding.UNIX
     }
-
-    groovy {
-        target "src/**/*.groovy"
-
-        greclipse()
-        lineEndings = LineEnding.UNIX
-    }
 }
 
 tasks.register("printVersion") {
