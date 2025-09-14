@@ -1,13 +1,20 @@
+import com.diffplug.spotless.LineEnding
+
 plugins {
-    id "java-library"
-    id "maven-publish"
-    id "com.diffplug.spotless" version "7.1.0"
-    id "net.nemerosa.versioning" version "3.1.0"
+    id("java-library")
+    id("maven-publish")
+    id("com.diffplug.spotless") version "7.2.1"
 }
 
 group = "com.github.malczuuu"
-version = (versioning.info.tag ?: "${versioning.info.lastTag}-${versioning.info.build}") \
-           + (versioning.info.dirty ? "-dirty" : "")
+
+/**
+ * Conditional approach to versioning. If `-Pversion=...` is specified on the command line, it will be used as the
+ * version. Otherwise, the version is derived from the git tag and build number.
+ */
+if (version == null || version == "unspecified") {
+    version = Versioning.getVersion(rootProject.rootDir)
+}
 
 java {
     toolchain {
@@ -37,8 +44,6 @@ publishing {
     }
 }
 
-import com.diffplug.spotless.LineEnding
-
 spotless {
     format "misc", {
         target "*.gradle", ".gitattributes", ".gitignore"
@@ -46,6 +51,7 @@ spotless {
         trimTrailingWhitespace()
         leadingTabsToSpaces(4)
         endWithNewline()
+        lineEndings = LineEnding.UNIX
     }
 
     format "yaml", {
@@ -54,6 +60,7 @@ spotless {
         trimTrailingWhitespace()
         leadingTabsToSpaces(2)
         endWithNewline()
+        lineEndings = LineEnding.UNIX
     }
 
     java {
@@ -61,6 +68,19 @@ spotless {
 
         googleJavaFormat("1.28.0")
         lineEndings = LineEnding.UNIX
+    }
+
+    groovy {
+        target "src/**/*.groovy"
+
+        greclipse()
+        lineEndings = LineEnding.UNIX
+    }
+}
+
+tasks.register("printVersion") {
+    doLast {
+        println "Project version: ${Versioning.getVersion(rootProject.rootDir)}"
     }
 }
 
