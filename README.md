@@ -4,7 +4,7 @@
 [![Build Status](https://github.com/malczuuu/problem4j-core/actions/workflows/gradle.yml/badge.svg)](https://github.com/malczuuu/problem4j-core/actions/workflows/gradle.yml)
 [![Weekly Build Status](https://github.com/malczuuu/problem4j-core/actions/workflows/gradle-weekly.yml/badge.svg)](https://github.com/malczuuu/problem4j-core/actions/workflows/gradle-weekly.yml)
 
-> Part of [`problem4j`][problem4j] package of librarieąs.
+> Part of [`problem4j`][problem4j] package of libraries.
 
 This library provides a minimal, framework-agnostic Java model of the [RFC 7807][rfc7807] "Problem Details" object, with
 an immutable `Problem` class and a fluent `ProblemBuilder` for convenient construction.
