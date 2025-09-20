@@ -1,5 +1,5 @@
 plugins {
-    id "groovy"
+    `kotlin-dsl`
 }
 
 repositories {
@@ -8,5 +8,4 @@ repositories {
 
 dependencies {
     implementation("org.eclipse.jgit:org.eclipse.jgit:7.3.0.202506031305-r")
-    implementation(localGroovy())
 }
