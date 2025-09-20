@@ -41,19 +41,21 @@ import io.github.malczuuu.problem4j.Problem;
 import io.github.malczuuu.problem4j.ProblemException;
 
 public class Class {
-    public void method() {
-        Problem problem =
-                Problem.builder()
-                        .type("https://example.com/errors/invalid-request")
-                        .title("Invalid Request")
-                        .status(400)
-                        .detail("not a valid json")
-                        .instance("https://example.com/instances/1234")
-                        .build();
+    
+  public void method() {
+    Problem problem =
+        Problem.builder()
+            .type("https://example.com/errors/invalid-request")
+            .title("Invalid Request")
+            .status(400)
+            .detail("not a valid json")
+            .instance("https://example.com/instances/1234")
+            .build();
 
-        throw new ProblemException(problem);
-    }
+    throw new ProblemException(problem);
+  }
 }
+
 ```
 
 ## Usage
