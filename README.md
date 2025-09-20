@@ -55,7 +55,6 @@ public class Class {
     throw new ProblemException(problem);
   }
 }
-
 ```
 
 ## Usage
