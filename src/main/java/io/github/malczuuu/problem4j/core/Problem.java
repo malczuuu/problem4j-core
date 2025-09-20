@@ -179,6 +179,10 @@ public class Problem implements Serializable {
     return lines.stream().collect(Collectors.joining(", ", "{ ", " }"));
   }
 
+  /**
+   * @deprecated method was accidentally made public
+   */
+  @Deprecated(since = "3.2.0")
   public static String quote(String string) {
     return JsonEscape.escape(string);
   }
