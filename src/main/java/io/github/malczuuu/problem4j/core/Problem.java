@@ -76,8 +76,12 @@ public class Problem implements Serializable {
     this(type, title, status, detail, instance, buildMapFromExtensions(extensions));
   }
 
+  /**
+   * @throws IllegalArgumentException if extensions are not key-value pairs (odd number of elements)
+   */
   public Problem(
-      URI type, String title, int status, String detail, URI instance, Object... extensions) {
+      URI type, String title, int status, String detail, URI instance, Object... extensions)
+      throws IllegalArgumentException {
     this(type, title, status, detail, instance, buildMapFromRawArgs(extensions));
   }
 
@@ -95,7 +99,12 @@ public class Problem implements Serializable {
     return map;
   }
 
-  private static Map<String, Object> buildMapFromRawArgs(Object[] arguments) {
+  private static Map<String, Object> buildMapFromRawArgs(Object[] arguments)
+      throws IllegalArgumentException {
+    if (arguments.length % 2 != 0) {
+      throw new IllegalArgumentException("extensions arguments must be key-value pairs");
+    }
+
     Map<String, Object> map = new HashMap<>(arguments.length / 2);
 
     List<Object> valuesAsList = new ArrayList<>(Arrays.asList(arguments));
