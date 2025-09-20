@@ -12,6 +12,12 @@ an immutable `Problem` class and a fluent `ProblemBuilder` for convenient constr
 It is intended to be used as a **foundation** for other libraries or applications that add framework-specific behavior
 (e.g. Jackson, Spring).
 
+## Table of Contents
+
+- [Features](#features)
+- [Example](#example)
+- [Usage](#usage)
+
 ## Features
 
 - ✅ Immutable `Problem` data model
@@ -30,16 +36,23 @@ It is intended to be used as a **foundation** for other libraries or application
 ## Example
 
 ```java
-Problem problem =
-    Problem.builder()
-        .type("https://example.com/errors/invalid-request")
-        .title("Invalid Request")
-        .status(400)
-        .detail("not a valid json")
-        .instance("https://example.com/instances/1234")
-        .build();
+import io.github.malczuuu.problem4j.Problem;
+import io.github.malczuuu.problem4j.ProblemException;
 
-throw new ProblemException(problem);
+public class Class {
+    public void method() {
+        Problem problem =
+                Problem.builder()
+                        .type("https://example.com/errors/invalid-request")
+                        .title("Invalid Request")
+                        .status(400)
+                        .detail("not a valid json")
+                        .instance("https://example.com/instances/1234")
+                        .build();
+
+        throw new ProblemException(problem);
+    }
+}
 ```
 
 ## Usage
@@ -47,22 +60,46 @@ throw new ProblemException(problem);
 This library is available through [Jitpack][jitpack] repository. Add it along with repository in your dependency
 manager.
 
-```groovy
-// build.gradle
+1. Maven:
+   ```xml
+   <repositories>
+       <repository>
+           <id>jitpack.io</id>
+           <url>https://jitpack.io</url>
+       </repository>
+   </repositories>
+   <dependencies>
+       <dependency>
+           <groupId>com.github.malczuuu</groupId>
+           <artifactId>problem4j-core</artifactId>
+           <version>${problem4j.version}</version>
+       </dependency>
+   </dependencies>
+   ```
+2. Gradle (Groovy or Kotlin DSL):
+   ```groovy
+   repositories {
+       maven { url = uri("https://jitpack.io") }
+   }
+   
+   dependencies {
+       implementation("com.github.malczuuu:problem4j-core:${problem4j.version}")
+   }
+    ```
 
-repositories {
-    // ...
-    maven { url = uri("https://jitpack.io") }
-}
+## Remaining Libraries
 
-dependencies {
-    // ...
-    implementation("com.github.malczuuu:problem4j-core:<version>")
-}
-```
+- [`problem4j-jackson`][problem4j-spring-web] - Jackson module for serializing and deserializing `Problem`.
+  objects.
+- [`problem4j-spring-web`][problem4j-spring-web] - Spring Web module extending `ResponseEntityExceptionHandler` for
+  handling exceptions and returning `Problem` responses.
 
-[rfc7807]: https://datatracker.ietf.org/doc/html/rfc7807
+[jitpack]: https://jitpack.io/#malczuuu/problem4j-core
 
 [problem4j]: https://github.com/malczuuu/problem4j
 
-[jitpack]: https://jitpack.io/#malczuuu/problem4j-core
+[problem4j-jackson]: https://github.com/malczuuu/problem4j-jackson
+
+[problem4j-spring-web]: https://github.com/malczuuu/problem4j-spring-web
+
+[rfc7807]: https://datatracker.ietf.org/doc/html/rfc7807
