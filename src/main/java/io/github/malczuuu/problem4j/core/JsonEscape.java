@@ -48,6 +48,14 @@ final class JsonEscape {
         || character >= '\u2000' && character <= '\u20FF';
   }
 
+  /**
+   * Appends the Unicode hexadecimal escape sequence for the given character to the result. The
+   * escape sequence is in the format {@code "\\uXXXX"}, where {@code "XXXX"} is the uppercase
+   * hexadecimal representation of the character code, padded with leading zeros to four digits.
+   *
+   * @param result the StringBuilder to append the escape sequence to
+   * @param character the character to be escaped
+   */
   private static void hex(StringBuilder result, char character) {
     String hexedCharacter = Integer.toHexString(character);
     result.append("\\u");
