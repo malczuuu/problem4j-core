@@ -41,19 +41,19 @@ import io.github.malczuuu.problem4j.Problem;
 import io.github.malczuuu.problem4j.ProblemException;
 
 public class Class {
-    
-  public void method() {
-    Problem problem =
-        Problem.builder()
-            .type("https://example.com/errors/invalid-request")
-            .title("Invalid Request")
-            .status(400)
-            .detail("not a valid json")
-            .instance("https://example.com/instances/1234")
-            .build();
 
-    throw new ProblemException(problem);
-  }
+    public void method() {
+        Problem problem =
+                Problem.builder()
+                        .type("https://example.com/errors/invalid-request")
+                        .title("Invalid Request")
+                        .status(400)
+                        .detail("not a valid json")
+                        .instance("https://example.com/instances/1234")
+                        .build();
+
+        throw new ProblemException(problem);
+    }
 }
 ```
 
@@ -91,8 +91,7 @@ manager.
 
 ## Other Libraries
 
-- [`problem4j-jackson`][problem4j-spring-web] - Jackson module for serializing and deserializing `Problem`.
-  objects.
+- [`problem4j-jackson`][problem4j-jackson] - Jackson module for serializing and deserializing `Problem` objects.
 - [`problem4j-spring-web`][problem4j-spring-web] - Spring Web module extending `ResponseEntityExceptionHandler` for
   handling exceptions and returning `Problem` responses.
 
