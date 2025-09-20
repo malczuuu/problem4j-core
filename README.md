@@ -17,6 +17,7 @@ It is intended to be used as a **foundation** for other libraries or application
 - [Features](#features)
 - [Example](#example)
 - [Usage](#usage)
+- [Other Libraries](#other-libraries)
 
 ## Features
 
@@ -87,7 +88,7 @@ manager.
    }
     ```
 
-## Remaining Libraries
+## Other Libraries
 
 - [`problem4j-jackson`][problem4j-spring-web] - Jackson module for serializing and deserializing `Problem`.
   objects.
