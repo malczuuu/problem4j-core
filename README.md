@@ -83,7 +83,6 @@ manager.
    repositories {
        maven { url = uri("https://jitpack.io") }
    }
-   
    dependencies {
        implementation("com.github.malczuuu:problem4j-core:${problem4j-core.version}")
    }
