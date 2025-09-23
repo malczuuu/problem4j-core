@@ -22,15 +22,14 @@ repositories {
     mavenCentral()
 }
 
-val junitJupiterVersion = "5.13.4"
-val junitPlatformVersion = "1.13.4"
-
 dependencies {
-    testImplementation("org.junit.jupiter:junit-jupiter-api:${junitJupiterVersion}")
-    testImplementation("org.junit.jupiter:junit-jupiter-params:${junitJupiterVersion}")
+    testImplementation(platform("org.junit:junit-bom:5.13.4"))
 
-    testRuntimeOnly("org.junit.jupiter:junit-jupiter-engine:${junitJupiterVersion}")
-    testRuntimeOnly("org.junit.platform:junit-platform-launcher:${junitPlatformVersion}")
+    testImplementation("org.junit.jupiter:junit-jupiter-api")
+    testImplementation("org.junit.jupiter:junit-jupiter-params")
+
+    testRuntimeOnly("org.junit.jupiter:junit-jupiter-engine")
+    testRuntimeOnly("org.junit.platform:junit-platform-launcher")
 }
 
 publishing {
