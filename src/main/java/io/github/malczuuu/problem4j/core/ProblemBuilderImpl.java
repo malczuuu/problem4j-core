@@ -75,19 +75,25 @@ final class ProblemBuilderImpl implements ProblemBuilder {
 
   @Override
   public ProblemBuilder extension(Map<String, Object> extensions) {
-    this.extensions.putAll(extensions);
+    if (extensions != null && !extensions.isEmpty()) {
+      this.extensions.putAll(extensions);
+    }
     return this;
   }
 
   @Override
   public ProblemBuilder extension(Problem.Extension... extensions) {
-    Stream.of(extensions).forEach(e -> this.extensions.put(e.getKey(), e.getValue()));
+    if (extensions != null) {
+      Stream.of(extensions).forEach(e -> this.extensions.put(e.getKey(), e.getValue()));
+    }
     return this;
   }
 
   @Override
   public ProblemBuilder extension(Collection<Problem.Extension> extensions) {
-    extensions.forEach(e -> this.extensions.put(e.getKey(), e.getValue()));
+    if (extensions != null) {
+      extensions.forEach(e -> this.extensions.put(e.getKey(), e.getValue()));
+    }
     return this;
   }
 
