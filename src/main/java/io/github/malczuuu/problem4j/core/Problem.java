@@ -1,238 +1,131 @@
 package io.github.malczuuu.problem4j.core;
 
-import java.io.Serial;
 import java.io.Serializable;
 import java.net.URI;
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.Collections;
-import java.util.HashMap;
-import java.util.List;
 import java.util.Map;
-import java.util.Objects;
 import java.util.Set;
-import java.util.stream.Collectors;
 
-public class Problem implements Serializable {
+/**
+ * Represents a problem detail according to the <a href="https://tools.ietf.org/html/rfc7807">RFC
+ * 7807</a> specification.
+ *
+ * <p>Instances of {@link Problem} are intended to be immutable. They provide standard fields such
+ * as:
+ *
+ * <ul>
+ *   <li>{@code type} – a URI identifying the type of the problem
+ *   <li>{@code title} – a short, human-readable summary of the problem
+ *   <li>{@code status} – the HTTP status code generated for this problem
+ *   <li>{@code detail} – a human-readable explanation specific to this occurrence
+ *   <li>{@code instance} – a URI identifying the specific occurrence of the problem
+ * </ul>
+ *
+ * In addition, custom extensions can be added to provide extra context.
+ */
+public interface Problem extends Serializable {
 
-  @Serial private static final long serialVersionUID = 1L;
+  /** Default type URI for generic problems. */
+  URI BLANK_TYPE = URI.create("about:blank");
 
-  public static final URI BLANK_TYPE = URI.create("about:blank");
-  public static final String CONTENT_TYPE = "application/problem+json";
+  /** MIME content type for this problem. */
+  String CONTENT_TYPE = "application/problem+json";
 
-  public static ProblemBuilder builder() {
+  /**
+   * Creates a new builder for constructing {@link Problem} instances.
+   *
+   * @return a new {@link ProblemBuilder}
+   */
+  static ProblemBuilder builder() {
     return new ProblemBuilderImpl();
   }
 
-  public static ProblemBuilder builder(Problem problem) {
-    ProblemBuilder builder =
-        builder()
-            .type(problem.getType())
-            .title(problem.getTitle())
-            .status(problem.getStatus())
-            .detail(problem.getDetail())
-            .instance(problem.getInstance());
-
-    for (String extension : problem.getExtensions()) {
-      builder = builder.extension(extension, problem.getExtensionValue(extension));
-    }
-
-    return builder;
+  /**
+   * Creates a named extension for use in a {@link Problem}.
+   *
+   * @param key the extension key
+   * @param value the extension value
+   * @return a new {@link Extension} instance
+   */
+  static Extension extension(String key, Object value) {
+    return new ProblemImpl.ExtensionImpl(key, value);
   }
 
-  public static Extension extension(String key, Object value) {
-    return new Extension(key, value);
-  }
+  /**
+   * @return the URI identifying the type of this problem
+   */
+  URI getType();
 
-  private final URI type;
-  private final String title;
-  private final int status;
-  private final String detail;
-  private final URI instance;
-  private final Map<String, Object> extensions;
+  /**
+   * @return a short, human-readable title describing the problem
+   */
+  String getTitle();
 
-  public Problem(
-      URI type,
-      String title,
-      int status,
-      String detail,
-      URI instance,
-      Map<String, Object> extensions) {
-    this.type = type;
-    this.title = title;
-    this.status = status;
-    this.detail = detail;
-    this.instance = instance;
-    this.extensions = Map.copyOf(extensions);
-  }
+  /**
+   * @return the HTTP status code generated for this problem
+   */
+  int getStatus();
 
-  public Problem(
-      URI type, String title, int status, String detail, URI instance, Set<Extension> extensions) {
-    this(type, title, status, detail, instance, buildMapFromExtensions(extensions));
-  }
+  /**
+   * @return a detailed, human-readable explanation specific to this occurrence
+   */
+  String getDetail();
 
-  public Problem(
-      URI type, String title, int status, String detail, URI instance, Extension... extensions) {
-    this(type, title, status, detail, instance, buildMapFromExtensions(extensions));
-  }
+  /**
+   * @return a URI identifying the specific occurrence of the problem
+   */
+  URI getInstance();
 
-  public Problem(
-      URI type, String title, int status, String detail, URI instance, Object... extensions) {
-    this(type, title, status, detail, instance, buildMapFromRawArgs(extensions));
-  }
+  /**
+   * @return an unmodifiable set of custom extension keys present in this problem
+   */
+  Set<String> getExtensions();
 
-  private static Map<String, Object> buildMapFromExtensions(Set<Extension> extensions) {
-    Map<String, Object> map = new HashMap<>(extensions.size());
-    extensions.forEach(e -> map.put(e.getKey(), e.getValue()));
-    return map;
-  }
+  /**
+   * Gets the value associated with a named extension.
+   *
+   * @param name the extension key
+   * @return the value of the extension, or {@code null} if not present
+   */
+  Object getExtensionValue(String name);
 
-  private static Map<String, Object> buildMapFromExtensions(Extension[] extensions) {
-    Map<String, Object> map = new HashMap<>(extensions.length);
-    for (Problem.Extension e : extensions) {
-      map.put(e.getKey(), e.getValue());
-    }
-    return map;
-  }
+  /**
+   * Checks whether a given extension key is present.
+   *
+   * @param extension the extension key
+   * @return {@code true} if the extension exists, {@code false} otherwise
+   */
+  boolean hasExtension(String extension);
 
-  private static Map<String, Object> buildMapFromRawArgs(Object[] arguments) {
-    Map<String, Object> map = new HashMap<>(arguments.length / 2);
+  /**
+   * Converts this problem instance into a {@link Problem} builder, pre-populated with its values.
+   * Useful for creating a modified copy.
+   *
+   * @return a builder with the current problem's values
+   */
+  ProblemBuilder toBuilder();
 
-    List<Object> valuesAsList = new ArrayList<>(Arrays.asList(arguments));
-    if (valuesAsList.size() % 2 != 0) {
-      valuesAsList.add(valuesAsList.size() - 1);
-    }
+  /** Represents a single key-value extension in a {@link Problem}. */
+  interface Extension extends Map.Entry<String, Object> {
 
-    for (int i = 0; i < arguments.length; i += 2) {
-      String key = arguments[i].toString();
-      Object value = arguments[i + 1];
-      map.put(key, value);
-    }
-
-    return map;
-  }
-
-  public URI getType() {
-    return this.type;
-  }
-
-  public String getTitle() {
-    return this.title;
-  }
-
-  public int getStatus() {
-    return this.status;
-  }
-
-  public String getDetail() {
-    return this.detail;
-  }
-
-  public URI getInstance() {
-    return this.instance;
-  }
-
-  public Set<String> getExtensions() {
-    return Collections.unmodifiableSet(extensions.keySet());
-  }
-
-  public Object getExtensionValue(String name) {
-    return extensions.get(name);
-  }
-
-  public boolean hasExtension(String extension) {
-    return extensions.containsKey(extension);
-  }
-
-  @Override
-  public boolean equals(Object o) {
-    if (o == null || getClass() != o.getClass()) {
-      return false;
-    }
-    Problem problem = (Problem) o;
-    return Objects.equals(getType(), problem.getType())
-        && Objects.equals(getTitle(), problem.getTitle())
-        && getStatus() == problem.getStatus()
-        && Objects.equals(getDetail(), problem.getDetail())
-        && Objects.equals(getInstance(), problem.getInstance())
-        && Objects.equals(extensions, problem.extensions);
-  }
-
-  @Override
-  public int hashCode() {
-    return Objects.hash(getType(), getTitle(), getStatus(), getDetail(), getInstance(), extensions);
-  }
-
-  @Override
-  public String toString() {
-    List<String> lines = new ArrayList<>(4);
-    if (getType() != null) {
-      lines.add("\"type\": \"" + quote(getType().toString()) + "\"");
-    }
-    if (getTitle() != null) {
-      lines.add("\"title\": \"" + quote(getTitle()) + "\"");
-    }
-    lines.add("\"status\": " + getStatus());
-    if (getDetail() != null) {
-      lines.add("\"detail\": \"" + quote(getDetail()) + "\"");
-    }
-    return lines.stream().collect(Collectors.joining(", ", "{ ", " }"));
-  }
-
-  public static String quote(String string) {
-    return JsonEscape.escape(string);
-  }
-
-  public static final class Extension implements Map.Entry<String, Object> {
-
-    private final String key;
-    private Object value;
-
-    private Extension(String key, Object value) {
-      this.key = key;
-      this.value = value;
-    }
-
+    /**
+     * @return the extension key
+     */
     @Override
-    public String getKey() {
-      return key;
-    }
+    String getKey();
 
+    /**
+     * @return the extension value
+     */
     @Override
-    public Object getValue() {
-      return value;
-    }
+    Object getValue();
 
+    /**
+     * Sets the extension value.
+     *
+     * @param value new value
+     * @return the new value
+     */
     @Override
-    public Object setValue(Object value) {
-      this.value = value;
-      return value;
-    }
-
-    @Override
-    public boolean equals(Object obj) {
-      if (obj == null || getClass() != obj.getClass()) {
-        return false;
-      }
-      Extension extension = (Extension) obj;
-      return Objects.equals(getKey(), extension.getKey())
-          && Objects.equals(getValue(), extension.getValue());
-    }
-
-    @Override
-    public int hashCode() {
-      return Objects.hash(getKey(), getValue());
-    }
-
-    @Override
-    public String toString() {
-      String valueLine;
-      if (getValue() instanceof Number || getValue() instanceof Boolean) {
-        valueLine = "\"value\": " + getValue();
-      } else {
-        valueLine = "\"value\": " + "\"" + quote(getValue().toString()) + "\"";
-      }
-      return "{ \"key\": \"" + quote(getKey()) + "\", " + valueLine + " }";
-    }
+    Object setValue(Object value);
   }
 }

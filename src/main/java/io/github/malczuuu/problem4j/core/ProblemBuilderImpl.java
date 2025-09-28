@@ -1,13 +1,15 @@
 package io.github.malczuuu.problem4j.core;
 
 import java.net.URI;
+import java.util.Collection;
 import java.util.LinkedHashMap;
 import java.util.Map;
 import java.util.Optional;
+import java.util.stream.Stream;
 
 final class ProblemBuilderImpl implements ProblemBuilder {
 
-  private URI type = Problem.BLANK_TYPE;
+  private URI type;
   private String title;
   private int status = 0;
   private String detail;
@@ -41,7 +43,9 @@ final class ProblemBuilderImpl implements ProblemBuilder {
 
   @Override
   public ProblemBuilder status(ProblemStatus status) {
-    this.title = status.getTitle();
+    if (title == null) {
+      title = status.getTitle();
+    }
     this.status = status.getStatus();
     return this;
   }
@@ -69,14 +73,37 @@ final class ProblemBuilderImpl implements ProblemBuilder {
     return this;
   }
 
+  @Override
+  public ProblemBuilder extension(Map<String, Object> extensions) {
+    this.extensions.putAll(extensions);
+    return this;
+  }
+
+  @Override
+  public ProblemBuilder extension(Problem.Extension... extensions) {
+    Stream.of(extensions).forEach(e -> this.extensions.put(e.getKey(), e.getValue()));
+    return this;
+  }
+
+  @Override
+  public ProblemBuilder extension(Collection<Problem.Extension> extensions) {
+    extensions.forEach(e -> this.extensions.put(e.getKey(), e.getValue()));
+    return this;
+  }
+
+  @Override
   public Problem build() {
+    URI type = this.type;
+    if (type == null) {
+      type = Problem.BLANK_TYPE;
+    }
     String title = this.title;
     if (title == null) {
-      Optional<ProblemStatus> status = StatusCode.findValue(this.status);
+      Optional<ProblemStatus> status = ProblemStatus.findValue(this.status);
       if (status.isPresent()) {
         title = status.get().getTitle();
       }
     }
-    return new Problem(type, title, status, detail, instance, extensions);
+    return new ProblemImpl(type, title, status, detail, instance, extensions);
   }
 }
