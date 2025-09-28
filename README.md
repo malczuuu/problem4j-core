@@ -1,8 +1,6 @@
 # Problem4J Core
 
-[![JitPack](https://jitpack.io/v/malczuuu/problem4j-core.svg)](https://jitpack.io/#malczuuu/problem4j-core)
-[![Build Status](https://github.com/malczuuu/problem4j-core/actions/workflows/gradle.yml/badge.svg)](https://github.com/malczuuu/problem4j-core/actions/workflows/gradle.yml)
-[![Weekly Build Status](https://github.com/malczuuu/problem4j-core/actions/workflows/gradle-weekly.yml/badge.svg)](https://github.com/malczuuu/problem4j-core/actions/workflows/gradle-weekly.yml)
+[![Build Status](https://github.com/malczuuu/problem4j-core/actions/workflows/gradle-build.yml/badge.svg)](https://github.com/malczuuu/problem4j-core/actions/workflows/gradle-build.yml)
 
 > Part of [`problem4j`][problem4j] package of libraries.
 
@@ -11,6 +9,13 @@ an immutable `Problem` class and a fluent `ProblemBuilder` for convenient constr
 
 It is intended to be used as a **foundation** for other libraries or applications that add framework-specific behavior
 (e.g. Jackson, Spring).
+
+## Table of Contents
+
+- [Features](#features)
+- [Example](#example)
+- [Usage](#usage)
+- [Problem4J Links](#problem4j-links)
 
 ## Features
 
@@ -30,39 +35,64 @@ It is intended to be used as a **foundation** for other libraries or application
 ## Example
 
 ```java
-Problem problem =
-    Problem.builder()
-        .type("https://example.com/errors/invalid-request")
-        .title("Invalid Request")
-        .status(400)
-        .detail("not a valid json")
-        .instance("https://example.com/instances/1234")
-        .build();
+import io.github.malczuuu.problem4j.core.Problem;
+import io.github.malczuuu.problem4j.core.ProblemException;
 
-throw new ProblemException(problem);
+public class ExampleClass {
+
+  public void method() {
+    Problem problem =
+        Problem.builder()
+            .type("https://example.com/errors/invalid-request")
+            .title("Invalid Request")
+            .status(400)
+            .detail("not a valid json")
+            .instance("https://example.com/instances/1234")
+            .build();
+
+    throw new ProblemException(problem);
+  }
+}
 ```
 
 ## Usage
 
-This library is available through [Jitpack][jitpack] repository. Add it along with repository in your dependency
-manager.
+Add library as dependency to Maven or Gradle. See the actual versions on [Maven Central][maven-central]. **Java 8** or
+higher is required to use this library.
 
-```groovy
-// build.gradle
+1. Maven:
+   ```xml
+   <dependencies>
+       <dependency>
+           <groupId>io.github.malczuuu.problem4j</groupId>
+           <artifactId>problem4j-core</artifactId>
+           <version>${problem4j-core.version}</version>
+       </dependency>
+   </dependencies>
+   ```
+2. Gradle (Groovy or Kotlin DSL):
+   ```groovy
+   dependencies {
+       implementation("io.github.malczuuu.problem4j:problem4j-core:${problem4j-core.version}")
+   }
+    ```
 
-repositories {
-    // ...
-    maven { url = uri("https://jitpack.io") }
-}
+## Problem4J Links
 
-dependencies {
-    // ...
-    implementation("com.github.malczuuu:problem4j-core:<version>")
-}
-```
+- [`problem4j`][problem4j] - Documentation repository.
+- [`problem4j-core`][problem4j-core] - Core library defining `Problem` model and `ProblemException`.
+- [`problem4j-jackson`][problem4j-jackson] - Jackson module for serializing and deserializing `Problem` objects.
+- [`problem4j-spring-web`][problem4j-spring-web] - Spring Web module extending `ResponseEntityExceptionHandler` for
+  handling exceptions and returning `Problem` responses.
 
-[rfc7807]: https://datatracker.ietf.org/doc/html/rfc7807
+[maven-central]: https://central.sonatype.com/artifact/io.github.malczuuu.problem4j/problem4j-core
 
 [problem4j]: https://github.com/malczuuu/problem4j
 
-[jitpack]: https://jitpack.io/#malczuuu/problem4j-core
+[problem4j-core]: https://github.com/malczuuu/problem4j-core
+
+[problem4j-jackson]: https://github.com/malczuuu/problem4j-jackson
+
+[problem4j-spring-web]: https://github.com/malczuuu/problem4j-spring-web
+
+[rfc7807]: https://datatracker.ietf.org/doc/html/rfc7807
