@@ -45,7 +45,8 @@ public class ProblemException extends RuntimeException {
    * status code.
    *
    * @param problem the problem instance to associate with this exception
-   * @param cause the root cause of this exception
+   * @param cause the root cause of this exception (a {@code null} value is permitted, and indicates
+   *     that the cause is nonexistent or unknown)
    */
   public ProblemException(Problem problem, Throwable cause) {
     super(produceExceptionMessage(problem), cause);
@@ -58,10 +59,35 @@ public class ProblemException extends RuntimeException {
    *
    * @param message custom exception message
    * @param problem the problem instance to associate with this exception
-   * @param cause the root cause of this exception
+   * @param cause the root cause of this exception (a {@code null} value is permitted, and indicates
+   *     that the cause is nonexistent or unknown)
    */
   public ProblemException(String message, Problem problem, Throwable cause) {
     super(message, cause);
+    this.problem = problem;
+  }
+
+  /**
+   * Constructs a {@link ProblemException} with full control over exception properties.
+   *
+   * <p>This constructor allows specifying a custom message, associated {@link Problem}, a root
+   * cause, and advanced options such as whether suppression is enabled and whether the stack trace
+   * should be writable.
+   *
+   * @param message custom exception message
+   * @param problem the problem instance to associate with this exception
+   * @param cause the root cause of this exception (a {@code null} value is permitted, and indicates
+   *     that the cause is nonexistent or unknown)
+   * @param enableSuppression whether suppression is enabled
+   * @param writableStackTrace whether the stack trace should be writable
+   */
+  protected ProblemException(
+      String message,
+      Problem problem,
+      Throwable cause,
+      boolean enableSuppression,
+      boolean writableStackTrace) {
+    super(message, cause, enableSuppression, writableStackTrace);
     this.problem = problem;
   }
 
