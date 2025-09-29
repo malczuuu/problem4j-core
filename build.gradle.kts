@@ -4,7 +4,7 @@ plugins {
     id("java-library")
     id("maven-publish")
     id("signing")
-    id("com.diffplug.spotless").version("7.2.1")
+    id("com.diffplug.spotless").version("8.0.0")
     id("com.gradleup.nmcp.aggregation").version("1.1.0")
 }
 
@@ -109,6 +109,7 @@ spotless {
 
     java {
         target("src/**/*.java")
+        forbidWildcardImports()
 
         googleJavaFormat("1.28.0")
         lineEndings = LineEnding.UNIX
