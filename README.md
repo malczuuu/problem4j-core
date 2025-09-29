@@ -1,6 +1,8 @@
 # Problem4J Core
 
 [![Build Status](https://github.com/malczuuu/problem4j-core/actions/workflows/gradle-build.yml/badge.svg)](https://github.com/malczuuu/problem4j-core/actions/workflows/gradle-build.yml)
+[![Sonatype](https://img.shields.io/maven-central/v/io.github.malczuuu.problem4j/problem4j-core)](https://central.sonatype.com/artifact/io.github.malczuuu.problem4j/problem4j-core)
+[![License](https://img.shields.io/github/license/malczuuu/problem4j-core)](https://github.com/malczuuu/problem4j-core/blob/main/LICENSE)
 
 > Part of [`problem4j`][problem4j] package of libraries.
 
