@@ -5,7 +5,7 @@ plugins {
     id("maven-publish")
     id("signing")
     id("com.diffplug.spotless").version("8.0.0")
-    id("com.gradleup.nmcp.aggregation").version("1.1.0")
+    id("com.gradleup.nmcp.aggregation").version("1.2.0")
 }
 
 group = "io.github.malczuuu.problem4j"
