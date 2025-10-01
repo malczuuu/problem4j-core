@@ -495,6 +495,13 @@ public enum ProblemStatus {
   FAILED_DEPENDENCY(424, "Failed Dependency"),
 
   /**
+   * 425 Too Early.
+   *
+   * @link <a href="https://datatracker.ietf.org/doc/html/rfc8470#section-5.2">RFC 8470 §5.2</a>
+   */
+  TOO_EARLY(425, "Too Early"),
+
+  /**
    * 426 Upgrade Required.
    *
    * @link <a href="https://datatracker.ietf.org/doc/html/rfc9110#section-15.5.19">RFC 9110
