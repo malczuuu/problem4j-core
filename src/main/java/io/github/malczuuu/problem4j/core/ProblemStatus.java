@@ -373,10 +373,21 @@ public enum ProblemStatus {
    *
    * @link <a href="https://datatracker.ietf.org/doc/html/rfc2616#section-10.4.14">RFC 2616
    *     §10.4.14</a>
-   * @deprecated Renamed to {@link #CONTENT_TOO_LARGE} in RFC 9110.
+   * @deprecated Renamed to {@link #PAYLOAD_TOO_LARGE} in RFC 7231, then to {@link
+   *     #CONTENT_TOO_LARGE} in RFC 9110.
    */
   @Deprecated
   REQUEST_ENTITY_TOO_LARGE(413, "Request Entity Too Large"),
+
+  /**
+   * 413 Payload Too Large.
+   *
+   * @link <a href="https://datatracker.ietf.org/doc/html/rfc7231#section-6.5.11">RFC 7231
+   *     §6.5.11</a>
+   * @deprecated Renamed to {@link #CONTENT_TOO_LARGE} in RFC 9110.
+   */
+  @Deprecated
+  PAYLOAD_TOO_LARGE(413, "Payload Too Large"),
 
   /**
    * 413 Content Too Large.
