@@ -467,8 +467,18 @@ public enum ProblemStatus {
    * 422 Unprocessable Entity.
    *
    * @link <a href="https://datatracker.ietf.org/doc/html/rfc4918#section-11.2">RFC 4918 §11.2</a>
+   * @deprecated renamed to {@link #UNPROCESSABLE_CONTENT} by RFC 9110.
    */
+  @Deprecated
   UNPROCESSABLE_ENTITY(422, "Unprocessable Entity"),
+
+  /**
+   * 422 Unprocessable Content.
+   *
+   * @link <a href="https://datatracker.ietf.org/doc/html/rfc9110#section-15.5.21">RFC 9110
+   *     §15.5.21</a>
+   */
+  UNPROCESSABLE_CONTENT(422, "Unprocessable Content"),
 
   /**
    * 423 Locked.
