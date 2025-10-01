@@ -25,6 +25,8 @@ public interface ProblemBuilder {
    *
    * @param type string URI identifying the problem type
    * @return this builder instance for chaining
+   * @throws IllegalArgumentException if the string is not a valid URI
+   * @throws NullPointerException if the string is null
    */
   ProblemBuilder type(String type);
 
@@ -45,7 +47,8 @@ public interface ProblemBuilder {
   ProblemBuilder status(int status);
 
   /**
-   * Sets the HTTP status code using a {@link ProblemStatus} enum.
+   * Sets the HTTP status code using a {@link ProblemStatus} enum. It also sets {@link #title} if
+   * not already assigned.
    *
    * @param status the {@link ProblemStatus} representing the HTTP status
    * @return this builder instance for chaining
@@ -73,6 +76,8 @@ public interface ProblemBuilder {
    *
    * @param instance string URI identifying the problem occurrence
    * @return this builder instance for chaining
+   * @throws IllegalArgumentException if the string is not a valid URI
+   * @throws NullPointerException if the string is null
    */
   ProblemBuilder instance(String instance);
 
