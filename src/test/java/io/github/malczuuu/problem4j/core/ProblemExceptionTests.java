@@ -2,6 +2,7 @@ package io.github.malczuuu.problem4j.core;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertNull;
+import static org.junit.jupiter.api.Assertions.assertSame;
 
 import org.junit.jupiter.api.Test;
 
@@ -143,5 +144,54 @@ class ProblemExceptionTests {
     assertEquals(
         "Validation Error: Required Fields Missing: Fields 'name' & 'email' are required (check docs) (code: 422)",
         exception.getMessage());
+  }
+
+  @Test
+  void givenCtor_whenCreatingProblemException_problemIsNotRecreated() {
+    Problem problem = Problem.builder().title("Bad Request").status(400).build();
+
+    ProblemException exception = new ProblemException(problem);
+
+    assertSame(problem, exception.getProblem());
+  }
+
+  @Test
+  void givenCtorWithMessage_whenCreatingProblemException_problemIsNotRecreated() {
+    Problem problem = Problem.builder().title("Bad Request").status(400).build();
+
+    ProblemException exception = new ProblemException("this is a message", problem);
+
+    assertSame(problem, exception.getProblem());
+  }
+
+  @Test
+  void givenCtorWithCause_whenCreatingProblemException_problemIsNotRecreated() {
+    Problem problem = Problem.builder().title("Bad Request").status(400).build();
+    Throwable cause = new RuntimeException("root cause");
+
+    ProblemException exception = new ProblemException(problem, cause);
+
+    assertSame(problem, exception.getProblem());
+  }
+
+  @Test
+  void givenCtorWithMessageAndCause_whenCreatingProblemException_problemIsNotRecreated() {
+    Problem problem = Problem.builder().title("Bad Request").status(400).build();
+    Throwable cause = new RuntimeException("root cause");
+
+    ProblemException exception = new ProblemException("this is a message", problem, cause);
+
+    assertSame(problem, exception.getProblem());
+  }
+
+  @Test
+  void givenCtorWithParameters_whenCreatingProblemException_problemIsNotRecreated() {
+    Problem problem = Problem.builder().title("Bad Request").status(400).build();
+    Throwable cause = new RuntimeException("root cause");
+
+    ProblemException exception =
+        new ProblemException("this is a message", problem, cause, false, true);
+
+    assertSame(problem, exception.getProblem());
   }
 }

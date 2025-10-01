@@ -1,7 +1,6 @@
 package io.github.malczuuu.problem4j.core;
 
-import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.assertNotSame;
+import static org.assertj.core.api.Assertions.assertThat;
 
 import java.net.URI;
 import java.util.Arrays;
@@ -16,8 +15,8 @@ class ProblemTests {
   void givenProblemStatus_shouldSetTitleAndStatus() {
     Problem problem = Problem.builder().status(ProblemStatus.MULTI_STATUS).build();
 
-    assertEquals(ProblemStatus.MULTI_STATUS.getTitle(), problem.getTitle());
-    assertEquals(ProblemStatus.MULTI_STATUS.getStatus(), problem.getStatus());
+    assertThat(problem.getTitle()).isEqualTo(ProblemStatus.MULTI_STATUS.getTitle());
+    assertThat(problem.getStatus()).isEqualTo(ProblemStatus.MULTI_STATUS.getStatus());
   }
 
   @Test
@@ -46,7 +45,7 @@ class ProblemTests {
     ProblemBuilder builder = problem.toBuilder();
     Problem copy = builder.build();
 
-    assertNotSame(problem, copy);
-    assertEquals(problem, copy);
+    assertThat(problem).isNotSameAs(copy);
+    assertThat(problem).isEqualTo(copy);
   }
 }

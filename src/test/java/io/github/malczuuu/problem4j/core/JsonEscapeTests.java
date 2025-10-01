@@ -1,6 +1,6 @@
 package io.github.malczuuu.problem4j.core;
 
-import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.assertj.core.api.Assertions.assertThat;
 
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.CsvSource;
@@ -21,6 +21,8 @@ class JsonEscapeTests {
   void shouldEscapeSpecialCharactersWithSlash(String given, String expected, String name) {
     String result = JsonEscape.escape(given);
 
-    assertEquals(expected, result, name + " (\"" + expected + "\") failed with \"" + result + "\"");
+    assertThat(result)
+        .withFailMessage(name + " (\"" + expected + "\") failed with \"" + result + "\"")
+        .isEqualTo(expected);
   }
 }
