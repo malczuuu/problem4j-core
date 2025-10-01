@@ -428,8 +428,18 @@ public enum ProblemStatus {
    *
    * @link <a href="https://datatracker.ietf.org/doc/html/rfc2616#section-10.4.17">RFC 2616
    *     §10.5.17</a>
+   * @deprecated renamed to {@link #RANGE_NOT_SATISFIABLE} by RFC 9110.
    */
+  @Deprecated
   REQUESTED_RANGE_NOT_SATISFIABLE(416, "Requested Range Not Satisfiable"),
+
+  /**
+   * 416 Range Not Satisfiable.
+   *
+   * @link <a href="https://datatracker.ietf.org/doc/html/rfc9110#section-15.5.17">RFC 9110
+   *     §15.5.17</a>
+   */
+  RANGE_NOT_SATISFIABLE(416, "Range Not Satisfiable"),
 
   /**
    * 417 Expectation Failed.
