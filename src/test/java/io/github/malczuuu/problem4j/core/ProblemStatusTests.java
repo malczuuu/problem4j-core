@@ -12,7 +12,7 @@ import org.junit.jupiter.params.provider.ValueSource;
 class ProblemStatusTests {
 
   @ParameterizedTest
-  @ValueSource(ints = {103, 413, 414})
+  @ValueSource(ints = {103, 413, 414, 416, 422})
   void givenAmbiguousStatusCode_shouldPrioritizeNonDeprecatedOne(int value)
       throws NoSuchFieldException {
 
