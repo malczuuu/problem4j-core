@@ -10,7 +10,7 @@ import java.util.Objects;
 import java.util.Set;
 import java.util.stream.Collectors;
 
-class ProblemImpl implements Problem {
+final class ProblemImpl implements Problem {
 
   private static final long serialVersionUID = 1L;
 
@@ -94,11 +94,14 @@ class ProblemImpl implements Problem {
   }
 
   @Override
-  public boolean equals(Object o) {
-    if (!(o instanceof ProblemImpl)) {
+  public boolean equals(Object obj) {
+    if (this == obj) {
+      return true;
+    }
+    if (obj == null || getClass() != obj.getClass()) {
       return false;
     }
-    ProblemImpl problem = (ProblemImpl) o;
+    ProblemImpl problem = (ProblemImpl) obj;
     return Objects.equals(getType(), problem.getType())
         && Objects.equals(getTitle(), problem.getTitle())
         && getStatus() == problem.getStatus()
@@ -128,11 +131,35 @@ class ProblemImpl implements Problem {
     if (getInstance() != null) {
       lines.add("\"instance\" : \"" + quote(getInstance().toString()) + "\"");
     }
+
+    getExtensions()
+        .forEach(
+            field -> {
+              Object value = getExtensionValue(field);
+
+              if (value == null) {
+                return;
+              }
+
+              if (value instanceof String) {
+                lines.add("\"" + field + "\" : \"" + quote((String) value) + "\"");
+              } else if (value instanceof Number || value instanceof Boolean) {
+                lines.add("\"" + field + "\" : " + value);
+              } else {
+                lines.add(getObjectLine(field, value));
+              }
+            });
+
     return lines.stream().collect(Collectors.joining(", ", "{ ", " }"));
   }
 
   private static String quote(String string) {
     return JsonEscape.escape(string);
+  }
+
+  private String getObjectLine(String field, Object value) {
+    String className = value.getClass().getSimpleName();
+    return "\"" + field + "\" : \"" + className + ":" + quote(value.toString()) + "\"";
   }
 
   static final class ExtensionImpl implements Problem.Extension {
@@ -163,6 +190,9 @@ class ProblemImpl implements Problem {
 
     @Override
     public boolean equals(Object obj) {
+      if (this == obj) {
+        return true;
+      }
       if (obj == null || getClass() != obj.getClass()) {
         return false;
       }
