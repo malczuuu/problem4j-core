@@ -457,6 +457,13 @@ public enum ProblemStatus {
   I_AM_A_TEAPOT(418, "I'm a teapot"),
 
   /**
+   * 421 Misdirected Request.
+   *
+   * @link <a href="https://datatracker.ietf.org/doc/html/rfc7540#section-9.1.2">RFC 7540 §9.1.2</a>
+   */
+  MISDIRECTED_REQUEST(421, "Misdirected Request"),
+
+  /**
    * 422 Unprocessable Entity.
    *
    * @link <a href="https://datatracker.ietf.org/doc/html/rfc4918#section-11.2">RFC 4918 §11.2</a>
