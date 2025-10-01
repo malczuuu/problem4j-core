@@ -42,11 +42,15 @@ public interface Problem extends Serializable {
   /**
    * Creates a named extension for use in a {@link Problem}.
    *
-   * @param key the extension key
+   * @param key the extension key, must not be {@code null}
    * @param value the extension value
    * @return a new {@link Extension} instance
+   * @throws IllegalArgumentException if the {@code key} is {@code null}
    */
   static Extension extension(String key, Object value) {
+    if (key == null) {
+      throw new IllegalArgumentException("key cannot be null");
+    }
     return new ProblemImpl.ExtensionImpl(key, value);
   }
 

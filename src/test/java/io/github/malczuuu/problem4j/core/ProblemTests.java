@@ -1,6 +1,7 @@
 package io.github.malczuuu.problem4j.core;
 
 import static org.assertj.core.api.Assertions.assertThat;
+import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
 import java.net.URI;
 import java.util.Arrays;
@@ -47,5 +48,20 @@ class ProblemTests {
 
     assertThat(problem).isNotSameAs(copy);
     assertThat(problem).isEqualTo(copy);
+  }
+
+  @Test
+  void givenProblemExtensionWithNullKey_shouldThrowIllegalArgumentException() {
+    assertThatThrownBy(() -> Problem.extension(null, "v"))
+        .isInstanceOf(IllegalArgumentException.class)
+        .hasMessage("key cannot be null");
+  }
+
+  @Test
+  void givenProblemExtensionWithKey_shouldCreateExtension() {
+    Problem.Extension ext = Problem.extension("code", 123);
+
+    assertThat(ext.getKey()).isEqualTo("code");
+    assertThat(ext.getValue()).isEqualTo(123);
   }
 }
