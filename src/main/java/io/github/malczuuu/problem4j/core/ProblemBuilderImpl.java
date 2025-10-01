@@ -4,6 +4,7 @@ import java.net.URI;
 import java.util.Collection;
 import java.util.LinkedHashMap;
 import java.util.Map;
+import java.util.Objects;
 import java.util.Optional;
 import java.util.stream.Stream;
 
@@ -43,10 +44,12 @@ final class ProblemBuilderImpl implements ProblemBuilder {
 
   @Override
   public ProblemBuilder status(ProblemStatus status) {
-    if (title == null) {
-      title = status.getTitle();
+    if (status != null) {
+      if (title == null) {
+        title = status.getTitle();
+      }
+      this.status = status.getStatus();
     }
-    this.status = status.getStatus();
     return this;
   }
 
@@ -69,30 +72,41 @@ final class ProblemBuilderImpl implements ProblemBuilder {
 
   @Override
   public ProblemBuilder extension(String name, Object value) {
-    extensions.put(name, value);
+    if (name != null) {
+      extensions.put(name, value);
+    }
     return this;
   }
 
   @Override
   public ProblemBuilder extension(Map<String, Object> extensions) {
     if (extensions != null && !extensions.isEmpty()) {
-      this.extensions.putAll(extensions);
+      extensions.forEach(
+          (key, value) -> {
+            if (key != null) {
+              this.extensions.put(key, value);
+            }
+          });
     }
     return this;
   }
 
   @Override
   public ProblemBuilder extension(Problem.Extension... extensions) {
-    if (extensions != null) {
-      Stream.of(extensions).forEach(e -> this.extensions.put(e.getKey(), e.getValue()));
+    if (extensions != null && extensions.length > 0) {
+      Stream.of(extensions)
+          .filter(Objects::nonNull)
+          .forEach(e -> this.extensions.put(e.getKey(), e.getValue()));
     }
     return this;
   }
 
   @Override
   public ProblemBuilder extension(Collection<Problem.Extension> extensions) {
-    if (extensions != null) {
-      extensions.forEach(e -> this.extensions.put(e.getKey(), e.getValue()));
+    if (extensions != null && !extensions.isEmpty()) {
+      extensions.stream()
+          .filter(Objects::nonNull)
+          .forEach(e -> this.extensions.put(e.getKey(), e.getValue()));
     }
     return this;
   }
