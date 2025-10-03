@@ -4,8 +4,6 @@
 [![Sonatype](https://img.shields.io/maven-central/v/io.github.malczuuu.problem4j/problem4j-core)](https://central.sonatype.com/artifact/io.github.malczuuu.problem4j/problem4j-core)
 [![License](https://img.shields.io/github/license/malczuuu/problem4j-core)](https://github.com/malczuuu/problem4j-core/blob/main/LICENSE)
 
-> Part of [`problem4j`][problem4j] package of libraries.
-
 This library provides a minimal, framework-agnostic Java model of the [RFC 7807][rfc7807] "Problem Details" object, with
 an immutable `Problem` class and a fluent `ProblemBuilder` for convenient construction.
 
