@@ -81,20 +81,17 @@ higher is required to use this library.
 
 ## Problem4J Links
 
-- [`problem4j`][problem4j] - Documentation repository.
 - [`problem4j-core`][problem4j-core] - Core library defining `Problem` model and `ProblemException`.
 - [`problem4j-jackson`][problem4j-jackson] - Jackson module for serializing and deserializing `Problem` objects.
-- [`problem4j-spring-web`][problem4j-spring-web] - Spring Web module extending `ResponseEntityExceptionHandler` for
-  handling exceptions and returning `Problem` responses.
+- [`problem4j-spring`][problem4j-spring] - Spring modules extending `ResponseEntityExceptionHandler` for handling
+  exceptions and returning `Problem` responses.
 
 [maven-central]: https://central.sonatype.com/artifact/io.github.malczuuu.problem4j/problem4j-core
-
-[problem4j]: https://github.com/malczuuu/problem4j
 
 [problem4j-core]: https://github.com/malczuuu/problem4j-core
 
 [problem4j-jackson]: https://github.com/malczuuu/problem4j-jackson
 
-[problem4j-spring-web]: https://github.com/malczuuu/problem4j-spring-web
+[problem4j-spring]: https://github.com/malczuuu/problem4j-spring
 
 [rfc7807]: https://datatracker.ietf.org/doc/html/rfc7807
