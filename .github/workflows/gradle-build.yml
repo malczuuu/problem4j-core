@@ -3,6 +3,16 @@ name: Gradle Build
 on:
   push:
     branches: [ "main" ]
+    paths:
+      - "src/**"
+      - "build.gradle.kts"
+      - "settings.gradle.kts"
+      - "gradle.properties"
+      - "gradle/**"
+      - "buildSrc/**"
+      - "gradlew"
+      - "gradlew.bat"
+      - ".github/workflows/gradle-build.yml"
   pull_request:
     branches: [ "main" ]
 

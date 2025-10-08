@@ -1,4 +1,4 @@
-name: Gradle Release
+name: Gradle Publish [release]
 
 on:
   push:
@@ -33,5 +33,5 @@ jobs:
           PUBLISHING_PASSWORD: ${{ secrets.PUBLISHING_PASSWORD }}
         run: |
           VERSION="${GITHUB_REF_NAME#v}"  # removes leading 'v' from tag name
-          echo "Publishing version $VERSION"
+          echo "::notice::publishing version $VERSION"
           ./gradlew -Pversion="$VERSION" -Psign publishAllPublicationsToCentralPortal
