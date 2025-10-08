@@ -77,6 +77,8 @@ higher is required to use this library.
    }
     ```
 
+For using snapshot versions [**Snapshots** chapter of`PUBLISHING.md`](PUBLISHING.md#snapshots).
+
 ## Problem4J Links
 
 - [`problem4j-core`][problem4j-core] - Core library defining `Problem` model and `ProblemException`.
