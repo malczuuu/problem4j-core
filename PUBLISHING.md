@@ -8,7 +8,7 @@ instructions. Workflow requires manual trigger for snapshot build so it's not pu
 Artifacts are published to Snapshot Repository, using following Gradle task.
 
 ```bash
-./gradlew -Pversion=<version> publishAggregationToCentralPortalSnapshots
+./gradlew -Pversion=<version> publishAllPublicationsToCentralPortalSnapshots
 ```
 
 ### Accessing SNAPSHOT versions
