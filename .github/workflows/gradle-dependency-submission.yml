@@ -8,6 +8,7 @@ on:
       - "settings.gradle.kts"
       - "gradle/**"
       - "buildSrc/**"
+      - ".github/workflows/gradle-dependency-submission.yml"
 
 jobs:
   dependency-submission:
