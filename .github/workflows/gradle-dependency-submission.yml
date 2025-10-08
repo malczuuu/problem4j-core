@@ -3,6 +3,11 @@ name: Dependency Submission
 on:
   push:
     branches: [ "main" ]
+    paths:
+      - "build.gradle.kts"
+      - "settings.gradle.kts"
+      - "gradle/**"
+      - "buildSrc/**"
 
 jobs:
   dependency-submission:
