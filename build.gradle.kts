@@ -50,7 +50,7 @@ publishing {
             pom {
                 name = project.name
                 description = "Core library implementing Problem model according to RFC7807"
-                url = "https://github.com/malczuuu/${project.name}"
+                url = "https://github.com/malczuuu/${rootProject.name}"
                 inceptionYear = "2025"
                 licenses {
                     license {
@@ -67,12 +67,12 @@ publishing {
                 }
                 issueManagement {
                     system = "GitHub Issues"
-                    url = "https://github.com/malczuuu/${project.name}/issues"
+                    url = "https://github.com/malczuuu/${rootProject.name}/issues"
                 }
                 scm {
-                    connection = "scm:git:https://github.com/malczuuu/${project.name}.git"
-                    developerConnection = "scm:git:git@github.com:malczuuu/${project.name}.git"
-                    url = "https://github.com/malczuuu/${project.name}"
+                    connection = "scm:git:https://github.com/malczuuu/${rootProject.name}.git"
+                    developerConnection = "scm:git:git@github.com:malczuuu/${rootProject.name}.git"
+                    url = "https://github.com/malczuuu/${rootProject.name}"
                 }
             }
         }
