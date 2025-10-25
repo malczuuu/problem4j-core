@@ -2,7 +2,6 @@
 assertj = "3.27.6"
 junit = "5.14.0"
 
-
 [libraries]
 assertj-core = { module = "org.assertj:assertj-core", version.ref = "assertj" }
 junit-bom = { module = "org.junit:junit-bom", version.ref = "junit" }
