@@ -117,7 +117,7 @@ final class ProblemImpl implements Problem {
 
   @Override
   public String toString() {
-    List<String> lines = new ArrayList<>(4);
+    List<String> lines = new ArrayList<>();
     if (getType() != null) {
       lines.add("\"type\" : \"" + quote(getType().toString()) + "\"");
     }
