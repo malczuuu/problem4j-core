@@ -44,13 +44,7 @@ final class ProblemBuilderImpl implements ProblemBuilder {
 
   @Override
   public ProblemBuilder status(ProblemStatus status) {
-    if (status != null) {
-      if (title == null) {
-        title = status.getTitle();
-      }
-      this.status = status.getStatus();
-    }
-    return this;
+    return status != null ? status(status.getStatus()) : status(0);
   }
 
   @Override

@@ -46,8 +46,7 @@ public interface ProblemBuilder {
   ProblemBuilder status(int status);
 
   /**
-   * Sets the HTTP status code using a {@link ProblemStatus} enum. It also sets {@link #title} if
-   * not already assigned.
+   * Sets the HTTP status code using a {@link ProblemStatus} enum.
    *
    * @param status the {@link ProblemStatus} representing the HTTP status
    * @return this builder instance for chaining
@@ -114,6 +113,20 @@ public interface ProblemBuilder {
 
   /**
    * Builds an immutable {@link Problem} instance with the configured properties and extensions.
+   *
+   * <p>Default value evaluation (all defaults are applied at build time):
+   *
+   * <ul>
+   *   <li>If no type was provided, the resulting {@code Problem} will use {@code
+   *       Problem#BLANK_TYPE}.
+   *   <li>If no title was provided, but the numeric status corresponds to a known {@code
+   *       ProblemStatus}, the builder will use the matching {@code ProblemStatus#getTitle()} as the
+   *       problem title.
+   *   <li>The numeric status defaults to <code>0</code> when not set; a title will not be derived
+   *       from status when it is <code>0</code> or when it does not map to any known {@code
+   *       ProblemStatus}.
+   *   <li>Any extensions configured on the builder will be present on the created {@code Problem}.
+   * </ul>
    *
    * @return a new {@link Problem} instance
    */
