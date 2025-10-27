@@ -2,6 +2,7 @@ package io.github.malczuuu.problem4j.core;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
+import java.net.URI;
 import java.util.Arrays;
 import java.util.Collection;
 import java.util.HashMap;
@@ -11,11 +12,39 @@ import org.junit.jupiter.api.Test;
 class ProblemBuilderImplTests {
 
   @Test
+  void givenNullURIType_shouldNotSetIt() {
+    Problem problem = Problem.builder().type((URI) null).build();
+
+    assertThat(problem.getType()).isEqualTo(Problem.BLANK_TYPE);
+  }
+
+  @Test
+  void givenNullStringType_shouldNotSetIt() {
+    Problem problem = Problem.builder().type((String) null).build();
+
+    assertThat(problem.getType()).isEqualTo(Problem.BLANK_TYPE);
+  }
+
+  @Test
   void givenNullProblemStatus_shouldNotSetTitleOrStatus() {
     Problem problem = Problem.builder().status(null).build();
 
     assertThat(problem.getStatus()).isZero();
     assertThat(problem.getTitle()).isNull();
+  }
+
+  @Test
+  void givenNullURIInstance_shouldNotSetIt() {
+    Problem problem = Problem.builder().instance((URI) null).build();
+
+    assertThat(problem.getInstance()).isNull();
+  }
+
+  @Test
+  void givenNullStringInstance_shouldNotSetIt() {
+    Problem problem = Problem.builder().instance((String) null).build();
+
+    assertThat(problem.getInstance()).isNull();
   }
 
   @Test

@@ -26,7 +26,6 @@ public interface ProblemBuilder {
    * @param type string URI identifying the problem type
    * @return this builder instance for chaining
    * @throws IllegalArgumentException if the string is not a valid URI
-   * @throws NullPointerException if the string is null
    */
   ProblemBuilder type(String type);
 
@@ -77,7 +76,6 @@ public interface ProblemBuilder {
    * @param instance string URI identifying the problem occurrence
    * @return this builder instance for chaining
    * @throws IllegalArgumentException if the string is not a valid URI
-   * @throws NullPointerException if the string is null
    */
   ProblemBuilder instance(String instance);
 

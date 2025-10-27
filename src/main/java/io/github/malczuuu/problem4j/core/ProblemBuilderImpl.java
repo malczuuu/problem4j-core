@@ -27,7 +27,7 @@ final class ProblemBuilderImpl implements ProblemBuilder {
 
   @Override
   public ProblemBuilder type(String type) {
-    return type(URI.create(type));
+    return type != null ? type(URI.create(type)) : type((URI) null);
   }
 
   @Override
@@ -67,7 +67,7 @@ final class ProblemBuilderImpl implements ProblemBuilder {
 
   @Override
   public ProblemBuilder instance(String instance) {
-    return instance(URI.create(instance));
+    return instance != null ? instance(URI.create(instance)) : instance((URI) null);
   }
 
   @Override
