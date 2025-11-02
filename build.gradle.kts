@@ -15,10 +15,11 @@ group = "io.github.malczuuu.problem4j"
  * -Pversion={releaseVersion} parameter to match Git tag.
  */
 version =
-    if (version == "unspecified")
+    if (version == "unspecified") {
         getSnapshotVersion(rootProject.rootDir)
-    else
+    } else {
         version
+    }
 
 java {
     toolchain.languageVersion = JavaLanguageVersion.of(8)
@@ -80,7 +81,7 @@ publishing {
 }
 
 nmcp {
-    publishAllPublicationsToCentralPortal  {
+    publishAllPublicationsToCentralPortal {
         username = System.getenv("PUBLISHING_USERNAME")
         password = System.getenv("PUBLISHING_PASSWORD")
 
@@ -92,7 +93,7 @@ signing {
     if (project.hasProperty("sign")) {
         useInMemoryPgpKeys(
             System.getenv("SIGNING_KEY"),
-            System.getenv("SIGNING_PASSWORD")
+            System.getenv("SIGNING_PASSWORD"),
         )
         sign(publishing.publications["maven"])
     }
@@ -113,6 +114,22 @@ spotless {
         forbidWildcardImports()
 
         googleJavaFormat("1.28.0")
+        lineEndings = LineEnding.UNIX
+    }
+
+    kotlin {
+        target("**/src/**/*.kt")
+
+        ktfmt("0.59").metaStyle()
+        endWithNewline()
+        lineEndings = LineEnding.UNIX
+    }
+
+    kotlinGradle {
+        target("**/*.gradle.kts")
+
+        ktlint()
+        endWithNewline()
         lineEndings = LineEnding.UNIX
     }
 }
