@@ -101,7 +101,7 @@ signing {
 
 spotless {
     format("misc") {
-        target("**/*.gradle.kts", "**/.gitattributes", "**/.gitignore")
+        target("**/.gitattributes", "**/.gitignore")
 
         trimTrailingWhitespace()
         leadingTabsToSpaces(4)
@@ -110,7 +110,7 @@ spotless {
     }
 
     java {
-        target("src/**/*.java")
+        target("**/src/**/*.java")
         forbidWildcardImports()
 
         googleJavaFormat("1.28.0")
