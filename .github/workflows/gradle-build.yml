@@ -33,4 +33,6 @@ jobs:
         uses: gradle/actions/setup-gradle@v5
 
       - name: Gradle Build
+        env:
+          GRADLE_OPTS: "-Dorg.gradle.daemon=false -Dorg.gradle.parallel=false"
         run: ./gradlew build
