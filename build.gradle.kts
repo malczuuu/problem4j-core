@@ -128,7 +128,7 @@ spotless {
     kotlinGradle {
         target("**/*.gradle.kts")
 
-        ktlint()
+        ktlint("1.7.1").editorConfigOverride(mapOf("max_line_length" to "120"))
         endWithNewline()
         lineEndings = LineEnding.UNIX
     }
