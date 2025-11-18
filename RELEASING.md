@@ -1,6 +1,6 @@
-# Publishing
+# Releasing
 
-## Snapshots
+## Sonatype Snapshots
 
 See [`gradle-publish-snapshot.yml`](.github/workflows/gradle-publish-snapshot.yml) for publishing snapshot version
 instructions. Workflow requires manual trigger for snapshot build so it's not published regularly.
@@ -11,17 +11,11 @@ Artifacts are published to Snapshot Repository, using following Gradle task.
 ./gradlew -Pversion=<version> publishAllPublicationsToCentralPortalSnapshots
 ```
 
-### Accessing SNAPSHOT versions
+### Accessing packages from Sonatype Snapshots
 
 1. Maven:
    ```xml
    <repositories>
-       <repository>
-           <id>maven-central</id>
-           <url>https://repo.maven.apache.org/maven2/</url>
-       </repository>
-
-       <!-- add snapshot repository (for unpublished or nightly builds) -->
        <repository>
            <id>sonatype-snapshots</id>
            <url>https://central.sonatype.com/repository/maven-snapshots/</url>
@@ -30,12 +24,10 @@ Artifacts are published to Snapshot Repository, using following Gradle task.
            </releases>
            <snapshots>
                <enabled>true</enabled>
-               <!-- always check for new snapshots -->
                <updatePolicy>always</updatePolicy>
            </snapshots>
        </repository>
    </repositories>
-
    <dependencies>
    <dependency>
        <groupId>io.github.malczuuu.problem4j</groupId>
@@ -48,12 +40,9 @@ Artifacts are published to Snapshot Repository, using following Gradle task.
    ```kotlin
    repositories {
        mavenCentral()
-
-       // add snapshot repository (for unpublished or nightly builds)
        maven {
            url = uri("https://central.sonatype.com/repository/maven-snapshots/")
            content {
-               // only include snapshots from this group to avoid conflicts
                includeGroup("io.github.malczuuu.problem4j")
            }
            mavenContent {
@@ -61,27 +50,22 @@ Artifacts are published to Snapshot Repository, using following Gradle task.
            }
        }
    }
-
-   // always refresh "changing" dependencies (e.g., SNAPSHOT versions)
-   configurations.all {
-       resolutionStrategy.cacheChangingModulesFor(0, TimeUnit.SECONDS)
-   }
-
    dependencies {
-       // choose the one appropriate for your project setup
-
-       implementation("io.github.malczuuu.problem4j:problem4j-core:1.2.0-SNAPSHOT") {
-           // ensures Gradle re-checks for new snapshot versions
-           isChanging = true   
-       }
+       implementation("io.github.malczuuu.problem4j:problem4j-core:1.2.0-SNAPSHOT")
    }
    ```
 
-## Releases
+## Maven Central
 
-Keep Git tags with `vX.Y.Z-suffix` format. GitHub Actions job will only trigger on such tags and will remove `v` prefix.
+1. Keep Git tags with `vX.Y.Z-suffix` format. GitHub Actions job will only trigger on such tags and will remove `v`
+   prefix.
+2. After publishing a release, update [`next_version.txt`](.github/utils/next_version.txt) for snapshot builds
+   automation.
+3. The releasing procedure only uploads the artifacts to Sonatype repository. You need to manually log in to Sonatype to
+   push the artifacts to Maven Central.
 
-See [`gradle-publish-release.yml`](.github/workflows/gradle-publish-release.yml) for whole publishing procedure.
+See [`gradle-publish-release.yml`](.github/workflows/gradle-publish-release.yml) for publishing release versions
+instructions.
 
 Set the following environment variables in your CI/CD (GitHub Actions, etc.):
 
@@ -102,6 +86,3 @@ Artifacts are published to Maven Central via Sonatype, using following Gradle ta
 ```
 
 This command uses `nmcp` Gradle plugin - [link](https://github.com/GradleUp/nmcp).
-
-**Note** that this only uploads the artifacts to Sonatype repository. You need to manually log in to Sonatype to push
-the artifacts to Maven Central.
