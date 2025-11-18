@@ -16,6 +16,7 @@ It is intended to be used as a **foundation** for other libraries or application
 - [Example](#example)
 - [Usage](#usage)
 - [Problem4J Links](#problem4j-links)
+- [Building from source](#building-from-source)
 
 ## Features
 
@@ -39,13 +40,13 @@ import io.github.malczuuu.problem4j.core.Problem;
 import io.github.malczuuu.problem4j.core.ProblemException;
 
 Problem problem =
-    Problem.builder()
-        .type("https://example.com/errors/invalid-request")
-        .title("Invalid Request")
-        .status(400)
-        .detail("not a valid json")
-        .instance("https://example.com/instances/1234")
-        .build();
+        Problem.builder()
+                .type("https://example.com/errors/invalid-request")
+                .title("Invalid Request")
+                .status(400)
+                .detail("not a valid json")
+                .instance("https://example.com/instances/1234")
+                .build();
 throw new ProblemException(problem);
 ```
 
@@ -71,7 +72,7 @@ higher is required to use this library.
    }
     ```
 
-For using snapshot versions [**Snapshots** chapter of`PUBLISHING.md`](PUBLISHING.md#snapshots).
+For using snapshot versions [**Snapshots** chapter of`PUBLISHING.md`](RELEASING.md#sonatype-snapshots).
 
 ## Problem4J Links
 
@@ -79,6 +80,35 @@ For using snapshot versions [**Snapshots** chapter of`PUBLISHING.md`](PUBLISHING
 - [`problem4j-jackson`][problem4j-jackson] - Jackson module for serializing and deserializing `Problem` objects.
 - [`problem4j-spring`][problem4j-spring] - Spring modules extending `ResponseEntityExceptionHandler` for handling
   exceptions and returning `Problem` responses.
+
+## Building from source
+
+<details>
+<summary><b>Expand...</b></summary>
+
+To build the project from source you need **Java 17+**, because this is required by Gradle itself.
+
+The project is compiled using a **Java 8 toolchain**, so the produced artifacts are compatible with **Java 8**.
+
+```bash
+./gradlew clean build
+```
+
+To format the code according to the style defined in [`build.gradle.kts`](./build.gradle.kts) rules use `spotlessApply`
+task.
+
+```bash
+./gradlew spotlessApply
+```
+
+To publish the built artifacts to local Maven repository, run following command, replacing `XXXX` with the desired
+version. By default, the version is derived from git commit hash.
+
+```bash
+./gradlew -Pversion=XXXX clean build publishToMavenLocal
+```
+
+</details>
 
 [maven-central]: https://central.sonatype.com/artifact/io.github.malczuuu.problem4j/problem4j-core
 
