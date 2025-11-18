@@ -5,7 +5,7 @@ plugins {
     id("maven-publish")
     id("signing")
     id("com.diffplug.spotless").version("8.0.0")
-    id("com.gradleup.nmcp").version("1.2.1")
+    id("com.gradleup.nmcp").version("1.3.0")
 }
 
 group = "io.github.malczuuu.problem4j"
@@ -114,6 +114,7 @@ spotless {
         forbidWildcardImports()
 
         googleJavaFormat("1.28.0")
+        endWithNewline()
         lineEndings = LineEnding.UNIX
     }
 
