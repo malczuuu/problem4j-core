@@ -4,8 +4,8 @@ plugins {
     id("java-library")
     id("maven-publish")
     id("signing")
-    id("com.diffplug.spotless").version("8.0.0")
-    id("com.gradleup.nmcp").version("1.3.0")
+    alias(libs.plugins.nmcp)
+    alias(libs.plugins.spotless)
 }
 
 group = "io.github.malczuuu.problem4j"
