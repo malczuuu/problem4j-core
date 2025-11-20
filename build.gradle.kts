@@ -49,7 +49,7 @@ publishing {
             from(components["java"])
 
             pom {
-                name = project.name
+                name = "Problem4J Core"
                 description = "Core library implementing Problem model according to RFC7807"
                 url = "https://github.com/malczuuu/${rootProject.name}"
                 inceptionYear = "2025"
