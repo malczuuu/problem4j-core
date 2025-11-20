@@ -1,15 +1,23 @@
 package io.github.malczuuu.problem4j.core;
 
+import static io.github.malczuuu.problem4j.core.MapUtils.mapOf;
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
 import java.net.URI;
 import java.util.Arrays;
 import java.util.Collection;
+import java.util.Collections;
 import java.util.HashMap;
 import java.util.Map;
 import org.junit.jupiter.api.Test;
 
+/**
+ * Some of the tests in this class may appear trivial or unnecessary. They are intentionally
+ * included to explore and validate the behavior of various code coverage analysis tools. These
+ * tests help ensure that the coverage reports correctly reflect different execution paths, edge
+ * cases, and instrumentation scenarios.
+ */
 class ProblemBuilderImplTests {
 
   @Test
@@ -101,6 +109,16 @@ class ProblemBuilderImplTests {
   }
 
   @Test
+  void givenNullValueExtension_shouldNotIncludeIt() {
+    Problem problem = Problem.builder().extension("key", null).build();
+
+    assertThat(problem.getExtensions()).isEmpty();
+    assertThat(problem.hasExtension("key")).isFalse();
+    assertThat(problem.getExtensionValue("key")).isNull();
+    assertThat(problem.getExtensionMembers()).isEqualTo(mapOf());
+  }
+
+  @Test
   void givenNullMapExtension_shouldIgnoreIt() {
     Problem problem = Problem.builder().extension((Map<String, Object>) null).build();
 
@@ -116,7 +134,9 @@ class ProblemBuilderImplTests {
     Problem problem = Problem.builder().extension(map).build();
 
     assertThat(problem.getExtensions()).containsExactly("a");
+    assertThat(problem.hasExtension("a")).isTrue();
     assertThat(problem.getExtensionValue("a")).isEqualTo("b");
+    assertThat(problem.getExtensionMembers()).isEqualTo(mapOf("a", "b"));
   }
 
   @Test
@@ -134,6 +154,9 @@ class ProblemBuilderImplTests {
             .build();
 
     assertThat(problem.getExtensions()).containsExactlyInAnyOrder("a", "b");
+    assertThat(problem.hasExtension("a")).isTrue();
+    assertThat(problem.hasExtension("b")).isTrue();
+    assertThat(problem.getExtensionMembers()).isEqualTo(mapOf("a", 1, "b", 2));
   }
 
   @Test
@@ -152,10 +175,13 @@ class ProblemBuilderImplTests {
             .build();
 
     assertThat(problem.getExtensions()).containsExactlyInAnyOrder("x", "y");
+    assertThat(problem.hasExtension("x")).isTrue();
+    assertThat(problem.hasExtension("y")).isTrue();
+    assertThat(problem.getExtensionMembers()).isEqualTo(mapOf("x", "1", "y", "2"));
   }
 
   @Test
-  void numericStatus_shouldDeriveTitleWhenKnown() {
+  void givenNumericStatus_shouldDeriveTitleWhenKnown() {
     Problem problem = Problem.builder().status(ProblemStatus.MULTI_STATUS.getStatus()).build();
 
     assertThat(problem.getStatus()).isEqualTo(ProblemStatus.MULTI_STATUS.getStatus());
@@ -163,7 +189,7 @@ class ProblemBuilderImplTests {
   }
 
   @Test
-  void unknownNumericStatus_shouldNotDeriveTitle() {
+  void givenUnknownNumericStatus_shouldNotDeriveTitle() {
     Problem problem = Problem.builder().status(999).build();
 
     assertThat(problem.getStatus()).isEqualTo(999);
@@ -171,7 +197,7 @@ class ProblemBuilderImplTests {
   }
 
   @Test
-  void typeAndInstance_stringOverloads_shouldAcceptValidUris() {
+  void givenTypeAndInstance_stringOverloads_shouldAcceptValidUris() {
     String t = "http://example.org/type";
     String i = "http://example.org/instance";
 
@@ -182,29 +208,21 @@ class ProblemBuilderImplTests {
   }
 
   @Test
-  void emptyMapExtension_shouldBeIgnored() {
+  void givenEmptyMapExtension_shouldBeIgnored() {
     Map<String, Object> m = new HashMap<>();
     Problem problem = Problem.builder().extension(m).build();
 
     assertThat(problem.getExtensions()).isEmpty();
+    assertThat(problem.getExtensionMembers()).isEqualTo(Collections.emptyMap());
   }
 
   @Test
-  void nullValuedExtension_isPresentButOmittedFromToString() {
-    Problem problem = Problem.builder().extension("ext", null).build();
-
-    assertThat(problem.getExtensions()).containsExactly("ext");
-    assertThat(problem.getExtensionValue("ext")).isNull();
-
-    String s = problem.toString();
-    assertThat(s).doesNotContain("\"ext\"");
-  }
-
-  @Test
-  void laterExtensions_shouldOverwriteEarlierValues() {
+  void givenAssigningTheSameExtensionLater_shouldOverwriteEarlierValues() {
     Problem problem =
         Problem.builder().extension("k", "v1").extension(Problem.extension("k", "v2")).build();
 
     assertThat(problem.getExtensionValue("k")).isEqualTo("v2");
+    assertThat(problem.getExtensions()).containsExactly("k");
+    assertThat(problem.getExtensionMembers()).isEqualTo(mapOf("k", "v2"));
   }
 }

@@ -1,5 +1,6 @@
 package io.github.malczuuu.problem4j.core;
 
+import static io.github.malczuuu.problem4j.core.MapUtils.mapOf;
 import static org.assertj.core.api.Assertions.assertThat;
 
 import java.net.URI;
@@ -7,6 +8,12 @@ import java.util.HashMap;
 import java.util.Map;
 import org.junit.jupiter.api.Test;
 
+/**
+ * Some of the tests in this class may appear trivial or unnecessary. They are intentionally
+ * included to explore and validate the behavior of various code coverage analysis tools. These
+ * tests help ensure that the coverage reports correctly reflect different execution paths, edge
+ * cases, and instrumentation scenarios.
+ */
 class ProblemImplTests {
 
   @Test
@@ -112,6 +119,114 @@ class ProblemImplTests {
     String result = problem.toString();
 
     assertThat(result).contains("\"ext\" : \"" + JsonEscape.escape("a\"b\\c\nd") + "\"");
+  }
+
+  @Test
+  void givenTwoEqualProblems_shouldBeEqual() {
+    ProblemImpl problem1 =
+        new ProblemImpl(null, "title", 404, "detail", null, mapOf("key", "value"));
+    ProblemImpl problem2 =
+        new ProblemImpl(null, "title", 404, "detail", null, mapOf("key", "value"));
+
+    assertThat(problem1).isEqualTo(problem2);
+  }
+
+  @Test
+  void givenSameProblems_shouldBeEqual() {
+    Object problem;
+    Object other;
+
+    problem = other = new ProblemImpl(null, "title", 404, "detail", null, mapOf("key", "value"));
+
+    assertThat(problem).isEqualTo(other);
+  }
+
+  @Test
+  void givenTwoDifferentProblems_shouldNotBeEqual() {
+    ProblemImpl problem1 =
+        new ProblemImpl(null, "title1", 404, "detail1", null, mapOf("key", "value1"));
+    ProblemImpl problem2 =
+        new ProblemImpl(null, "title2", 500, "detail2", null, mapOf("key", "value2"));
+
+    assertThat(problem1).isNotEqualTo(problem2);
+  }
+
+  @Test
+  void givenProblemAndDifferentObject_shouldNotBeEqual() {
+    Object problem = new ProblemImpl(null, "title1", 404, "detail1", null, mapOf("key", "value"));
+    Object differentObject = "always wanted to be a problem";
+
+    assertThat(problem).isNotEqualTo(differentObject);
+  }
+
+  @Test
+  void givenTwoEqualProblems_shouldHaveSameHashCode() {
+    ProblemImpl problem1 =
+        new ProblemImpl(null, "title", 404, "detail", null, mapOf("key", "value"));
+    ProblemImpl problem2 =
+        new ProblemImpl(null, "title", 404, "detail", null, mapOf("key", "value"));
+
+    assertThat(problem1.hashCode()).isEqualTo(problem2.hashCode());
+  }
+
+  @Test
+  void givenTwoDifferentProblems_shouldHaveDifferentHashCodes() {
+    ProblemImpl problem1 =
+        new ProblemImpl(null, "title1", 404, "detail1", null, mapOf("key", "value1"));
+    ProblemImpl problem2 =
+        new ProblemImpl(null, "title2", 500, "detail2", null, mapOf("key", "value2"));
+
+    assertThat(problem1.hashCode()).isNotEqualTo(problem2.hashCode());
+  }
+
+  @Test
+  void givenTwoEqualExtensions_shouldBeEqual() {
+    ProblemImpl.ExtensionImpl ext1 = new ProblemImpl.ExtensionImpl("key", "value");
+    ProblemImpl.ExtensionImpl ext2 = new ProblemImpl.ExtensionImpl("key", "value");
+
+    assertThat(ext1).isEqualTo(ext2);
+  }
+
+  @Test
+  void givenSameExtensions_shouldBeEqual() {
+    Object ext;
+    Object other;
+
+    ext = other = new ProblemImpl.ExtensionImpl("key", "value");
+
+    assertThat(ext).isEqualTo(other);
+  }
+
+  @Test
+  void givenTwoDifferentExtensions_shouldNotBeEqual() {
+    ProblemImpl.ExtensionImpl ext1 = new ProblemImpl.ExtensionImpl("key1", "value1");
+    ProblemImpl.ExtensionImpl ext2 = new ProblemImpl.ExtensionImpl("key2", "value2");
+
+    assertThat(ext1).isNotEqualTo(ext2);
+  }
+
+  @Test
+  void givenExtensionAndDifferentObject_shouldNotBeEqual() {
+    Object ext = new ProblemImpl.ExtensionImpl("key", "value");
+    Object differentObject = "always wanted to be a problem";
+
+    assertThat(ext).isNotEqualTo(differentObject);
+  }
+
+  @Test
+  void givenTwoEqualExtensions_shouldHaveSameHashCode() {
+    ProblemImpl.ExtensionImpl ext1 = new ProblemImpl.ExtensionImpl("key", "value");
+    ProblemImpl.ExtensionImpl ext2 = new ProblemImpl.ExtensionImpl("key", "value");
+
+    assertThat(ext1.hashCode()).isEqualTo(ext2.hashCode());
+  }
+
+  @Test
+  void givenTwoDifferentExtensions_shouldHaveDifferentHashCodes() {
+    ProblemImpl.ExtensionImpl ext1 = new ProblemImpl.ExtensionImpl("key1", "value1");
+    ProblemImpl.ExtensionImpl ext2 = new ProblemImpl.ExtensionImpl("key2", "value2");
+
+    assertThat(ext1.hashCode()).isNotEqualTo(ext2.hashCode());
   }
 
   private static class DummyObject {

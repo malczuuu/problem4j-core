@@ -6,6 +6,12 @@ import static org.junit.jupiter.api.Assertions.assertSame;
 
 import org.junit.jupiter.api.Test;
 
+/**
+ * Some of the tests in this class may appear trivial or unnecessary. They are intentionally
+ * included to explore and validate the behavior of various code coverage analysis tools. These
+ * tests help ensure that the coverage reports correctly reflect different execution paths, edge
+ * cases, and instrumentation scenarios.
+ */
 class ProblemExceptionTests {
 
   @Test
