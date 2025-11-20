@@ -32,7 +32,7 @@ Artifacts are published to Snapshot Repository, using following Gradle task.
    <dependency>
        <groupId>io.github.malczuuu.problem4j</groupId>
        <artifactId>problem4j-core</artifactId>
-       <version>1.2.0-SNAPSHOT</version>
+       <version>1.3.0-SNAPSHOT</version>
    </dependency>
    </dependencies>
    ```
@@ -51,7 +51,7 @@ Artifacts are published to Snapshot Repository, using following Gradle task.
        }
    }
    dependencies {
-       implementation("io.github.malczuuu.problem4j:problem4j-core:1.2.0-SNAPSHOT")
+       implementation("io.github.malczuuu.problem4j:problem4j-core:1.3.0-SNAPSHOT")
    }
    ```
 
