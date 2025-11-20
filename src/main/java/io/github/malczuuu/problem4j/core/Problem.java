@@ -101,6 +101,18 @@ public interface Problem extends Serializable {
   boolean hasExtension(String extension);
 
   /**
+   * Returns a map of all extension members.
+   *
+   * <p>This method provides a complete view of all extension key–value pairs, which is useful when
+   * callers need to handle extensions in bulk rather than querying them individually. It
+   * complements {@link #getExtensionValue(String)} and {@link #hasExtension(String)} by exposing
+   * the full extension payload at once.
+   *
+   * @return an unmodifiable map of extension members
+   */
+  Map<String, Object> getExtensionMembers();
+
+  /**
    * Converts this problem instance into a {@link Problem} builder, pre-populated with its values.
    * Useful for creating a modified copy.
    *

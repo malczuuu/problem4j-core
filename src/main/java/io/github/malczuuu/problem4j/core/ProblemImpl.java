@@ -94,25 +94,31 @@ final class ProblemImpl implements Problem {
   }
 
   @Override
+  public Map<String, Object> getExtensionMembers() {
+    return Collections.unmodifiableMap(extensions);
+  }
+
+  @Override
   public boolean equals(Object obj) {
     if (this == obj) {
       return true;
     }
-    if (obj == null || getClass() != obj.getClass()) {
+    if (!(obj instanceof Problem)) {
       return false;
     }
-    ProblemImpl problem = (ProblemImpl) obj;
+    Problem problem = (Problem) obj;
     return Objects.equals(getType(), problem.getType())
         && Objects.equals(getTitle(), problem.getTitle())
         && getStatus() == problem.getStatus()
         && Objects.equals(getDetail(), problem.getDetail())
         && Objects.equals(getInstance(), problem.getInstance())
-        && Objects.equals(extensions, problem.extensions);
+        && Objects.equals(getExtensionMembers(), problem.getExtensionMembers());
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(getType(), getTitle(), getStatus(), getDetail(), getInstance(), extensions);
+    return Objects.hash(
+        getType(), getTitle(), getStatus(), getDetail(), getInstance(), getExtensionMembers());
   }
 
   @Override
@@ -132,11 +138,9 @@ final class ProblemImpl implements Problem {
       lines.add("\"instance\" : \"" + quote(getInstance().toString()) + "\"");
     }
 
-    getExtensions()
+    getExtensionMembers()
         .forEach(
-            field -> {
-              Object value = getExtensionValue(field);
-
+            (field, value) -> {
               if (value == null) {
                 return;
               }
@@ -193,10 +197,10 @@ final class ProblemImpl implements Problem {
       if (this == obj) {
         return true;
       }
-      if (obj == null || getClass() != obj.getClass()) {
+      if (!(obj instanceof Extension)) {
         return false;
       }
-      ExtensionImpl extension = (ExtensionImpl) obj;
+      Extension extension = (Extension) obj;
       return Objects.equals(getKey(), extension.getKey())
           && Objects.equals(getValue(), extension.getValue());
     }
