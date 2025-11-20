@@ -66,7 +66,7 @@ final class ProblemBuilderImpl implements ProblemBuilder {
 
   @Override
   public ProblemBuilder extension(String name, Object value) {
-    if (name != null) {
+    if (name != null && value != null) {
       extensions.put(name, value);
     }
     return this;
