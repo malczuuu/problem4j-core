@@ -119,6 +119,41 @@ class ProblemBuilderImplTests {
   }
 
   @Test
+  void givenNullValueExtensionViaVarargs_shouldNotIncludeIt() {
+    Problem problem =
+        Problem.builder()
+            .extension(Problem.extension("key1", null), Problem.extension("key2", null))
+            .build();
+
+    assertThat(problem.getExtensions()).isEmpty();
+    assertThat(problem.getExtensionMembers()).isEqualTo(mapOf());
+
+    assertThat(problem.hasExtension("key1")).isFalse();
+    assertThat(problem.getExtensionValue("key1")).isNull();
+
+    assertThat(problem.hasExtension("key2")).isFalse();
+    assertThat(problem.getExtensionValue("key2")).isNull();
+  }
+
+  @Test
+  void givenNullValueExtensionViaObject_shouldNotIncludeIt() {
+    Problem problem =
+        Problem.builder()
+            .extension(
+                Arrays.asList(Problem.extension("key1", null), Problem.extension("key2", null)))
+            .build();
+
+    assertThat(problem.getExtensions()).isEmpty();
+    assertThat(problem.getExtensionMembers()).isEqualTo(mapOf());
+
+    assertThat(problem.hasExtension("key1")).isFalse();
+    assertThat(problem.getExtensionValue("key1")).isNull();
+
+    assertThat(problem.hasExtension("key2")).isFalse();
+    assertThat(problem.getExtensionValue("key2")).isNull();
+  }
+
+  @Test
   void givenNullMapExtension_shouldIgnoreIt() {
     Problem problem = Problem.builder().extension((Map<String, Object>) null).build();
 
@@ -129,6 +164,20 @@ class ProblemBuilderImplTests {
   void givenMapExtensionWithNullKey_shouldIgnoreNullKey() {
     Map<String, Object> map = new HashMap<>();
     map.put(null, "ignored");
+    map.put("a", "b");
+
+    Problem problem = Problem.builder().extension(map).build();
+
+    assertThat(problem.getExtensions()).containsExactly("a");
+    assertThat(problem.hasExtension("a")).isTrue();
+    assertThat(problem.getExtensionValue("a")).isEqualTo("b");
+    assertThat(problem.getExtensionMembers()).isEqualTo(mapOf("a", "b"));
+  }
+
+  @Test
+  void givenMapExtensionWithNullValue_shouldIgnoreNullValue() {
+    Map<String, Object> map = new HashMap<>();
+    map.put("ignored", null);
     map.put("a", "b");
 
     Problem problem = Problem.builder().extension(map).build();

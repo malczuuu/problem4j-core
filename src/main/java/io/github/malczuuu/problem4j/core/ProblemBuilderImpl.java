@@ -4,7 +4,6 @@ import java.net.URI;
 import java.util.Collection;
 import java.util.LinkedHashMap;
 import java.util.Map;
-import java.util.Objects;
 import java.util.Optional;
 import java.util.stream.Stream;
 
@@ -77,7 +76,7 @@ final class ProblemBuilderImpl implements ProblemBuilder {
     if (extensions != null && !extensions.isEmpty()) {
       extensions.forEach(
           (key, value) -> {
-            if (key != null) {
+            if (key != null && value != null) {
               this.extensions.put(key, value);
             }
           });
@@ -89,7 +88,7 @@ final class ProblemBuilderImpl implements ProblemBuilder {
   public ProblemBuilder extension(Problem.Extension... extensions) {
     if (extensions != null && extensions.length > 0) {
       Stream.of(extensions)
-          .filter(Objects::nonNull)
+          .filter(ProblemBuilderImpl::isExtensionValid)
           .forEach(e -> this.extensions.put(e.getKey(), e.getValue()));
     }
     return this;
@@ -99,7 +98,7 @@ final class ProblemBuilderImpl implements ProblemBuilder {
   public ProblemBuilder extension(Collection<Problem.Extension> extensions) {
     if (extensions != null && !extensions.isEmpty()) {
       extensions.stream()
-          .filter(Objects::nonNull)
+          .filter(ProblemBuilderImpl::isExtensionValid)
           .forEach(e -> this.extensions.put(e.getKey(), e.getValue()));
     }
     return this;
@@ -119,5 +118,9 @@ final class ProblemBuilderImpl implements ProblemBuilder {
       }
     }
     return new ProblemImpl(type, title, status, detail, instance, extensions);
+  }
+
+  private static boolean isExtensionValid(Problem.Extension extension) {
+    return extension != null && extension.getKey() != null && extension.getValue() != null;
   }
 }
