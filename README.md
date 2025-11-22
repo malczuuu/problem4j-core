@@ -72,7 +72,7 @@ higher is required to use this library.
    }
     ```
 
-For using snapshot versions [**Snapshots** chapter of`PUBLISHING.md`](RELEASING.md#sonatype-snapshots).
+For using snapshot versions [**Snapshots** chapter of `RELEASING.md`](RELEASING.md#sonatype-snapshots).
 
 ## Problem4J Links
 
