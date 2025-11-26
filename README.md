@@ -86,9 +86,9 @@ For using snapshot versions [**Snapshots** chapter of `RELEASING.md`](RELEASING.
 <details>
 <summary><b>Expand...</b></summary>
 
-To build the project from source you need **Java 17+**, because this is required by Gradle itself.
-
-The project is compiled using a **Java 8 toolchain**, so the produced artifacts are compatible with **Java 8**.
+Gradle **9.x+** requires **Java 17+** to run, but higher Java versions can also be used. All modules of this project are
+compiled using a **Java 8 toolchain**, so the produced artifacts are compatible with **Java 8**, regardless of the Java
+version Gradle runs on.
 
 ```bash
 ./gradlew clean build
