@@ -56,7 +56,7 @@ publishing {
                 licenses {
                     license {
                         name = "MIT License"
-                        url = "https://opensource.org/licenses/MIT"
+                        url = "https://opensource.org/license/MIT"
                     }
                 }
                 developers {
