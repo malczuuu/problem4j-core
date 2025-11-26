@@ -642,8 +642,8 @@ public enum ProblemStatus {
    * Return the {@link ProblemStatus} matching the given integer HTTP status code.
    *
    * @param status the HTTP status code to look up (for example {@code 404})
-   * @return an {@link Optional} containing the matching {@link ProblemStatus} if present, or {@link
-   *     Optional#empty()} if there is no enum constant for the provided code
+   * @return an {@link Optional} containing the matching {@link ProblemStatus} if present, or empty
+   *     if there is no enum constant for the provided code
    */
   public static Optional<ProblemStatus> findValue(int status) {
     return Optional.ofNullable(STATUSES_BY_CODE.get(status));
