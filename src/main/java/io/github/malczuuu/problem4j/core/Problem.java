@@ -3,6 +3,7 @@ package io.github.malczuuu.problem4j.core;
 import java.io.Serializable;
 import java.net.URI;
 import java.util.Map;
+import java.util.Objects;
 import java.util.Set;
 
 /**
@@ -119,6 +120,16 @@ public interface Problem extends Serializable {
    * @return a builder with the current problem's values
    */
   ProblemBuilder toBuilder();
+
+  /**
+   * A convenience method to verify if {@code type} field was assigned, as {@link #BLANK_TYPE} also
+   * mean that type is unassigned.
+   *
+   * @return {@code true} if {@code type} is assigned to a non-blank value, {@code false} otherwise
+   */
+  default boolean hasType() {
+    return getType() != null && !Objects.equals(getType(), BLANK_TYPE);
+  }
 
   /** Represents a single key-value extension in a {@link Problem}. */
   interface Extension extends Map.Entry<String, Object> {
