@@ -4,12 +4,17 @@ updates:
     directory: "/"
     schedule:
       interval: "monthly"
+    target-branch: main
     open-pull-requests-limit: 10
+    labels:
+      - "target: latest"
+      - "dependencies"
 
   - package-ecosystem: "gradle"
     directory: "/"
     schedule:
       interval: "monthly"
+    target-branch: main
     open-pull-requests-limit: 10
     allow:
       - dependency-type: "direct"
@@ -17,3 +22,6 @@ updates:
       - dependency-name: "*"
         update-types:
           - "version-update:semver-major"
+    labels:
+      - "target: latest"
+      - "dependencies"
