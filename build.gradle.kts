@@ -1,4 +1,5 @@
 import com.diffplug.spotless.LineEnding
+import org.gradle.api.tasks.testing.logging.TestExceptionFormat
 
 plugins {
     id("java-library")
@@ -165,4 +166,13 @@ tasks.withType<Javadoc>().configureEach {
 
 tasks.withType<Test>().configureEach {
     useJUnitPlatform()
+
+    testLogging {
+        events("passed", "skipped", "failed", "standardOut", "standardError")
+        exceptionFormat = TestExceptionFormat.SHORT
+        showStandardStreams = true
+    }
+
+    systemProperty("user.language", "en")
+    systemProperty("user.country", "US")
 }
