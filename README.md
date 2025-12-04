@@ -40,13 +40,13 @@ import io.github.malczuuu.problem4j.core.Problem;
 import io.github.malczuuu.problem4j.core.ProblemException;
 
 Problem problem =
-        Problem.builder()
-                .type("https://example.com/errors/invalid-request")
-                .title("Invalid Request")
-                .status(400)
-                .detail("not a valid json")
-                .instance("https://example.com/instances/1234")
-                .build();
+    Problem.builder()
+        .type("https://example.com/errors/invalid-request")
+        .title("Invalid Request")
+        .status(400)
+        .detail("not a valid json")
+        .instance("https://example.com/instances/1234")
+        .build();
 throw new ProblemException(problem);
 ```
 
@@ -61,14 +61,14 @@ higher is required to use this library.
        <dependency>
            <groupId>io.github.malczuuu.problem4j</groupId>
            <artifactId>problem4j-core</artifactId>
-           <version>1.2.1</version>
+           <version>1.2.2</version>
        </dependency>
    </dependencies>
    ```
 2. Gradle (Groovy or Kotlin DSL):
    ```groovy
    dependencies {
-       implementation("io.github.malczuuu.problem4j:problem4j-core:1.2.1")
+       implementation("io.github.malczuuu.problem4j:problem4j-core:1.2.2")
    }
     ```
 
