@@ -121,7 +121,7 @@ public interface Problem extends Serializable {
   ProblemBuilder toBuilder();
 
   /** Represents a single key-value extension in a {@link Problem}. */
-  interface Extension extends Map.Entry<String, Object> {
+  interface Extension extends Map.Entry<String, Object>, Serializable {
 
     /**
      * @return the extension key

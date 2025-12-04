@@ -168,6 +168,8 @@ final class ProblemImpl implements Problem {
 
   static final class ExtensionImpl implements Problem.Extension {
 
+    private static final long serialVersionUID = 1L;
+
     private final String key;
     private Object value;
 
