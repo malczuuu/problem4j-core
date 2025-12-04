@@ -120,6 +120,16 @@ public interface Problem extends Serializable {
    */
   ProblemBuilder toBuilder();
 
+  /**
+   * A convenience method to verify if {@code type} field was assigned, as {@link #BLANK_TYPE} also
+   * mean that type is unassigned.
+   *
+   * @return {@code true} if {@code type} is assigned to a non-blank value, {@code false} otherwise
+   */
+  default boolean isTypeNonBlank() {
+    return getType() != null && !getType().equals(BLANK_TYPE) && !getType().toString().isEmpty();
+  }
+
   /** Represents a single key-value extension in a {@link Problem}. */
   interface Extension extends Map.Entry<String, Object>, Serializable {
 

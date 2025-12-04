@@ -25,6 +25,7 @@ class ProblemBuilderImplTests {
     Problem problem = Problem.builder().type((URI) null).build();
 
     assertThat(problem.getType()).isEqualTo(Problem.BLANK_TYPE);
+    assertThat(problem.isTypeNonBlank()).isFalse();
   }
 
   @Test
@@ -32,6 +33,23 @@ class ProblemBuilderImplTests {
     Problem problem = Problem.builder().type((String) null).build();
 
     assertThat(problem.getType()).isEqualTo(Problem.BLANK_TYPE);
+    assertThat(problem.isTypeNonBlank()).isFalse();
+  }
+
+  @Test
+  void givenBlankURIType_shouldNotSetIt() {
+    Problem problem = Problem.builder().type(Problem.BLANK_TYPE).build();
+
+    assertThat(problem.getType()).isEqualTo(Problem.BLANK_TYPE);
+    assertThat(problem.isTypeNonBlank()).isFalse();
+  }
+
+  @Test
+  void givenBlankStringType_shouldNotSetIt() {
+    Problem problem = Problem.builder().type(Problem.BLANK_TYPE.toString()).build();
+
+    assertThat(problem.getType()).isEqualTo(Problem.BLANK_TYPE);
+    assertThat(problem.isTypeNonBlank()).isFalse();
   }
 
   @Test
