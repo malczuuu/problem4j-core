@@ -72,8 +72,6 @@ higher is required to use this library.
    }
     ```
 
-For using snapshot versions [**Snapshots** chapter of `RELEASING.md`](RELEASING.md#sonatype-snapshots).
-
 ## Problem4J Links
 
 - [`problem4j-core`][problem4j-core] - Core library defining `Problem` model and `ProblemException`.
@@ -94,8 +92,14 @@ version Gradle runs on.
 ./gradlew clean build
 ```
 
+To execute tests use `test` task.
+
+```bash
+./gradlew clean test
+```
+
 To format the code according to the style defined in [`build.gradle.kts`](./build.gradle.kts) rules use `spotlessApply`
-task.
+task. **Note** that **building will fail** if code is not properly formatted.
 
 ```bash
 ./gradlew spotlessApply
