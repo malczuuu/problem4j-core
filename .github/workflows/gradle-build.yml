@@ -1,11 +1,21 @@
 name: Gradle Build
 
+# workflow limited to only files related to source code
 on:
   workflow_dispatch:
   push:
     branches:
       - "main"
       - "release-*"
+    paths:
+      - ".github/workflows/gradle-build.yml"
+      - "buildSrc/**"
+      - "gradle/**"
+      - "**/src/**"
+      - "**/*.gradle.kts"
+      - "gradle.properties"
+      - "gradlew"
+      - "gradlew.bat"
   pull_request:
     branches:
       - "main"
