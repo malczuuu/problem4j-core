@@ -292,4 +292,56 @@ class ProblemBuilderImplTests {
     assertThat(problem.getExtensions()).containsExactly("k");
     assertThat(problem.getExtensionMembers()).isEqualTo(mapOf("k", "v2"));
   }
+
+  @Test
+  void givenAliasFields_shouldCreateProblemAsWithPrimaryMethods() {
+    Problem problem =
+        Problem.builder()
+            .withType(URI.create("http://example.com/type"))
+            .withTitle("Invalid Request")
+            .withStatus(400)
+            .withDetail("request is not valid")
+            .withInstance(URI.create("/instance"))
+            .withExtension("field1", "value1")
+            .withExtension(
+                Problem.extension("field2", "value2"), Problem.extension("field3", "value3"))
+            .withExtension(
+                Arrays.asList(
+                    Problem.extension("field4", "value4"), Problem.extension("field5", "value5")))
+            .withExtension(mapOf("field6", "value6", "field7", "value7"))
+            .build();
+
+    assertThat(problem.getType()).isEqualTo(URI.create("http://example.com/type"));
+    assertThat(problem.getTitle()).isEqualTo("Invalid Request");
+    assertThat(problem.getStatus()).isEqualTo(400);
+    assertThat(problem.getDetail()).isEqualTo("request is not valid");
+    assertThat(problem.getInstance()).isEqualTo(URI.create("/instance"));
+    assertThat(problem.getExtensionMembers())
+        .isEqualTo(
+            mapOf(
+                "field1", "value1",
+                "field2", "value2",
+                "field3", "value3",
+                "field4", "value4",
+                "field5", "value5",
+                "field6", "value6",
+                "field7", "value7"));
+  }
+
+  @Test
+  void givenAliasFieldsAndOverloadedMethods_shouldCreateProblemAsWithPrimaryMethods() {
+    Problem problem =
+        Problem.builder()
+            .withType("http://example.com/type")
+            .withStatus(ProblemStatus.BAD_REQUEST)
+            .withDetail("request is not valid")
+            .withInstance("/instance")
+            .build();
+
+    assertThat(problem.getType()).isEqualTo(URI.create("http://example.com/type"));
+    assertThat(problem.getTitle()).isEqualTo(ProblemStatus.BAD_REQUEST.getTitle());
+    assertThat(problem.getStatus()).isEqualTo(ProblemStatus.BAD_REQUEST.getStatus());
+    assertThat(problem.getDetail()).isEqualTo("request is not valid");
+    assertThat(problem.getInstance()).isEqualTo(URI.create("/instance"));
+  }
 }

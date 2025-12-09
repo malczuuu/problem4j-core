@@ -131,4 +131,124 @@ public interface ProblemBuilder {
    * @return a new {@link Problem} instance
    */
   Problem build();
+
+  /**
+   * Alias for {@link #type(URI)}.
+   *
+   * <p>Convenience alias for the corresponding method, supporting both fluent ({@code x(...)}) and
+   * explicit builder ({@code withX(...)}) naming styles.
+   */
+  default ProblemBuilder withType(URI type) {
+    return type(type);
+  }
+
+  /**
+   * Alias for {@link #type(String)}.
+   *
+   * <p>Convenience alias for the corresponding method, supporting both fluent ({@code x(...)}) and
+   * explicit builder ({@code withX(...)}) naming styles.
+   */
+  default ProblemBuilder withType(String type) {
+    return type(type);
+  }
+
+  /**
+   * Alias for {@link #title(String)}.
+   *
+   * <p>Convenience alias for the corresponding method, supporting both fluent ({@code x(...)}) and
+   * explicit builder ({@code withX(...)}) naming styles.
+   */
+  default ProblemBuilder withTitle(String title) {
+    return title(title);
+  }
+
+  /**
+   * Alias for {@link #status(int)}.
+   *
+   * <p>Convenience alias for the corresponding method, supporting both fluent ({@code x(...)}) and
+   * explicit builder ({@code withX(...)}) naming styles.
+   */
+  default ProblemBuilder withStatus(int status) {
+    return status(status);
+  }
+
+  /**
+   * Alias for {@link #status(ProblemStatus)}.
+   *
+   * <p>Convenience alias for the corresponding method, supporting both fluent ({@code x(...)}) and
+   * explicit builder ({@code withX(...)}) naming styles.
+   */
+  default ProblemBuilder withStatus(ProblemStatus status) {
+    return status(status);
+  }
+
+  /**
+   * Alias for {@link #detail(String)}.
+   *
+   * <p>Convenience alias for the corresponding method, supporting both fluent ({@code x(...)}) and
+   * explicit builder ({@code withX(...)}) naming styles.
+   */
+  default ProblemBuilder withDetail(String detail) {
+    return detail(detail);
+  }
+
+  /**
+   * Alias for {@link #instance(URI)}.
+   *
+   * <p>Convenience alias for the corresponding method, supporting both fluent ({@code x(...)}) and
+   * explicit builder ({@code withX(...)}) naming styles.
+   */
+  default ProblemBuilder withInstance(URI instance) {
+    return instance(instance);
+  }
+
+  /**
+   * Alias for {@link #instance(String)}.
+   *
+   * <p>Convenience alias for the corresponding method, supporting both fluent ({@code x(...)}) and
+   * explicit builder ({@code withX(...)}) naming styles.
+   */
+  default ProblemBuilder withInstance(String instance) {
+    return instance(instance);
+  }
+
+  /**
+   * Alias for {@link #extension(String, Object)}.
+   *
+   * <p>Convenience alias for the corresponding method, supporting both fluent ({@code x(...)}) and
+   * explicit builder ({@code withX(...)}) naming styles.
+   */
+  default ProblemBuilder withExtension(String name, Object value) {
+    return extension(name, value);
+  }
+
+  /**
+   * Alias for {@link #extension(Map)}.
+   *
+   * <p>Convenience alias for the corresponding method, supporting both fluent ({@code x(...)}) and
+   * explicit builder ({@code withX(...)}) naming styles.
+   */
+  default ProblemBuilder withExtension(Map<String, Object> extensions) {
+    return extension(extensions);
+  }
+
+  /**
+   * Alias for {@link #extension(Problem.Extension...)}.
+   *
+   * <p>Convenience alias for the corresponding method, supporting both fluent ({@code x(...)}) and
+   * explicit builder ({@code withX(...)}) naming styles.
+   */
+  default ProblemBuilder withExtension(Problem.Extension... extensions) {
+    return extension(extensions);
+  }
+
+  /**
+   * Alias for {@link #extension(Collection)}.
+   *
+   * <p>Convenience alias for the corresponding method, supporting both fluent ({@code x(...)}) and
+   * explicit builder ({@code withX(...)}) naming styles.
+   */
+  default ProblemBuilder withExtension(Collection<Problem.Extension> extensions) {
+    return extension(extensions);
+  }
 }
