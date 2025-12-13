@@ -1,16 +1,16 @@
-# Copilot Coding Agent Onboarding Guide for problem4j-core
+# Copilot Coding Agent Onboarding Guide for `problem4j-core`
 
 ## Project Details
 
-- **Repository:** problem4j-core
+- **Repository:** `problem4j-core`.
 - **Purpose:** Minimal, framework-agnostic Java library implementing RFC 7807 "Problem Details" object. Provides
   immutable `Problem` model, builder, and exception for error handling. Intended as a foundation for other
   libraries/applications.
-- **Languages:** Java (main), Kotlin (build scripts)
-- **Frameworks/Tools:** Gradle (Kotlin DSL), JUnit Jupiter, AssertJ, Spotless, GitHub Actions CI
-- **Modules:** Single module
-- **Java Version:** Java 8+ (toolchain set to 8, CI builds/tests on JDK 17)
-- **Repo Size:** Medium (core source, tests, build scripts, CI/CD workflows)
+- **Languages:** Java (main), Kotlin (build scripts).
+- **Frameworks/Tools:** Gradle (Kotlin DSL), JUnit Jupiter, AssertJ, Spotless, GitHub Actions CI.
+- **Modules:** Single module.
+- **Java Version:** Java 8+ (toolchain set to 8, CI builds/tests on JDK 17).
+- **Repo Size:** Small (core source, tests, build scripts, CI/CD workflows).
 
 ## Build, Test, Lint, and Validation Steps
 
@@ -38,10 +38,10 @@
 ## Project Layout & Key Files
 
 - **Root Files:** `build.gradle.kts`, `settings.gradle.kts`, `README.md`, `RELEASING.md`, `gradlew`, `gradlew.bat`,
-  `gradle/libs.versions.toml`, `.github/workflows/`
-- **Source Code:** `src/main/java/io/github/malczuuu/problem4j/core/`
-- **Tests:** `src/test/java/io/github/malczuuu/problem4j/core/`
-- **Build Scripts:** All modules have `build.gradle.kts`
+  `gradle/libs.versions.toml`, `.github/workflows/`.
+- **Source Code:** `src/main/java/io/github/malczuuu/problem4j/core/`.
+- **Tests:** `src/test/java/io/github/malczuuu/problem4j/core/`.
+- **Build Scripts:** All modules have `build.gradle.kts`.
 - **Build Utils:** Custom Gradle scripts in `buildSrc`.
 
 ## Coding Guidelines
