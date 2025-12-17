@@ -1,5 +1,11 @@
 # Releasing
 
+A release is created by pushing an annotated git tag named `v1.2.3` with the message "Release 1.2.3". Preferably, use
+the [`./tools/tagrelease`](./tools/tagrelease) script, which ensures the tag is correctly formatted and prevents
+mistakes. Proper tag format is required to trigger build automation.
+
+See `./tools/tagrelease --help` for reference.
+
 ## Maven Central
 
 [![Publish Release Status](https://github.com/malczuuu/problem4j-core/actions/workflows/gradle-publish-release.yml/badge.svg)][gradle-publish-release]
