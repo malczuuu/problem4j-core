@@ -89,13 +89,13 @@ compiled using a **Java 8 toolchain**, so the produced artifacts are compatible 
 version Gradle runs on.
 
 ```bash
-./gradlew clean build
+./gradlew build
 ```
 
 To execute tests use `test` task.
 
 ```bash
-./gradlew clean test
+./gradlew test
 ```
 
 To format the code according to the style defined in [`build.gradle.kts`](./build.gradle.kts) rules use `spotlessApply`
@@ -109,7 +109,7 @@ To publish the built artifacts to local Maven repository, run following command,
 version. By default, the version is derived from git commit hash.
 
 ```bash
-./gradlew -Pversion=XXXX clean build publishToMavenLocal
+./gradlew -Pversion=XXXX build publishToMavenLocal
 ```
 
 </details>
