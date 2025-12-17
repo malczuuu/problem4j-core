@@ -61,14 +61,14 @@ higher is required to use this library.
        <dependency>
            <groupId>io.github.malczuuu.problem4j</groupId>
            <artifactId>problem4j-core</artifactId>
-           <version>1.2.4</version>
+           <version>1.2.5</version>
        </dependency>
    </dependencies>
    ```
 2. Gradle (Groovy or Kotlin DSL):
    ```groovy
    dependencies {
-       implementation("io.github.malczuuu.problem4j:problem4j-core:1.2.4")
+       implementation("io.github.malczuuu.problem4j:problem4j-core:1.2.5")
    }
     ```
 
