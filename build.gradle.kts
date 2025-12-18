@@ -141,6 +141,15 @@ spotless {
     }
 }
 
+// Utility to clean up old jars as they can clutter due to versioning by Git commit hashes.
+// Usage:
+//   ./gradlew cleanLibs
+tasks.register("cleanLibs") {
+    description = "Deletes build/libs/ directory."
+    group = "build"
+    delete(layout.buildDirectory.dir("libs"))
+}
+
 // Usage:
 //   ./gradlew printVersion
 tasks.register("printVersion") {
@@ -160,6 +169,7 @@ tasks.withType<JavaCompile>().configureEach {
 }
 
 tasks.withType<Jar>().configureEach {
+    dependsOn("cleanLibs")
     manifest {
         attributes(
             "Implementation-Title" to project.name,

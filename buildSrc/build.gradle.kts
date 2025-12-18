@@ -2,6 +2,8 @@ plugins {
     `kotlin-dsl`
 }
 
+version = "current"
+
 // To hide warnings that Kotlin does not support 25 JDK target yet, to be revisited in the future.
 if (JavaVersion.current().isCompatibleWith(JavaVersion.VERSION_25)) {
     kotlin {
