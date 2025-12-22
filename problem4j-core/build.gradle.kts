@@ -1,6 +1,3 @@
-import com.diffplug.spotless.LineEnding
-import org.gradle.api.tasks.testing.logging.TestExceptionFormat
-
 plugins {
     id("internal.convention-java-library")
     id("internal.convention-publishing")
