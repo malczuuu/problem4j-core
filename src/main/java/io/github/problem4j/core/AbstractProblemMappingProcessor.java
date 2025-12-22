@@ -269,9 +269,12 @@ public abstract class AbstractProblemMappingProcessor implements ProblemMappingP
    */
   protected String interpolate(String template, Throwable t, ProblemContext context) {
     Matcher m = PLACEHOLDER.matcher(template);
+    StringBuilder sb = new StringBuilder();
 
-    StringBuffer sb = new StringBuffer();
+    int lastEnd = 0;
     while (m.find()) {
+      sb.append(template, lastEnd, m.start());
+
       String key = m.group(1);
       String replacement;
 
@@ -285,10 +288,12 @@ public abstract class AbstractProblemMappingProcessor implements ProblemMappingP
         Object v = resolvePlaceholderSource(t, key);
         replacement = v == null ? "" : String.valueOf(v);
       }
-      replacement = Matcher.quoteReplacement(replacement);
-      m.appendReplacement(sb, replacement);
+
+      sb.append(replacement);
+      lastEnd = m.end();
     }
-    m.appendTail(sb);
+
+    sb.append(template, lastEnd, template.length()); // append the tail
     return sb.toString();
   }
 
