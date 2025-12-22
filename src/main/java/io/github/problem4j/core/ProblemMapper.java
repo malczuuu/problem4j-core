@@ -32,10 +32,20 @@ package io.github.problem4j.core;
  * }</pre>
  *
  * <p>Implementations should return {@code null} if the exception class is not annotated with {@code
- * ProblemMapping}, and may throw {@link ProblemProcessingException} if an error occurs during
- * problem creation.
+ * ProblemMapping}, and may throw {@link ProblemMappingException} if an error occurs during problem
+ * creation.
  */
-public interface ProblemMappingProcessor {
+public interface ProblemMapper {
+
+  /**
+   * Creates a default {@link ProblemMapper} instance. The returned mapper provides the standard
+   * mapping behavior defined by this library.
+   *
+   * @return a new {@link ProblemMapper} instance
+   */
+  static ProblemMapper create() {
+    return new ProblemMapperImpl();
+  }
 
   /**
    * Convert {@link Throwable} -> {@link ProblemBuilder} according to its {@link ProblemMapping}
@@ -44,7 +54,7 @@ public interface ProblemMappingProcessor {
    *
    * @param t {@link Throwable} to convert (may be {@code null})
    * @return a {@link ProblemBuilder} instance
-   * @throws ProblemProcessingException when something goes wrong while building the Problem
+   * @throws ProblemMappingException when something goes wrong while building the Problem
    */
   ProblemBuilder toProblemBuilder(Throwable t);
 
@@ -56,7 +66,7 @@ public interface ProblemMappingProcessor {
    * @param t {@link Throwable} to convert (may be {@code null})
    * @param context optional {@link ProblemContext} (may be {@code null})
    * @return a {@link ProblemBuilder} instance
-   * @throws ProblemProcessingException when something goes wrong while building the Problem
+   * @throws ProblemMappingException when something goes wrong while building the Problem
    */
   ProblemBuilder toProblemBuilder(Throwable t, ProblemContext context);
 

@@ -54,7 +54,7 @@ import java.util.regex.Pattern;
  * and ensures that null or empty values do not appear in the output, making Problems concise and
  * meaningful.
  */
-public abstract class AbstractProblemMappingProcessor implements ProblemMappingProcessor {
+public abstract class AbstractProblemMapper implements ProblemMapper {
 
   protected static final Pattern PLACEHOLDER = Pattern.compile("\\{([^}]+)}");
 
@@ -73,7 +73,7 @@ public abstract class AbstractProblemMappingProcessor implements ProblemMappingP
    * @param t {@link Throwable} to convert (may be {@code null})
    * @param context optional {@link ProblemContext} (may be {@code null})
    * @return a {@link ProblemBuilder} instance
-   * @throws ProblemProcessingException when something goes wrong while building the Problem
+   * @throws ProblemMappingException when something goes wrong while building the Problem
    */
   @Override
   public ProblemBuilder toProblemBuilder(Throwable t, ProblemContext context) {
@@ -95,12 +95,11 @@ public abstract class AbstractProblemMappingProcessor implements ProblemMappingP
       applyInstanceOnBuilder(builder, mapping, t, context);
       applyExtensionsOnBuilder(builder, mapping, t);
       return builder;
-    } catch (ProblemProcessingException e) {
+    } catch (ProblemMappingException e) {
       // explicit rethrow so next clause doesn't have ProblemProcessingException as a cause
       throw e;
     } catch (RuntimeException e) {
-      throw new ProblemProcessingException(
-          "Unexpected failure while processing @ProblemMapping", e);
+      throw new ProblemMappingException("Unexpected failure while processing @ProblemMapping", e);
     }
   }
 

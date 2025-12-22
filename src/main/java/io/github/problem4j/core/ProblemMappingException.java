@@ -17,12 +17,12 @@ package io.github.problem4j.core;
 /**
  * Thrown when processing an annotated exception into a Problem fails. {@code @RestControllerAdvice}
  * or any other handlers can catch this and return a safe {@code 500 Problem}. No other exception is
- * supposed to be thrown from {@link ProblemMappingProcessor}.
+ * supposed to be thrown from {@link ProblemMapper}.
  */
-public class ProblemProcessingException extends RuntimeException {
+public class ProblemMappingException extends RuntimeException {
 
   /** Creates a new exception with no detail message and no cause. */
-  public ProblemProcessingException() {
+  public ProblemMappingException() {
     super();
   }
 
@@ -31,7 +31,7 @@ public class ProblemProcessingException extends RuntimeException {
    *
    * @param message human-readable explanation of the failure
    */
-  public ProblemProcessingException(String message) {
+  public ProblemMappingException(String message) {
     super(message);
   }
 
@@ -40,7 +40,7 @@ public class ProblemProcessingException extends RuntimeException {
    *
    * @param cause underlying cause (may be {@code null})
    */
-  public ProblemProcessingException(Throwable cause) {
+  public ProblemMappingException(Throwable cause) {
     super(cause);
   }
 
@@ -50,7 +50,7 @@ public class ProblemProcessingException extends RuntimeException {
    * @param message human-readable explanation
    * @param cause underlying cause (may be {@code null})
    */
-  public ProblemProcessingException(String message, Throwable cause) {
+  public ProblemMappingException(String message, Throwable cause) {
     super(message, cause);
   }
 
@@ -63,7 +63,7 @@ public class ProblemProcessingException extends RuntimeException {
    * @param enableSuppression whether suppression is enabled or disabled
    * @param writableStackTrace whether the stack trace should be writable
    */
-  protected ProblemProcessingException(
+  protected ProblemMappingException(
       String message, Throwable cause, boolean enableSuppression, boolean writableStackTrace) {
     super(message, cause, enableSuppression, writableStackTrace);
   }

@@ -14,31 +14,4 @@
  */
 package io.github.problem4j.core;
 
-import java.util.HashMap;
-import java.util.Map;
-
-class ProblemContextImpl implements ProblemContext {
-
-  private final Map<String, String> delegate = new HashMap<>();
-
-  @Override
-  public boolean containsKey(String key) {
-    return delegate.containsKey(key);
-  }
-
-  @Override
-  public String get(String key) {
-    return delegate.get(key);
-  }
-
-  @Override
-  public String put(String key, String value) {
-    return value == null ? delegate.remove(key) : delegate.put(key, value);
-  }
-
-  @Override
-  public ProblemContext with(String key, String value) {
-    put(key, value);
-    return this;
-  }
-}
+final class ProblemContextImpl extends AbstractProblemContext {}

@@ -21,13 +21,13 @@ import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.CsvSource;
 
-class AbstractProblemMappingProcessorTest {
+class AbstractProblemMapperTest {
 
-  private ProblemMappingProcessor processor;
+  private ProblemMapper processor;
 
   @BeforeEach
   void beforeEach() {
-    processor = new AbstractProblemMappingProcessor() {};
+    processor = new AbstractProblemMapper() {};
   }
 
   @Test
@@ -119,7 +119,7 @@ class AbstractProblemMappingProcessorTest {
     ContextException ex = new ContextException("v");
 
     Problem problem =
-        processor.toProblemBuilder(ex, ProblemContext.create().with("traceId", traceId)).build();
+        processor.toProblemBuilder(ex, ProblemContext.create().put("traceId", traceId)).build();
 
     assertThat(problem).isNotNull();
     assertThat(problem)

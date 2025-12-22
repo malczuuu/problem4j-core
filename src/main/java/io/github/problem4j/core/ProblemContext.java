@@ -14,9 +14,11 @@
  */
 package io.github.problem4j.core;
 
+import java.util.Map;
+
 /**
- * Context passed for problem processing. Used by {@link ProblemMappingProcessor}. Provides access
- * to values used for message interpolation or metadata enrichment.
+ * Context passed for problem processing. Used by {@link ProblemMapper}. Provides access to values
+ * used for message interpolation or metadata enrichment.
  */
 public interface ProblemContext {
 
@@ -46,29 +48,27 @@ public interface ProblemContext {
   String get(String key);
 
   /**
-   * Associates the specified value with the specified key in the context.
+   * Associates the specified value with the specified key in the context and returns the context
+   * itself. This allows for method chaining.
+   *
+   * <p>Example usage:
+   *
+   * <pre>{@code
+   * context.put("userId", "12345")
+   *        .put("traceId", "abcde");
+   * }</pre>
    *
    * @param key the key with which the specified value is to be associated
    * @param value the value to be associated with the specified key
    * @return the previous value associated with the key, or {@code null} if there was no mapping for
    *     the key
    */
-  String put(String key, String value);
+  ProblemContext put(String key, String value);
 
   /**
-   * Associates the specified value with the specified key in this context and returns the context
-   * itself. This allows for method chaining.
+   * Returns an immutable snapshot of the current context as a {@link Map}.
    *
-   * <p>Example usage:
-   *
-   * <pre>{@code
-   * context.with("userId", "12345")
-   *        .with("traceId", "abcde");
-   * }</pre>
-   *
-   * @param key the key with which the specified value is to be associated
-   * @param value the value to be associated with the specified key
-   * @return this context instance
+   * @return an immutable {@link Map} containing the current context entries
    */
-  ProblemContext with(String key, String value);
+  Map<String, String> toMap();
 }

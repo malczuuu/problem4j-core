@@ -1,0 +1,129 @@
+/*
+ * Copyright (c) 2025 Damian Malczewski
+ *
+ * Permission is hereby granted, free of charge, to any person obtaining a copy
+ * of this software and associated documentation files (the "Software"), to deal
+ * in the Software without restriction, including without limitation the rights
+ * to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+ * copies of the Software, subject to the following conditions:
+ *
+ * The above copyright notice and this permission notice shall be included in all
+ * copies or substantial portions of the Software.
+ *
+ * SPDX-License-Identifier: MIT
+ */
+package io.github.problem4j.core;
+
+import java.util.Collections;
+import java.util.HashMap;
+import java.util.Map;
+
+/**
+ * Base implementation of {@link ProblemContext} backed by a {@link Map}.
+ *
+ * <p>This abstract class provides common functionality for managing key-value pairs associated with
+ * a problem context. Internally, it maintains a mutable map while exposing an immutable snapshot
+ * via {@link #toMap()}.
+ *
+ * <p>Contexts created from another {@link ProblemContext} or a parent map perform a <em>shallow
+ * copy</em> of the provided entries. Subsequent modifications to this context do not affect the
+ * original source.
+ *
+ * <p>Implementations may extend this class to add domain-specific behavior or convenience methods.
+ */
+public abstract class AbstractProblemContext implements ProblemContext {
+
+  private final Map<String, String> delegate;
+
+  /**
+   * Creates an empty problem context.
+   *
+   * <p>The resulting context contains no entries and is independent of any parent context.
+   */
+  public AbstractProblemContext() {
+    this(Collections.emptyMap());
+  }
+
+  /**
+   * Creates a new problem context by copying all entries from the given {@link ProblemContext}.
+   *
+   * <p>The entries are copied at construction time. Changes to the provided context after
+   * construction do not affect this context, and vice versa.
+   *
+   * @param context the parent context whose entries should be copied
+   */
+  public AbstractProblemContext(ProblemContext context) {
+    this(context.toMap());
+  }
+
+  /**
+   * Creates a new problem context by copying all entries from the given map.
+   *
+   * <p>The provided map is used only as a source of initial values. The underlying context
+   * maintains its own internal storage, and modifications to the provided map after construction do
+   * not affect this context.
+   *
+   * @param context the map whose entries should be copied into this context
+   */
+  public AbstractProblemContext(Map<String, String> context) {
+    this.delegate = new HashMap<>(context);
+  }
+
+  /**
+   * Checks if the context contains a value for the given key.
+   *
+   * @param key the key to check
+   * @return {@code true} if the context contains a value for the key, {@code false} otherwise
+   */
+  @Override
+  public boolean containsKey(String key) {
+    return delegate.containsKey(key);
+  }
+
+  /**
+   * Retrieves the value associated with the given key.
+   *
+   * @param key the key whose associated value is to be returned
+   * @return the value associated with the key, or {@code null} if no value is found
+   */
+  @Override
+  public String get(String key) {
+    return delegate.get(key);
+  }
+
+  /**
+   * Associates the specified value with the specified key in the context and returns the context
+   * itself. This allows for method chaining.
+   *
+   * <p>Example usage:
+   *
+   * <pre>{@code
+   * context.put("userId", "12345")
+   *        .put("traceId", "abcde");
+   * }</pre>
+   *
+   * @param key the key with which the specified value is to be associated
+   * @param value the value to be associated with the specified key
+   * @return the previous value associated with the key, or {@code null} if there was no mapping for
+   *     the key
+   */
+  @Override
+  public ProblemContext put(String key, String value) {
+    if (value == null) {
+      delegate.remove(key);
+    } else {
+      delegate.put(key, value);
+    }
+    return this;
+  }
+
+  /**
+   * Returns an immutable snapshot of the current context as a {@link Map}.
+   *
+   * @return an immutable {@link Map} containing the current context entries
+   */
+  @Override
+  public Map<String, String> toMap() {
+    return Collections.unmodifiableMap(delegate);
+  }
+}
