@@ -17,6 +17,7 @@ package io.github.problem4j.core;
 import java.util.Collections;
 import java.util.HashMap;
 import java.util.Map;
+import java.util.Objects;
 
 /**
  * Base implementation of {@link ProblemContext} backed by a {@link Map}.
@@ -125,5 +126,27 @@ public abstract class AbstractProblemContext implements ProblemContext {
   @Override
   public Map<String, String> toMap() {
     return Collections.unmodifiableMap(delegate);
+  }
+
+  @Override
+  public boolean equals(Object obj) {
+    if (this == obj) {
+      return true;
+    }
+    if (!(obj instanceof ProblemContext)) {
+      return false;
+    }
+    ProblemContext context = (ProblemContext) obj;
+    return Objects.equals(toMap(), context.toMap());
+  }
+
+  @Override
+  public int hashCode() {
+    return Objects.hashCode(delegate);
+  }
+
+  @Override
+  public String toString() {
+    return delegate.toString();
   }
 }
