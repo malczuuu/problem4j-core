@@ -9,3 +9,5 @@ plugins {
 }
 
 rootProject.name = "problem4j-core"
+
+include(":problem4j-core")
