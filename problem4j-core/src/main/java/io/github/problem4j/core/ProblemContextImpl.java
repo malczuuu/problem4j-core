@@ -14,9 +14,11 @@
  */
 package io.github.problem4j.core;
 
-import java.io.Serializable;
-
-final class ProblemContextImpl extends AbstractProblemContext implements Serializable {
+final class ProblemContextImpl extends AbstractProblemContext {
 
   private static final long serialVersionUID = 1L;
+
+  ProblemContextImpl() {
+    super();
+  }
 }

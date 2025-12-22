@@ -14,6 +14,7 @@
  */
 package io.github.problem4j.core;
 
+import java.io.Serializable;
 import java.util.Collections;
 import java.util.HashMap;
 import java.util.Map;
@@ -32,9 +33,11 @@ import java.util.Objects;
  *
  * <p>Implementations may extend this class to add domain-specific behavior or convenience methods.
  */
-public abstract class AbstractProblemContext implements ProblemContext {
+public abstract class AbstractProblemContext implements ProblemContext, Serializable {
 
-  private final Map<String, String> delegate;
+  private static final long serialVersionUID = 1L;
+
+  private final Map<String, String> context;
 
   /**
    * Creates an empty problem context.
@@ -67,7 +70,7 @@ public abstract class AbstractProblemContext implements ProblemContext {
    * @param context the map whose entries should be copied into this context
    */
   public AbstractProblemContext(Map<String, String> context) {
-    this.delegate = new HashMap<>(context);
+    this.context = new HashMap<>(context);
   }
 
   /**
@@ -78,7 +81,7 @@ public abstract class AbstractProblemContext implements ProblemContext {
    */
   @Override
   public boolean containsKey(String key) {
-    return delegate.containsKey(key);
+    return context.containsKey(key);
   }
 
   /**
@@ -89,7 +92,7 @@ public abstract class AbstractProblemContext implements ProblemContext {
    */
   @Override
   public String get(String key) {
-    return delegate.get(key);
+    return context.get(key);
   }
 
   /**
@@ -111,9 +114,9 @@ public abstract class AbstractProblemContext implements ProblemContext {
   @Override
   public ProblemContext put(String key, String value) {
     if (value == null) {
-      delegate.remove(key);
+      context.remove(key);
     } else {
-      delegate.put(key, value);
+      context.put(key, value);
     }
     return this;
   }
@@ -125,7 +128,7 @@ public abstract class AbstractProblemContext implements ProblemContext {
    */
   @Override
   public Map<String, String> toMap() {
-    return Collections.unmodifiableMap(delegate);
+    return Collections.unmodifiableMap(context);
   }
 
   @Override
@@ -142,11 +145,11 @@ public abstract class AbstractProblemContext implements ProblemContext {
 
   @Override
   public int hashCode() {
-    return Objects.hashCode(delegate);
+    return Objects.hashCode(context);
   }
 
   @Override
   public String toString() {
-    return delegate.toString();
+    return context.toString();
   }
 }

@@ -14,6 +14,7 @@
  */
 package io.github.problem4j.core;
 
+import java.io.Serializable;
 import java.net.URI;
 import java.util.ArrayList;
 import java.util.Collections;
@@ -41,7 +42,9 @@ import java.util.stream.Collectors;
  *
  * In addition, custom extensions can be added to provide extra context.
  */
-public abstract class AbstractProblem implements Problem {
+public abstract class AbstractProblem implements Problem, Serializable {
+
+  private static final long serialVersionUID = 1L;
 
   private final URI type;
   private final String title;
@@ -50,6 +53,18 @@ public abstract class AbstractProblem implements Problem {
   private final URI instance;
   private final Map<String, Object> extensions;
 
+  /**
+   * Constructs a new {@code AbstractProblem} instance with the given details.
+   *
+   * @param type the URI that identifies the type of the problem; must not be {@code null}
+   * @param title a short, human-readable summary of the problem
+   * @param status the HTTP status code applicable to this problem
+   * @param detail a human-readable explanation specific to this occurrence of the problem
+   * @param instance a URI reference that identifies the specific occurrence of the problem
+   * @param extensions a map of additional, application-specific properties to include in the
+   *     problem; a defensive copy is made, so changes to the original map do not affect this
+   *     instance
+   */
   public AbstractProblem(
       URI type,
       String title,
@@ -158,19 +173,7 @@ public abstract class AbstractProblem implements Problem {
    */
   @Override
   public ProblemBuilder toBuilder() {
-    ProblemBuilder builder =
-        Problem.builder()
-            .type(getType())
-            .title(getTitle())
-            .status(getStatus())
-            .detail(getDetail())
-            .instance(getInstance());
-
-    for (String extension : getExtensions()) {
-      builder = builder.extension(extension, getExtensionValue(extension));
-    }
-
-    return builder;
+    return new ProblemBuilderImpl(this);
   }
 
   @Override

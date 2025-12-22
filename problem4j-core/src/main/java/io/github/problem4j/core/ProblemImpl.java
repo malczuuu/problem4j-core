@@ -14,11 +14,10 @@
  */
 package io.github.problem4j.core;
 
-import java.io.Serializable;
 import java.net.URI;
 import java.util.Map;
 
-final class ProblemImpl extends AbstractProblem implements Serializable {
+final class ProblemImpl extends AbstractProblem {
 
   private static final long serialVersionUID = 1L;
 
@@ -32,10 +31,7 @@ final class ProblemImpl extends AbstractProblem implements Serializable {
     super(type, title, status, detail, instance, extensions);
   }
 
-  static final class ExtensionImpl extends AbstractProblem.AbstractExtension
-      implements Serializable {
-
-    private static final long serialVersionUID = 1L;
+  static final class ExtensionImpl extends AbstractProblem.AbstractExtension {
 
     ExtensionImpl(String key, Object value) {
       super(key, value);
