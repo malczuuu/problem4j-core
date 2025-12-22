@@ -32,7 +32,7 @@ import org.junit.jupiter.api.Test;
  * tests help ensure that the coverage reports correctly reflect different execution paths, edge
  * cases, and instrumentation scenarios.
  */
-class ProblemBuilderImplTests {
+class ProblemBuilderTest {
 
   @Test
   void givenNullURIType_shouldNotSetIt() {

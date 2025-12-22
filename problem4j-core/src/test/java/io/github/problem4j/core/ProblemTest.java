@@ -24,7 +24,7 @@ import java.util.stream.Collectors;
 import java.util.stream.Stream;
 import org.junit.jupiter.api.Test;
 
-class ProblemTests {
+class ProblemTest {
 
   @Test
   void givenProblemStatus_shouldSetTitleAndStatus() {

@@ -23,7 +23,7 @@ import java.util.stream.Stream;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.ValueSource;
 
-class ProblemStatusTests {
+class ProblemStatusTest {
 
   @ParameterizedTest
   @ValueSource(ints = {103, 413, 414, 416, 422})

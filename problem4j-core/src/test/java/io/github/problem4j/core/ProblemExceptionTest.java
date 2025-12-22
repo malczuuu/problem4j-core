@@ -26,7 +26,7 @@ import org.junit.jupiter.api.Test;
  * tests help ensure that the coverage reports correctly reflect different execution paths, edge
  * cases, and instrumentation scenarios.
  */
-class ProblemExceptionTests {
+class ProblemExceptionTest {
 
   @Test
   void

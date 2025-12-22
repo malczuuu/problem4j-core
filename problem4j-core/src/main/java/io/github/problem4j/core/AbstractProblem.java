@@ -244,7 +244,9 @@ public abstract class AbstractProblem implements Problem, Serializable {
     return "\"" + field + "\" : \"" + className + ":" + quote(value.toString()) + "\"";
   }
 
-  public abstract static class AbstractExtension implements Extension {
+  public abstract static class AbstractExtension implements Extension, Serializable {
+
+    private static final long serialVersionUID = 1L;
 
     private final String key;
     private Object value;

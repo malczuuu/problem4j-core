@@ -33,6 +33,8 @@ final class ProblemImpl extends AbstractProblem {
 
   static final class ExtensionImpl extends AbstractProblem.AbstractExtension {
 
+    private static final long serialVersionUID = 1L;
+
     ExtensionImpl(String key, Object value) {
       super(key, value);
     }
