@@ -12,7 +12,7 @@
  *
  * SPDX-License-Identifier: MIT
  */
-package io.github.malczuuu.problem4j.core;
+package io.github.problem4j.core;
 
 import static org.assertj.core.api.Assertions.assertThat;
 

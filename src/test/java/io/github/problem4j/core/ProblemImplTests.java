@@ -12,9 +12,9 @@
  *
  * SPDX-License-Identifier: MIT
  */
-package io.github.malczuuu.problem4j.core;
+package io.github.problem4j.core;
 
-import static io.github.malczuuu.problem4j.core.MapUtils.mapOf;
+import static io.github.problem4j.core.MapUtils.mapOf;
 import static org.assertj.core.api.Assertions.assertThat;
 
 import java.net.URI;

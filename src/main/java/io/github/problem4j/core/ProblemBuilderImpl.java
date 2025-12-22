@@ -12,7 +12,7 @@
  *
  * SPDX-License-Identifier: MIT
  */
-package io.github.malczuuu.problem4j.core;
+package io.github.problem4j.core;
 
 import java.net.URI;
 import java.util.Collection;
@@ -109,7 +109,7 @@ final class ProblemBuilderImpl implements ProblemBuilder {
   }
 
   @Override
-  public ProblemBuilder extension(Collection<Problem.Extension> extensions) {
+  public ProblemBuilder extension(Collection<? extends Problem.Extension> extensions) {
     if (extensions != null && !extensions.isEmpty()) {
       extensions.stream()
           .filter(ProblemBuilderImpl::isExtensionValid)

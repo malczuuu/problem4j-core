@@ -12,7 +12,7 @@
  *
  * SPDX-License-Identifier: MIT
  */
-package io.github.malczuuu.problem4j.core;
+package io.github.problem4j.core;
 
 import java.io.Serializable;
 import java.net.URI;
@@ -58,7 +58,7 @@ public interface Problem extends Serializable {
    *
    * @param key the extension key, must not be {@code null}
    * @param value the extension value
-   * @return a new {@link Extension} instance
+   * @return a new {@link Problem.Extension} instance
    * @throws IllegalArgumentException if the {@code key} is {@code null}
    */
   static Extension extension(String key, Object value) {

@@ -12,7 +12,7 @@
  *
  * SPDX-License-Identifier: MIT
  */
-package io.github.malczuuu.problem4j.core;
+package io.github.problem4j.core;
 
 import java.net.URI;
 import java.util.ArrayList;
@@ -180,7 +180,7 @@ final class ProblemImpl implements Problem {
     return "\"" + field + "\" : \"" + className + ":" + quote(value.toString()) + "\"";
   }
 
-  static final class ExtensionImpl implements Problem.Extension {
+  static final class ExtensionImpl implements Extension {
 
     private static final long serialVersionUID = 1L;
 

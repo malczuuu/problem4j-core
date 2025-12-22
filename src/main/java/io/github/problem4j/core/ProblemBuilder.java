@@ -12,7 +12,7 @@
  *
  * SPDX-License-Identifier: MIT
  */
-package io.github.malczuuu.problem4j.core;
+package io.github.problem4j.core;
 
 import java.net.URI;
 import java.util.Collection;
@@ -123,7 +123,7 @@ public interface ProblemBuilder {
    * @param extensions collection of extensions
    * @return this builder instance for chaining
    */
-  ProblemBuilder extension(Collection<Problem.Extension> extensions);
+  ProblemBuilder extension(Collection<? extends Problem.Extension> extensions);
 
   /**
    * Builds an immutable {@link Problem} instance with the configured properties and extensions.

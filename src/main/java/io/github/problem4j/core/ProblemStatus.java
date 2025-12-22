@@ -12,7 +12,7 @@
  *
  * SPDX-License-Identifier: MIT
  */
-package io.github.malczuuu.problem4j.core;
+package io.github.problem4j.core;
 
 import java.util.Arrays;
 import java.util.Map;
@@ -640,9 +640,9 @@ public enum ProblemStatus {
   /**
    * Lookup map from integer HTTP status code to {@link ProblemStatus} enum constant.
    *
-   * <p>This map is created once at class initialization using {@link Arrays#stream(Object[])} and
-   * {@link Collectors#toMap}. The map is used by {@link #findValue(int)} to provide an efficient
-   * code-to-enum lookup.
+   * <p>This map is created once at class initialization using {@link
+   * java.util.Arrays#stream(Object[])} and {@link java.util.stream.Collectors#toMap}. The map is
+   * used by {@link #findValue(int)} to provide an efficient code-to-enum lookup.
    */
   private static final Map<Integer, ProblemStatus> STATUSES_BY_CODE =
       Arrays.stream(values())
@@ -656,8 +656,8 @@ public enum ProblemStatus {
    * Return the {@link ProblemStatus} matching the given integer HTTP status code.
    *
    * @param status the HTTP status code to look up (for example {@code 404})
-   * @return an {@link Optional} containing the matching {@link ProblemStatus} if present, or empty
-   *     if there is no enum constant for the provided code
+   * @return an {@link java.util.Optional} containing the matching {@link ProblemStatus} if present,
+   *     or empty if there is no enum constant for the provided code
    */
   public static Optional<ProblemStatus> findValue(int status) {
     return Optional.ofNullable(STATUSES_BY_CODE.get(status));

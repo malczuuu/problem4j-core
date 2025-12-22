@@ -9,7 +9,7 @@ plugins {
     alias(libs.plugins.spotless)
 }
 
-group = "io.github.malczuuu.problem4j"
+group = "io.github.problem4j"
 
 // In order to avoid hardcoding snapshot versions, version is derived from the current Git commit hash. For CI/CD add
 // -Pversion={releaseVersion} parameter to match Git tag.
