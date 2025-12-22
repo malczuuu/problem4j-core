@@ -14,7 +14,6 @@
  */
 package io.github.problem4j.core;
 
-import java.io.Serializable;
 import java.net.URI;
 import java.util.Map;
 import java.util.Set;
@@ -36,7 +35,7 @@ import java.util.Set;
  *
  * In addition, custom extensions can be added to provide extra context.
  */
-public interface Problem extends Serializable {
+public interface Problem {
 
   /** Default type URI for generic problems. */
   URI BLANK_TYPE = URI.create("about:blank");
@@ -145,7 +144,7 @@ public interface Problem extends Serializable {
   }
 
   /** Represents a single key-value extension in a {@link Problem}. */
-  interface Extension extends Map.Entry<String, Object>, Serializable {
+  interface Extension extends Map.Entry<String, Object> {
 
     /**
      * @return the extension key
