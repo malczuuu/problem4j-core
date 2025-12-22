@@ -1,8 +1,8 @@
 # Problem4J Core
 
-[![Build Status](https://github.com/malczuuu/problem4j-core/actions/workflows/gradle-build.yml/badge.svg)](https://github.com/malczuuu/problem4j-core/actions/workflows/gradle-build.yml)
-[![Sonatype](https://img.shields.io/maven-central/v/io.github.malczuuu.problem4j/problem4j-core)](https://central.sonatype.com/artifact/io.github.malczuuu.problem4j/problem4j-core)
-[![License](https://img.shields.io/github/license/malczuuu/problem4j-core)](https://github.com/malczuuu/problem4j-core/blob/main/LICENSE)
+[![Build Status](https://github.com/problem4j/problem4j-core/actions/workflows/gradle-build.yml/badge.svg)](https://github.com/problem4j/problem4j-core/actions/workflows/gradle-build.yml)
+[![Sonatype](https://img.shields.io/maven-central/v/io.github.problem4j/problem4j-core)](https://central.sonatype.com/artifact/io.github.problem4j/problem4j-core)
+[![License](https://img.shields.io/github/license/problem4j/problem4j-core)](https://github.com/problem4j/problem4j-core/blob/main/LICENSE)
 
 This library provides a minimal, framework-agnostic Java model of the [RFC 7807][rfc7807] "Problem Details" object, with
 an immutable `Problem` class and a fluent `ProblemBuilder` for convenient construction.
@@ -36,8 +36,8 @@ It is intended to be used as a **foundation** for other libraries or application
 ## Example
 
 ```java
-import io.github.malczuuu.problem4j.core.Problem;
-import io.github.malczuuu.problem4j.core.ProblemException;
+import io.github.problem4j.core.Problem;
+import io.github.problem4j.core.ProblemException;
 
 Problem problem =
     Problem.builder()
@@ -59,7 +59,7 @@ higher is required to use this library.
    ```xml
    <dependencies>
        <dependency>
-           <groupId>io.github.malczuuu.problem4j</groupId>
+           <groupId>io.github.problem4j</groupId>
            <artifactId>problem4j-core</artifactId>
            <version>1.2.5</version>
        </dependency>
@@ -68,7 +68,7 @@ higher is required to use this library.
 2. Gradle (Groovy or Kotlin DSL):
    ```groovy
    dependencies {
-       implementation("io.github.malczuuu.problem4j:problem4j-core:1.2.5")
+       implementation("io.github.problem4j:problem4j-core:1.2.5")
    }
     ```
 
@@ -114,12 +114,12 @@ version. By default, the version is derived from git commit hash.
 
 </details>
 
-[maven-central]: https://central.sonatype.com/artifact/io.github.malczuuu.problem4j/problem4j-core
+[maven-central]: https://central.sonatype.com/artifact/io.github.problem4j/problem4j-core
 
-[problem4j-core]: https://github.com/malczuuu/problem4j-core
+[problem4j-core]: https://github.com/problem4j/problem4j-core
 
-[problem4j-jackson]: https://github.com/malczuuu/problem4j-jackson
+[problem4j-jackson]: https://github.com/problem4j/problem4j-jackson
 
-[problem4j-spring]: https://github.com/malczuuu/problem4j-spring
+[problem4j-spring]: https://github.com/problem4j/problem4j-spring
 
 [rfc7807]: https://datatracker.ietf.org/doc/html/rfc7807

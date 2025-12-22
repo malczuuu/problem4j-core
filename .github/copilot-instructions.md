@@ -39,8 +39,8 @@
 
 - **Root Files:** `build.gradle.kts`, `settings.gradle.kts`, `README.md`, `RELEASING.md`, `gradlew`, `gradlew.bat`,
   `gradle/libs.versions.toml`, `.github/workflows/`.
-- **Source Code:** `src/main/java/io/github/malczuuu/problem4j/core/`.
-- **Tests:** `src/test/java/io/github/malczuuu/problem4j/core/`.
+- **Source Code:** `src/main/java/io/github/problem4j/core/`.
+- **Tests:** `src/test/java/io/github/problem4j/core/`.
 - **Build Scripts:** All modules have `build.gradle.kts`.
 - **Build Utils:** Custom Gradle scripts in `buildSrc`.
 
@@ -62,8 +62,8 @@
 
 - Trust these instructions for build, test, lint, and validation steps. Only search the codebase if information here is
   incomplete or incorrect.
-- Prioritize changes in `src/main/java/io/github/malczuuu/problem4j/core/` for core logic, and
-  `src/test/java/io/github/malczuuu/problem4j/core/` for tests.
+- Prioritize changes in `src/main/java/io/github/problem4j/core/` for core logic, and
+  `src/test/java/io/github/problem4j/core/` for tests.
 - Always validate changes with a full build and test run before considering the task complete.
 
 ## Troubleshooting & Workarounds
