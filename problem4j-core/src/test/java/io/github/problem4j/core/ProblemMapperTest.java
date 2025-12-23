@@ -21,13 +21,13 @@ import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.CsvSource;
 
-class AbstractProblemMapperTest {
+class ProblemMapperTest {
 
   private ProblemMapper processor;
 
   @BeforeEach
   void beforeEach() {
-    processor = new AbstractProblemMapper() {};
+    processor = ProblemMapper.create();
   }
 
   @Test

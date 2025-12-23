@@ -246,6 +246,7 @@ class AbstractProblemTest {
   }
 
   private static class DummyObject {
+
     private final String value;
 
     DummyObject(String value) {
