@@ -688,13 +688,19 @@ public enum ProblemStatus {
   /** Title of {@link #PROCESSING}. */
   public static final String PROCESSING_TITLE = "Processing";
 
-  /** Status of {@link #CHECKPOINT}. */
-  @Deprecated
-  public static final int CHECKPOINT_STATUS = 103;
+  /**
+   * Status of {@link #CHECKPOINT}.
+   *
+   * @deprecated Renamed to {@link #EARLY_HINTS} by RFC 8297.
+   */
+  @Deprecated public static final int CHECKPOINT_STATUS = 103;
 
-  /** Title of {@link #CHECKPOINT}. */
-  @Deprecated
-  public static final String CHECKPOINT_TITLE = "Checkpoint";
+  /**
+   * Title of {@link #CHECKPOINT}.
+   *
+   * @deprecated Renamed to {@link #EARLY_HINTS} by RFC 8297.
+   */
+  @Deprecated public static final String CHECKPOINT_TITLE = "Checkpoint";
 
   /** Status of {@link #EARLY_HINTS}. */
   public static final int EARLY_HINTS_STATUS = 103;
@@ -792,13 +798,19 @@ public enum ProblemStatus {
   /** Title of {@link #NOT_MODIFIED}. */
   public static final String NOT_MODIFIED_TITLE = "Not Modified";
 
-  /** Status of {@link #USE_PROXY}. */
-  @Deprecated
-  public static final int USE_PROXY_STATUS = 305;
+  /**
+   * Status of {@link #USE_PROXY}.
+   *
+   * @deprecated Obsoleted by RFC 7231. "Use Proxy" is no longer recommended.
+   */
+  @Deprecated public static final int USE_PROXY_STATUS = 305;
 
-  /** Title of {@link #USE_PROXY}. */
-  @Deprecated
-  public static final String USE_PROXY_TITLE = "Use Proxy";
+  /**
+   * Title of {@link #USE_PROXY}.
+   *
+   * @deprecated Obsoleted by RFC 7231. "Use Proxy" is no longer recommended.
+   */
+  @Deprecated public static final String USE_PROXY_TITLE = "Use Proxy";
 
   /** Status of {@link #TEMPORARY_REDIRECT}. */
   public static final int TEMPORARY_REDIRECT_STATUS = 307;
@@ -890,21 +902,36 @@ public enum ProblemStatus {
   /** Title of {@link #PRECONDITION_FAILED}. */
   public static final String PRECONDITION_FAILED_TITLE = "Precondition Failed";
 
-  /** Status of {@link #REQUEST_ENTITY_TOO_LARGE}. */
-  @Deprecated
-  public static final int REQUEST_ENTITY_TOO_LARGE_STATUS = 413;
+  /**
+   * Status of {@link #REQUEST_ENTITY_TOO_LARGE}.
+   *
+   * @deprecated Renamed to {@link #PAYLOAD_TOO_LARGE} in RFC 7231, then to {@link
+   *     #CONTENT_TOO_LARGE} in RFC 9110.
+   */
+  @Deprecated public static final int REQUEST_ENTITY_TOO_LARGE_STATUS = 413;
 
-  /** Title of {@link #REQUEST_ENTITY_TOO_LARGE}. */
+  /**
+   * Title of {@link #REQUEST_ENTITY_TOO_LARGE}.
+   *
+   * @deprecated Renamed to {@link #PAYLOAD_TOO_LARGE} in RFC 7231, then to {@link
+   *     #CONTENT_TOO_LARGE} in RFC 9110.
+   */
   @Deprecated
   public static final String REQUEST_ENTITY_TOO_LARGE_TITLE = "Request Entity Too Large";
 
-  /** Status of {@link #PAYLOAD_TOO_LARGE}. */
-  @Deprecated
-  public static final int PAYLOAD_TOO_LARGE_STATUS = 413;
+  /**
+   * Status of {@link #PAYLOAD_TOO_LARGE}.
+   *
+   * @deprecated Renamed to {@link #CONTENT_TOO_LARGE} in RFC 9110.
+   */
+  @Deprecated public static final int PAYLOAD_TOO_LARGE_STATUS = 413;
 
-  /** Title of {@link #PAYLOAD_TOO_LARGE}. */
-  @Deprecated
-  public static final String PAYLOAD_TOO_LARGE_TITLE = "Payload Too Large";
+  /**
+   * Title of {@link #PAYLOAD_TOO_LARGE}.
+   *
+   * @deprecated Renamed to {@link #CONTENT_TOO_LARGE} in RFC 9110.
+   */
+  @Deprecated public static final String PAYLOAD_TOO_LARGE_TITLE = "Payload Too Large";
 
   /** Status of {@link #CONTENT_TOO_LARGE}. */
   public static final int CONTENT_TOO_LARGE_STATUS = 413;
@@ -912,13 +939,19 @@ public enum ProblemStatus {
   /** Title of {@link #CONTENT_TOO_LARGE}. */
   public static final String CONTENT_TOO_LARGE_TITLE = "Content Too Large";
 
-  /** Status of {@link #REQUEST_URI_TOO_LONG}. */
-  @Deprecated
-  public static final int REQUEST_URI_TOO_LONG_STATUS = 414;
+  /**
+   * Status of {@link #REQUEST_URI_TOO_LONG}.
+   *
+   * @deprecated Renamed to {@link #URI_TOO_LONG} by RFC 8297.
+   */
+  @Deprecated public static final int REQUEST_URI_TOO_LONG_STATUS = 414;
 
-  /** Title of {@link #REQUEST_URI_TOO_LONG}. */
-  @Deprecated
-  public static final String REQUEST_URI_TOO_LONG_TITLE = "Request-URI Too Long";
+  /**
+   * Title of {@link #REQUEST_URI_TOO_LONG}.
+   *
+   * @deprecated Renamed to {@link #URI_TOO_LONG} by RFC 8297.
+   */
+  @Deprecated public static final String REQUEST_URI_TOO_LONG_TITLE = "Request-URI Too Long";
 
   /** Status of {@link #URI_TOO_LONG}. */
   public static final int URI_TOO_LONG_STATUS = 414;
@@ -932,11 +965,18 @@ public enum ProblemStatus {
   /** Title of {@link #UNSUPPORTED_MEDIA_TYPE}. */
   public static final String UNSUPPORTED_MEDIA_TYPE_TITLE = "Unsupported Media Type";
 
-  /** Status of {@link #REQUESTED_RANGE_NOT_SATISFIABLE}. */
-  @Deprecated
-  public static final int REQUESTED_RANGE_NOT_SATISFIABLE_STATUS = 416;
+  /**
+   * Status of {@link #REQUESTED_RANGE_NOT_SATISFIABLE}.
+   *
+   * @deprecated renamed to {@link #RANGE_NOT_SATISFIABLE} by RFC 9110.
+   */
+  @Deprecated public static final int REQUESTED_RANGE_NOT_SATISFIABLE_STATUS = 416;
 
-  /** Title of {@link #REQUESTED_RANGE_NOT_SATISFIABLE}. */
+  /**
+   * Title of {@link #REQUESTED_RANGE_NOT_SATISFIABLE}.
+   *
+   * @deprecated renamed to {@link #RANGE_NOT_SATISFIABLE} by RFC 9110.
+   */
   @Deprecated
   public static final String REQUESTED_RANGE_NOT_SATISFIABLE_TITLE =
       "Requested Range Not Satisfiable";
@@ -965,13 +1005,19 @@ public enum ProblemStatus {
   /** Title of {@link #MISDIRECTED_REQUEST}. */
   public static final String MISDIRECTED_REQUEST_TITLE = "Misdirected Request";
 
-  /** Status of {@link #UNPROCESSABLE_ENTITY}. */
-  @Deprecated
-  public static final int UNPROCESSABLE_ENTITY_STATUS = 422;
+  /**
+   * Status of {@link #UNPROCESSABLE_ENTITY}.
+   *
+   * @deprecated renamed to {@link #UNPROCESSABLE_CONTENT} by RFC 9110.
+   */
+  @Deprecated public static final int UNPROCESSABLE_ENTITY_STATUS = 422;
 
-  /** Title of {@link #UNPROCESSABLE_ENTITY}. */
-  @Deprecated
-  public static final String UNPROCESSABLE_ENTITY_TITLE = "Unprocessable Entity";
+  /**
+   * Title of {@link #UNPROCESSABLE_ENTITY}.
+   *
+   * @deprecated renamed to {@link #UNPROCESSABLE_CONTENT} by RFC 9110.
+   */
+  @Deprecated public static final String UNPROCESSABLE_ENTITY_TITLE = "Unprocessable Entity";
 
   /** Status of {@link #UNPROCESSABLE_CONTENT}. */
   public static final int UNPROCESSABLE_CONTENT_STATUS = 422;
