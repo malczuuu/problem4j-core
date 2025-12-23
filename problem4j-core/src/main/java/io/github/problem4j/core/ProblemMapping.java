@@ -31,8 +31,8 @@ import java.lang.annotation.Target;
  *
  * <ul>
  *   <li>{@code {message}} -> the exception's {@link Throwable#getMessage()}
- *   <li>{@code {context.traceId}} -> the traceId from {@code ProblemContext#getTraceId()} (special
- *       shorthand)
+ *   <li>{@code {context.*}} -> value from {@link ProblemContext} included in {@link ProblemMapper}
+ *       methods
  *   <li>{@code {fieldName}} -> value of any field (private or public) in the exception class
  *       hierarchy
  *   <li>Any placeholder that resolves to null or an empty string is ignored in the final output
@@ -94,7 +94,8 @@ public @interface ProblemMapping {
    *
    * <ul>
    *   <li>{@code {message}} -> exception message
-   *   <li>{@code {context.traceId}} -> trace ID from {@code ProblemContext}
+   *   <li>{@code {context.*}} -> value from {@link ProblemContext} included in {@link
+   *       ProblemMapper} methods
    *   <li>{@code {fieldName}} -> value of any field in the exception class hierarchy
    * </ul>
    *

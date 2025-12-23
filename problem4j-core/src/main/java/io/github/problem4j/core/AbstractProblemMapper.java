@@ -255,7 +255,8 @@ public abstract class AbstractProblemMapper implements ProblemMapper {
    *
    * <ul>
    *   <li>{@code message} - throwable message
-   *   <li>{@code context.traceId} - trace ID from context
+   *   <li>{@code {context.*}} -> value from {@link ProblemContext} included in {@link
+   *       ProblemMapper} methods
    *   <li>Any other token - value of a matching field in the throwable class hierarchy
    * </ul>
    *
