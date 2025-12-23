@@ -20,18 +20,21 @@ It is intended to be used as a **foundation** for other libraries or application
 
 ## Features
 
-- ✅ Immutable `Problem` data model
-- ✅ Dedicated unchecked `ProblemException` to be used in error handling
-- ✅ Builder pattern for fluent construction
-- ✅ Serializable and easy to log or format
-- ✅ HTTP-agnostic (no external dependencies)
+- ✅ Immutable `Problem` data model.
+- ✅ Dedicated unchecked `ProblemException` to be used in error handling.
+- ✅ Builder pattern for fluent construction.
+- ✅ Annotation `@ProblemMapping` and `ProblemMapper` to allow declarative approach in converting exception instances
+  into `Problem` objects.
+- ✅ Builder pattern for fluent construction.
+- ✅ Serializable and easy to log or format.
+- ✅ HTTP-agnostic (no external dependencies).
 - ✅ Follows [RFC 7807][rfc7807] semantics:
-    - `type` (URI)
-    - `title` (short summary)
-    - `status` (numeric code)
-    - `detail` (detailed description)
-    - `instance` (URI to the specific occurrence)
-    - custom field extensions
+    - `type` (URI),
+    - `title` (short summary),
+    - `status` (numeric code),
+    - `detail` (detailed description),
+    - `instance` (URI to the specific occurrence),
+    - custom field extensions.
 
 ## Example
 
@@ -48,6 +51,32 @@ Problem problem =
         .instance("https://example.com/instances/1234")
         .build();
 throw new ProblemException(problem);
+```
+
+```java
+import io.github.problem4j.core.ProblemMapping;
+import io.github.problem4j.core.ProblemMapper;
+
+@ProblemMapping(
+        type = "https://example.org/probs/tests",
+        title = "Test problem",
+        status = 400,
+        detail = "failed: {message}",
+        extensions = {"subject"})
+public class MessageException extends RuntimeException {
+    
+    private final String subject;
+
+    public MessageException(String subject, String message) {
+        super(message);
+        this.subject = subject;
+    }
+}
+
+MessageException ex = new MessageException("sub", "boom");
+
+ProblemMapper mapper = ProblemMapper.create();
+Problem problem = mapper.toProblemBuilder(ex).build();
 ```
 
 ## Usage
