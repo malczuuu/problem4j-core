@@ -105,7 +105,7 @@ public enum ProblemStatus {
    * @link <a href="https://datatracker.ietf.org/doc/html/rfc9110#section-15.2.1">RFC 9110
    *     §15.2.1</a>
    */
-  CONTINUE(100, "Continue"),
+  CONTINUE(ProblemStatus.CONTINUE_STATUS, ProblemStatus.CONTINUE_TITLE),
 
   /**
    * 101 Switching Protocols.
@@ -113,14 +113,15 @@ public enum ProblemStatus {
    * @link <a href="https://datatracker.ietf.org/doc/html/rfc9110#section-15.2.2">RFC 9110
    *     §15.2.2</a>
    */
-  SWITCHING_PROTOCOLS(101, "Switching Protocols"),
+  SWITCHING_PROTOCOLS(
+      ProblemStatus.SWITCHING_PROTOCOLS_STATUS, ProblemStatus.SWITCHING_PROTOCOLS_TITLE),
 
   /**
    * 102 Processing (WebDAV).
    *
    * @link <a href="https://datatracker.ietf.org/doc/html/rfc2518#section-10.1">RFC 2518 §10.1</a>
    */
-  PROCESSING(102, "Processing"),
+  PROCESSING(ProblemStatus.PROCESSING_STATUS, ProblemStatus.PROCESSING_TITLE),
 
   /**
    * 103 Checkpoint.
@@ -129,14 +130,14 @@ public enum ProblemStatus {
    * @deprecated Renamed to {@link #EARLY_HINTS} by RFC 8297.
    */
   @Deprecated
-  CHECKPOINT(103, "Checkpoint"),
+  CHECKPOINT(ProblemStatus.CHECKPOINT_STATUS, ProblemStatus.CHECKPOINT_TITLE),
 
   /**
    * 103 Early Hints.
    *
    * @link <a href="https://datatracker.ietf.org/doc/html/rfc8297#section-2">RFC 8297 §2</a>
    */
-  EARLY_HINTS(103, "Early Hints"),
+  EARLY_HINTS(ProblemStatus.EARLY_HINTS_STATUS, ProblemStatus.EARLY_HINTS_TITLE),
 
   /**
    * 200 OK.
@@ -144,7 +145,7 @@ public enum ProblemStatus {
    * @link <a href="https://datatracker.ietf.org/doc/html/rfc9110#section-15.3.1">RFC 9110
    *     §15.3.1</a>
    */
-  OK(200, "OK"),
+  OK(ProblemStatus.OK_STATUS, ProblemStatus.OK_TITLE),
 
   /**
    * 201 Created.
@@ -152,7 +153,7 @@ public enum ProblemStatus {
    * @link <a href="https://datatracker.ietf.org/doc/html/rfc9110#section-15.3.2">RFC 9110
    *     §15.3.2</a>
    */
-  CREATED(201, "Created"),
+  CREATED(ProblemStatus.CREATED_STATUS, ProblemStatus.CREATED_TITLE),
 
   /**
    * 202 Accepted.
@@ -160,7 +161,7 @@ public enum ProblemStatus {
    * @link <a href="https://datatracker.ietf.org/doc/html/rfc9110#section-15.3.3">RFC 9110
    *     §15.3.3</a>
    */
-  ACCEPTED(202, "Accepted"),
+  ACCEPTED(ProblemStatus.ACCEPTED_STATUS, ProblemStatus.ACCEPTED_TITLE),
 
   /**
    * 203 Non-Authoritative Information.
@@ -168,7 +169,9 @@ public enum ProblemStatus {
    * @link <a href="https://datatracker.ietf.org/doc/html/rfc9110#section-15.3.4">RFC 9110
    *     §15.3.4</a>
    */
-  NON_AUTHORITATIVE_INFORMATION(203, "Non-Authoritative Information"),
+  NON_AUTHORITATIVE_INFORMATION(
+      ProblemStatus.NON_AUTHORITATIVE_INFORMATION_STATUS,
+      ProblemStatus.NON_AUTHORITATIVE_INFORMATION_TITLE),
 
   /**
    * 204 No Content.
@@ -176,7 +179,7 @@ public enum ProblemStatus {
    * @link <a href="https://datatracker.ietf.org/doc/html/rfc9110#section-15.3.5">RFC 9110
    *     §15.3.5</a>
    */
-  NO_CONTENT(204, "No Content"),
+  NO_CONTENT(ProblemStatus.NO_CONTENT_STATUS, ProblemStatus.NO_CONTENT_TITLE),
 
   /**
    * 205 Reset Content.
@@ -184,7 +187,7 @@ public enum ProblemStatus {
    * @link <a href="https://datatracker.ietf.org/doc/html/rfc9110#section-15.3.6">RFC 9110
    *     §15.3.6</a>
    */
-  RESET_CONTENT(205, "Reset Content"),
+  RESET_CONTENT(ProblemStatus.RESET_CONTENT_STATUS, ProblemStatus.RESET_CONTENT_TITLE),
 
   /**
    * 206 Partial Content.
@@ -192,21 +195,21 @@ public enum ProblemStatus {
    * @link <a href="https://datatracker.ietf.org/doc/html/rfc9110#section-15.3.7">RFC 9110
    *     §15.3.7</a>
    */
-  PARTIAL_CONTENT(206, "Partial Content"),
+  PARTIAL_CONTENT(ProblemStatus.PARTIAL_CONTENT_STATUS, ProblemStatus.PARTIAL_CONTENT_TITLE),
 
   /**
    * 207 Multi-Status (WebDAV).
    *
    * @link <a href="https://datatracker.ietf.org/doc/html/rfc4918#section-11.1">RFC 4918 §11.1</a>
    */
-  MULTI_STATUS(207, "Multi-Status"),
+  MULTI_STATUS(ProblemStatus.MULTI_STATUS_STATUS, ProblemStatus.MULTI_STATUS_TITLE),
 
   /**
    * 208 Already Reported (WebDAV).
    *
    * @link <a href="https://datatracker.ietf.org/doc/html/rfc5842#section-7.1">RFC 5842 §7.1</a>
    */
-  ALREADY_REPORTED(208, "Already Reported"),
+  ALREADY_REPORTED(ProblemStatus.ALREADY_REPORTED_STATUS, ProblemStatus.ALREADY_REPORTED_TITLE),
 
   /**
    * 226 IM Used.
@@ -214,7 +217,7 @@ public enum ProblemStatus {
    * @link <a href="https://datatracker.ietf.org/doc/html/rfc3229#section-10.4.1">RFC 3229
    *     §10.4.1</a>
    */
-  IM_USED(226, "IM Used"),
+  IM_USED(ProblemStatus.IM_USED_STATUS, ProblemStatus.IM_USED_TITLE),
 
   /**
    * 300 Multiple Choices.
@@ -222,7 +225,7 @@ public enum ProblemStatus {
    * @link <a href="https://datatracker.ietf.org/doc/html/rfc9110#section-15.4.1">RFC 9110
    *     §15.4.1</a>
    */
-  MULTIPLE_CHOICES(300, "Multiple Choices"),
+  MULTIPLE_CHOICES(ProblemStatus.MULTIPLE_CHOICES_STATUS, ProblemStatus.MULTIPLE_CHOICES_TITLE),
 
   /**
    * 301 Moved Permanently.
@@ -230,7 +233,7 @@ public enum ProblemStatus {
    * @link <a href="https://datatracker.ietf.org/doc/html/rfc9110#section-15.4.2">RFC 9110
    *     §15.4.2</a>
    */
-  MOVED_PERMANENTLY(301, "Moved Permanently"),
+  MOVED_PERMANENTLY(ProblemStatus.MOVED_PERMANENTLY_STATUS, ProblemStatus.MOVED_PERMANENTLY_TITLE),
 
   /**
    * 302 Found.
@@ -238,7 +241,7 @@ public enum ProblemStatus {
    * @link <a href="https://datatracker.ietf.org/doc/html/rfc9110#section-15.4.3">RFC 9110
    *     §15.4.3</a>
    */
-  FOUND(302, "Found"),
+  FOUND(ProblemStatus.FOUND_STATUS, ProblemStatus.FOUND_TITLE),
 
   /**
    * 303 See Other.
@@ -246,7 +249,7 @@ public enum ProblemStatus {
    * @link <a href="https://datatracker.ietf.org/doc/html/rfc9110#section-15.4.4">RFC 9110
    *     §15.4.4</a>
    */
-  SEE_OTHER(303, "See Other"),
+  SEE_OTHER(ProblemStatus.SEE_OTHER_STATUS, ProblemStatus.SEE_OTHER_TITLE),
 
   /**
    * 304 Not Modified.
@@ -254,14 +257,14 @@ public enum ProblemStatus {
    * @link <a href="https://datatracker.ietf.org/doc/html/rfc9110#section-15.4.5">RFC 9110
    *     §15.4.5</a>
    */
-  NOT_MODIFIED(304, "Not Modified"),
+  NOT_MODIFIED(ProblemStatus.NOT_MODIFIED_STATUS, ProblemStatus.NOT_MODIFIED_TITLE),
 
   /**
    * @link <a href="https://datatracker.ietf.org/doc/html/rfc7231#section-6.4.5">RFC 7231 §6.4.5</a>
    * @deprecated Obsoleted by RFC 7231. "Use Proxy" is no longer recommended.
    */
   @Deprecated
-  USE_PROXY(305, "Use Proxy"),
+  USE_PROXY(ProblemStatus.USE_PROXY_STATUS, ProblemStatus.USE_PROXY_TITLE),
 
   /**
    * 307 Temporary Redirect.
@@ -269,14 +272,16 @@ public enum ProblemStatus {
    * @link <a href="https://datatracker.ietf.org/doc/html/rfc9110#section-15.4.8">RFC 9110
    *     §15.4.8</a>
    */
-  TEMPORARY_REDIRECT(307, "Temporary Redirect"),
+  TEMPORARY_REDIRECT(
+      ProblemStatus.TEMPORARY_REDIRECT_STATUS, ProblemStatus.TEMPORARY_REDIRECT_TITLE),
 
   /**
    * 308 Permanent Redirect.
    *
    * @link <a href="https://datatracker.ietf.org/doc/html/rfc7538#section-3">RFC 7538 §3</a>
    */
-  PERMANENT_REDIRECT(308, "Permanent Redirect"),
+  PERMANENT_REDIRECT(
+      ProblemStatus.PERMANENT_REDIRECT_STATUS, ProblemStatus.PERMANENT_REDIRECT_TITLE),
 
   /**
    * 400 Bad Request.
@@ -284,7 +289,7 @@ public enum ProblemStatus {
    * @link <a href="https://datatracker.ietf.org/doc/html/rfc9110#section-15.5.1">RFC 9110
    *     §15.5.1</a>
    */
-  BAD_REQUEST(400, "Bad Request"),
+  BAD_REQUEST(ProblemStatus.BAD_REQUEST_STATUS, ProblemStatus.BAD_REQUEST_TITLE),
 
   /**
    * 401 Unauthorized.
@@ -292,7 +297,7 @@ public enum ProblemStatus {
    * @link <a href="https://datatracker.ietf.org/doc/html/rfc9110#section-15.5.2">RFC 9110
    *     §15.5.2</a>
    */
-  UNAUTHORIZED(401, "Unauthorized"),
+  UNAUTHORIZED(ProblemStatus.UNAUTHORIZED_STATUS, ProblemStatus.UNAUTHORIZED_TITLE),
 
   /**
    * 402 Payment Required.
@@ -300,7 +305,7 @@ public enum ProblemStatus {
    * @link <a href="https://datatracker.ietf.org/doc/html/rfc9110#section-15.5.3">RFC 9110
    *     §15.5.3</a>
    */
-  PAYMENT_REQUIRED(402, "Payment Required"),
+  PAYMENT_REQUIRED(ProblemStatus.PAYMENT_REQUIRED_STATUS, ProblemStatus.PAYMENT_REQUIRED_TITLE),
 
   /**
    * 403 Forbidden.
@@ -308,7 +313,7 @@ public enum ProblemStatus {
    * @link <a href="https://datatracker.ietf.org/doc/html/rfc9110#section-15.5.4">RFC 9110
    *     §15.5.4</a>
    */
-  FORBIDDEN(403, "Forbidden"),
+  FORBIDDEN(ProblemStatus.FORBIDDEN_STATUS, ProblemStatus.FORBIDDEN_TITLE),
 
   /**
    * 404 Not Found.
@@ -316,7 +321,7 @@ public enum ProblemStatus {
    * @link <a href="https://datatracker.ietf.org/doc/html/rfc9110#section-15.5.5">RFC 9110
    *     §15.5.5</a>
    */
-  NOT_FOUND(404, "Not Found"),
+  NOT_FOUND(ProblemStatus.NOT_FOUND_STATUS, ProblemStatus.NOT_FOUND_TITLE),
 
   /**
    * 405 Method Not Allowed.
@@ -324,7 +329,8 @@ public enum ProblemStatus {
    * @link <a href="https://datatracker.ietf.org/doc/html/rfc9110#section-15.5.6">RFC 9110
    *     §15.5.6</a>
    */
-  METHOD_NOT_ALLOWED(405, "Method Not Allowed"),
+  METHOD_NOT_ALLOWED(
+      ProblemStatus.METHOD_NOT_ALLOWED_STATUS, ProblemStatus.METHOD_NOT_ALLOWED_TITLE),
 
   /**
    * 406 Not Acceptable.
@@ -332,7 +338,7 @@ public enum ProblemStatus {
    * @link <a href="https://datatracker.ietf.org/doc/html/rfc9110#section-15.5.7">RFC 9110
    *     §15.5.7</a>
    */
-  NOT_ACCEPTABLE(406, "Not Acceptable"),
+  NOT_ACCEPTABLE(ProblemStatus.NOT_ACCEPTABLE_STATUS, ProblemStatus.NOT_ACCEPTABLE_TITLE),
 
   /**
    * 407 Proxy Authentication Required.
@@ -340,7 +346,9 @@ public enum ProblemStatus {
    * @link <a href="https://datatracker.ietf.org/doc/html/rfc9110#section-15.5.8">RFC 9110
    *     §15.5.8</a>
    */
-  PROXY_AUTHENTICATION_REQUIRED(407, "Proxy Authentication Required"),
+  PROXY_AUTHENTICATION_REQUIRED(
+      ProblemStatus.PROXY_AUTHENTICATION_REQUIRED_STATUS,
+      ProblemStatus.PROXY_AUTHENTICATION_REQUIRED_TITLE),
 
   /**
    * 408 Request Timeout.
@@ -348,7 +356,7 @@ public enum ProblemStatus {
    * @link <a href="https://datatracker.ietf.org/doc/html/rfc9110#section-15.5.9">RFC 9110
    *     §15.5.9</a>
    */
-  REQUEST_TIMEOUT(408, "Request Timeout"),
+  REQUEST_TIMEOUT(ProblemStatus.REQUEST_TIMEOUT_STATUS, ProblemStatus.REQUEST_TIMEOUT_TITLE),
 
   /**
    * 409 Conflict.
@@ -356,7 +364,7 @@ public enum ProblemStatus {
    * @link <a href="https://datatracker.ietf.org/doc/html/rfc9110#section-15.5.10">RFC 9110
    *     §15.5.10</a>
    */
-  CONFLICT(409, "Conflict"),
+  CONFLICT(ProblemStatus.CONFLICT_STATUS, ProblemStatus.CONFLICT_TITLE),
 
   /**
    * 410 Gone.
@@ -364,7 +372,7 @@ public enum ProblemStatus {
    * @link <a href="https://datatracker.ietf.org/doc/html/rfc9110#section-15.5.11">RFC 9110
    *     §15.5.11</a>
    */
-  GONE(410, "Gone"),
+  GONE(ProblemStatus.GONE_STATUS, ProblemStatus.GONE_TITLE),
 
   /**
    * 411 Length Required.
@@ -372,7 +380,7 @@ public enum ProblemStatus {
    * @link <a href="https://datatracker.ietf.org/doc/html/rfc9110#section-15.5.12">RFC 9110
    *     §15.5.12</a>
    */
-  LENGTH_REQUIRED(411, "Length Required"),
+  LENGTH_REQUIRED(ProblemStatus.LENGTH_REQUIRED_STATUS, ProblemStatus.LENGTH_REQUIRED_TITLE),
 
   /**
    * 412 Precondition Failed.
@@ -380,7 +388,8 @@ public enum ProblemStatus {
    * @link <a href="https://datatracker.ietf.org/doc/html/rfc9110#section-15.5.13">RFC 9110
    *     §15.5.13</a>
    */
-  PRECONDITION_FAILED(412, "Precondition Failed"),
+  PRECONDITION_FAILED(
+      ProblemStatus.PRECONDITION_FAILED_STATUS, ProblemStatus.PRECONDITION_FAILED_TITLE),
 
   /**
    * 413 Request Entity Too Large.
@@ -391,7 +400,8 @@ public enum ProblemStatus {
    *     #CONTENT_TOO_LARGE} in RFC 9110.
    */
   @Deprecated
-  REQUEST_ENTITY_TOO_LARGE(413, "Request Entity Too Large"),
+  REQUEST_ENTITY_TOO_LARGE(
+      ProblemStatus.REQUEST_ENTITY_TOO_LARGE_STATUS, ProblemStatus.REQUEST_ENTITY_TOO_LARGE_TITLE),
 
   /**
    * 413 Payload Too Large.
@@ -401,7 +411,7 @@ public enum ProblemStatus {
    * @deprecated Renamed to {@link #CONTENT_TOO_LARGE} in RFC 9110.
    */
   @Deprecated
-  PAYLOAD_TOO_LARGE(413, "Payload Too Large"),
+  PAYLOAD_TOO_LARGE(ProblemStatus.PAYLOAD_TOO_LARGE_STATUS, ProblemStatus.PAYLOAD_TOO_LARGE_TITLE),
 
   /**
    * 413 Content Too Large.
@@ -409,7 +419,7 @@ public enum ProblemStatus {
    * @link <a href="https://datatracker.ietf.org/doc/html/rfc9110#section-15.5.14">RFC 9110
    *     §15.5.14</a>
    */
-  CONTENT_TOO_LARGE(413, "Content Too Large"),
+  CONTENT_TOO_LARGE(ProblemStatus.CONTENT_TOO_LARGE_STATUS, ProblemStatus.CONTENT_TOO_LARGE_TITLE),
 
   /**
    * 414 Request URI Too Long.
@@ -419,7 +429,8 @@ public enum ProblemStatus {
    * @deprecated Renamed to {@link #URI_TOO_LONG} by RFC 8297.
    */
   @Deprecated
-  REQUEST_URI_TOO_LONG(414, "Request-URI Too Long"),
+  REQUEST_URI_TOO_LONG(
+      ProblemStatus.REQUEST_URI_TOO_LONG_STATUS, ProblemStatus.REQUEST_URI_TOO_LONG_TITLE),
 
   /**
    * 414 URI Too Long.
@@ -427,7 +438,7 @@ public enum ProblemStatus {
    * @link <a href="https://datatracker.ietf.org/doc/html/rfc9110#section-15.5.15">RFC 9110
    *     §15.5.15</a>
    */
-  URI_TOO_LONG(414, "URI Too Long"),
+  URI_TOO_LONG(ProblemStatus.URI_TOO_LONG_STATUS, ProblemStatus.URI_TOO_LONG_TITLE),
 
   /**
    * 415 Unsupported Media Type.
@@ -435,7 +446,8 @@ public enum ProblemStatus {
    * @link <a href="https://datatracker.ietf.org/doc/html/rfc9110#section-15.5.16">RFC 9110
    *     §15.5.16</a>
    */
-  UNSUPPORTED_MEDIA_TYPE(415, "Unsupported Media Type"),
+  UNSUPPORTED_MEDIA_TYPE(
+      ProblemStatus.UNSUPPORTED_MEDIA_TYPE_STATUS, ProblemStatus.UNSUPPORTED_MEDIA_TYPE_TITLE),
 
   /**
    * 416 Requested Range Not Satisfiable.
@@ -445,7 +457,9 @@ public enum ProblemStatus {
    * @deprecated renamed to {@link #RANGE_NOT_SATISFIABLE} by RFC 9110.
    */
   @Deprecated
-  REQUESTED_RANGE_NOT_SATISFIABLE(416, "Requested Range Not Satisfiable"),
+  REQUESTED_RANGE_NOT_SATISFIABLE(
+      ProblemStatus.REQUESTED_RANGE_NOT_SATISFIABLE_STATUS,
+      ProblemStatus.REQUESTED_RANGE_NOT_SATISFIABLE_TITLE),
 
   /**
    * 416 Range Not Satisfiable.
@@ -453,7 +467,8 @@ public enum ProblemStatus {
    * @link <a href="https://datatracker.ietf.org/doc/html/rfc9110#section-15.5.17">RFC 9110
    *     §15.5.17</a>
    */
-  RANGE_NOT_SATISFIABLE(416, "Range Not Satisfiable"),
+  RANGE_NOT_SATISFIABLE(
+      ProblemStatus.RANGE_NOT_SATISFIABLE_STATUS, ProblemStatus.RANGE_NOT_SATISFIABLE_TITLE),
 
   /**
    * 417 Expectation Failed.
@@ -461,21 +476,23 @@ public enum ProblemStatus {
    * @link <a href="https://datatracker.ietf.org/doc/html/rfc9110#section-15.5.18">RFC 9110
    *     §15.5.18</a>
    */
-  EXPECTATION_FAILED(417, "Expectation Failed"),
+  EXPECTATION_FAILED(
+      ProblemStatus.EXPECTATION_FAILED_STATUS, ProblemStatus.EXPECTATION_FAILED_TITLE),
 
   /**
    * 418 I'm a teapot.
    *
    * @link <a href="https://datatracker.ietf.org/doc/html/rfc2324#section-2.3.2">RFC 2324 §2.3.2</a>
    */
-  I_AM_A_TEAPOT(418, "I'm a teapot"),
+  I_AM_A_TEAPOT(ProblemStatus.I_AM_A_TEAPOT_STATUS, ProblemStatus.I_AM_A_TEAPOT_TITLE),
 
   /**
    * 421 Misdirected Request.
    *
    * @link <a href="https://datatracker.ietf.org/doc/html/rfc7540#section-9.1.2">RFC 7540 §9.1.2</a>
    */
-  MISDIRECTED_REQUEST(421, "Misdirected Request"),
+  MISDIRECTED_REQUEST(
+      ProblemStatus.MISDIRECTED_REQUEST_STATUS, ProblemStatus.MISDIRECTED_REQUEST_TITLE),
 
   /**
    * 422 Unprocessable Entity.
@@ -484,7 +501,8 @@ public enum ProblemStatus {
    * @deprecated renamed to {@link #UNPROCESSABLE_CONTENT} by RFC 9110.
    */
   @Deprecated
-  UNPROCESSABLE_ENTITY(422, "Unprocessable Entity"),
+  UNPROCESSABLE_ENTITY(
+      ProblemStatus.UNPROCESSABLE_ENTITY_STATUS, ProblemStatus.UNPROCESSABLE_ENTITY_TITLE),
 
   /**
    * 422 Unprocessable Content.
@@ -492,28 +510,29 @@ public enum ProblemStatus {
    * @link <a href="https://datatracker.ietf.org/doc/html/rfc9110#section-15.5.21">RFC 9110
    *     §15.5.21</a>
    */
-  UNPROCESSABLE_CONTENT(422, "Unprocessable Content"),
+  UNPROCESSABLE_CONTENT(
+      ProblemStatus.UNPROCESSABLE_CONTENT_STATUS, ProblemStatus.UNPROCESSABLE_CONTENT_TITLE),
 
   /**
    * 423 Locked.
    *
    * @link <a href="https://datatracker.ietf.org/doc/html/rfc4918#section-11.3">RFC 4918 §11.3</a>
    */
-  LOCKED(423, "Locked"),
+  LOCKED(ProblemStatus.LOCKED_STATUS, ProblemStatus.LOCKED_TITLE),
 
   /**
    * 424 Failed Dependency.
    *
    * @link <a href="https://datatracker.ietf.org/doc/html/rfc4918#section-11.4">RFC 4918 §11.4</a>
    */
-  FAILED_DEPENDENCY(424, "Failed Dependency"),
+  FAILED_DEPENDENCY(ProblemStatus.FAILED_DEPENDENCY_STATUS, ProblemStatus.FAILED_DEPENDENCY_TITLE),
 
   /**
    * 425 Too Early.
    *
    * @link <a href="https://datatracker.ietf.org/doc/html/rfc8470#section-5.2">RFC 8470 §5.2</a>
    */
-  TOO_EARLY(425, "Too Early"),
+  TOO_EARLY(ProblemStatus.TOO_EARLY_STATUS, ProblemStatus.TOO_EARLY_TITLE),
 
   /**
    * 426 Upgrade Required.
@@ -521,35 +540,40 @@ public enum ProblemStatus {
    * @link <a href="https://datatracker.ietf.org/doc/html/rfc9110#section-15.5.19">RFC 9110
    *     §15.5.19</a>
    */
-  UPGRADE_REQUIRED(426, "Upgrade Required"),
+  UPGRADE_REQUIRED(ProblemStatus.UPGRADE_REQUIRED_STATUS, ProblemStatus.UPGRADE_REQUIRED_TITLE),
 
   /**
    * 428 Precondition Required.
    *
    * @link <a href="https://datatracker.ietf.org/doc/html/rfc6585#section-3">RFC 6585 §3</a>
    */
-  PRECONDITION_REQUIRED(428, "Precondition Required"),
+  PRECONDITION_REQUIRED(
+      ProblemStatus.PRECONDITION_REQUIRED_STATUS, ProblemStatus.PRECONDITION_REQUIRED_TITLE),
 
   /**
    * 429 Too Many Requests.
    *
    * @link <a href="https://datatracker.ietf.org/doc/html/rfc6585#section-4">RFC 6585 §4</a>
    */
-  TOO_MANY_REQUESTS(429, "Too Many Requests"),
+  TOO_MANY_REQUESTS(ProblemStatus.TOO_MANY_REQUESTS_STATUS, ProblemStatus.TOO_MANY_REQUESTS_TITLE),
 
   /**
    * 431 Request Header Fields Too Large.
    *
    * @link <a href="https://datatracker.ietf.org/doc/html/rfc6585#section-5">RFC 6585 §5</a>
    */
-  REQUEST_HEADER_FIELDS_TOO_LARGE(431, "Request Header Fields Too Large"),
+  REQUEST_HEADER_FIELDS_TOO_LARGE(
+      ProblemStatus.REQUEST_HEADER_FIELDS_TOO_LARGE_STATUS,
+      ProblemStatus.REQUEST_HEADER_FIELDS_TOO_LARGE_TITLE),
 
   /**
    * 451 Unavailable For Legal Reasons.
    *
    * @link <a href="https://datatracker.ietf.org/doc/html/rfc7725#section-3">RFC 7725 §3</a>
    */
-  UNAVAILABLE_FOR_LEGAL_REASONS(451, "Unavailable For Legal Reasons"),
+  UNAVAILABLE_FOR_LEGAL_REASONS(
+      ProblemStatus.UNAVAILABLE_FOR_LEGAL_REASONS_STATUS,
+      ProblemStatus.UNAVAILABLE_FOR_LEGAL_REASONS_TITLE),
 
   /**
    * 500 Internal Server Error.
@@ -557,7 +581,8 @@ public enum ProblemStatus {
    * @link <a href="https://datatracker.ietf.org/doc/html/rfc9110#section-15.6.1">RFC 9110
    *     §15.6.1</a>
    */
-  INTERNAL_SERVER_ERROR(500, "Internal Server Error"),
+  INTERNAL_SERVER_ERROR(
+      ProblemStatus.INTERNAL_SERVER_ERROR_STATUS, ProblemStatus.INTERNAL_SERVER_ERROR_TITLE),
 
   /**
    * 501 Not Implemented.
@@ -565,7 +590,7 @@ public enum ProblemStatus {
    * @link <a href="https://datatracker.ietf.org/doc/html/rfc9110#section-15.6.2">RFC 9110
    *     §15.6.2</a>
    */
-  NOT_IMPLEMENTED(501, "Not Implemented"),
+  NOT_IMPLEMENTED(ProblemStatus.NOT_IMPLEMENTED_STATUS, ProblemStatus.NOT_IMPLEMENTED_TITLE),
 
   /**
    * 502 Bad Gateway.
@@ -573,7 +598,7 @@ public enum ProblemStatus {
    * @link <a href="https://datatracker.ietf.org/doc/html/rfc9110#section-15.6.3">RFC 9110
    *     §15.6.3</a>
    */
-  BAD_GATEWAY(502, "Bad Gateway"),
+  BAD_GATEWAY(ProblemStatus.BAD_GATEWAY_STATUS, ProblemStatus.BAD_GATEWAY_TITLE),
 
   /**
    * 503 Service Unavailable.
@@ -581,7 +606,8 @@ public enum ProblemStatus {
    * @link <a href="https://datatracker.ietf.org/doc/html/rfc9110#section-15.6.4">RFC 9110
    *     §15.6.4</a>
    */
-  SERVICE_UNAVAILABLE(503, "Service Unavailable"),
+  SERVICE_UNAVAILABLE(
+      ProblemStatus.SERVICE_UNAVAILABLE_STATUS, ProblemStatus.SERVICE_UNAVAILABLE_TITLE),
 
   /**
    * 504 Gateway Timeout.
@@ -589,7 +615,7 @@ public enum ProblemStatus {
    * @link <a href="https://datatracker.ietf.org/doc/html/rfc9110#section-15.6.5">RFC 9110
    *     §15.6.5</a>
    */
-  GATEWAY_TIMEOUT(504, "Gateway Timeout"),
+  GATEWAY_TIMEOUT(ProblemStatus.GATEWAY_TIMEOUT_STATUS, ProblemStatus.GATEWAY_TIMEOUT_TITLE),
 
   /**
    * 505 HTTP Version Not Supported.
@@ -597,52 +623,476 @@ public enum ProblemStatus {
    * @link <a href="https://datatracker.ietf.org/doc/html/rfc9110#section-15.6.6">RFC 9110
    *     §15.6.6</a>
    */
-  HTTP_VERSION_NOT_SUPPORTED(505, "HTTP Version Not Supported"),
+  HTTP_VERSION_NOT_SUPPORTED(
+      ProblemStatus.HTTP_VERSION_NOT_SUPPORTED_STATUS,
+      ProblemStatus.HTTP_VERSION_NOT_SUPPORTED_TITLE),
 
   /**
    * 506 Variant Also Negotiates.
    *
    * @link <a href="https://datatracker.ietf.org/doc/html/rfc2295#section-8.1">RFC 2295 §8.1</a>
    */
-  VARIANT_ALSO_NEGOTIATES(506, "Variant Also Negotiates"),
+  VARIANT_ALSO_NEGOTIATES(
+      ProblemStatus.VARIANT_ALSO_NEGOTIATES_STATUS, ProblemStatus.VARIANT_ALSO_NEGOTIATES_TITLE),
 
   /**
    * 507 Insufficient Storage (WebDAV).
    *
    * @link <a href="https://datatracker.ietf.org/doc/html/rfc4918#section-11.5">RFC 4918 §11.5</a>
    */
-  INSUFFICIENT_STORAGE(507, "Insufficient Storage"),
+  INSUFFICIENT_STORAGE(
+      ProblemStatus.INSUFFICIENT_STORAGE_STATUS, ProblemStatus.INSUFFICIENT_STORAGE_TITLE),
 
   /**
    * 508 Loop Detected (WebDAV).
    *
    * @link <a href="https://datatracker.ietf.org/doc/html/rfc5842#section-7.2">RFC 5842 §7.2</a>
    */
-  LOOP_DETECTED(508, "Loop Detected"),
+  LOOP_DETECTED(ProblemStatus.LOOP_DETECTED_STATUS, ProblemStatus.LOOP_DETECTED_TITLE),
 
   /** 509 Bandwidth Limit Exceeded (unofficial). */
-  BANDWIDTH_LIMIT_EXCEEDED(509, "Bandwidth Limit Exceeded"),
+  BANDWIDTH_LIMIT_EXCEEDED(
+      ProblemStatus.BANDWIDTH_LIMIT_EXCEEDED_STATUS, ProblemStatus.BANDWIDTH_LIMIT_EXCEEDED_TITLE),
 
   /**
    * 510 Not Extended.
    *
    * @link <a href="https://datatracker.ietf.org/doc/html/rfc2774#section-7">RFC 2774 §7</a>
    */
-  NOT_EXTENDED(510, "Not Extended"),
+  NOT_EXTENDED(ProblemStatus.NOT_EXTENDED_STATUS, ProblemStatus.NOT_EXTENDED_TITLE),
 
   /**
    * 511 Network Authentication Required.
    *
    * @link <a href="https://datatracker.ietf.org/doc/html/rfc6585#section-6">RFC 6585 §6</a>
    */
-  NETWORK_AUTHENTICATION_REQUIRED(511, "Network Authentication Required");
+  NETWORK_AUTHENTICATION_REQUIRED(
+      ProblemStatus.NETWORK_AUTHENTICATION_REQUIRED_STATUS,
+      ProblemStatus.NETWORK_AUTHENTICATION_REQUIRED_TITLE);
+
+  /** Status of {@link #CONTINUE}. */
+  public static final int CONTINUE_STATUS = 100;
+
+  /** Title of {@link #CONTINUE}. */
+  public static final String CONTINUE_TITLE = "Continue";
+
+  /** Status of {@link #SWITCHING_PROTOCOLS}. */
+  public static final int SWITCHING_PROTOCOLS_STATUS = 101;
+
+  /** Title of {@link #SWITCHING_PROTOCOLS}. */
+  public static final String SWITCHING_PROTOCOLS_TITLE = "Switching Protocols";
+
+  /** Status of {@link #PROCESSING}. */
+  public static final int PROCESSING_STATUS = 102;
+
+  /** Title of {@link #PROCESSING}. */
+  public static final String PROCESSING_TITLE = "Processing";
+
+  /** Status of {@link #CHECKPOINT}. */
+  public static final int CHECKPOINT_STATUS = 103;
+
+  /** Title of {@link #CHECKPOINT}. */
+  public static final String CHECKPOINT_TITLE = "Checkpoint";
+
+  /** Status of {@link #EARLY_HINTS}. */
+  public static final int EARLY_HINTS_STATUS = 103;
+
+  /** Title of {@link #EARLY_HINTS}. */
+  public static final String EARLY_HINTS_TITLE = "Early Hints";
+
+  /** Status of {@link #OK}. */
+  public static final int OK_STATUS = 200;
+
+  /** Title of {@link #OK}. */
+  public static final String OK_TITLE = "OK";
+
+  /** Status of {@link #CREATED}. */
+  public static final int CREATED_STATUS = 201;
+
+  /** Title of {@link #CREATED}. */
+  public static final String CREATED_TITLE = "Created";
+
+  /** Status of {@link #ACCEPTED}. */
+  public static final int ACCEPTED_STATUS = 202;
+
+  /** Title of {@link #ACCEPTED}. */
+  public static final String ACCEPTED_TITLE = "Accepted";
+
+  /** Status of {@link #NON_AUTHORITATIVE_INFORMATION}. */
+  public static final int NON_AUTHORITATIVE_INFORMATION_STATUS = 203;
+
+  /** Title of {@link #NON_AUTHORITATIVE_INFORMATION}. */
+  public static final String NON_AUTHORITATIVE_INFORMATION_TITLE = "Non-Authoritative Information";
+
+  /** Status of {@link #NO_CONTENT}. */
+  public static final int NO_CONTENT_STATUS = 204;
+
+  /** Title of {@link #NO_CONTENT}. */
+  public static final String NO_CONTENT_TITLE = "No Content";
+
+  /** Status of {@link #RESET_CONTENT}. */
+  public static final int RESET_CONTENT_STATUS = 205;
+
+  /** Title of {@link #RESET_CONTENT}. */
+  public static final String RESET_CONTENT_TITLE = "Reset Content";
+
+  /** Status of {@link #PARTIAL_CONTENT}. */
+  public static final int PARTIAL_CONTENT_STATUS = 206;
+
+  /** Title of {@link #PARTIAL_CONTENT}. */
+  public static final String PARTIAL_CONTENT_TITLE = "Partial Content";
+
+  /** Status of {@link #MULTI_STATUS}. */
+  public static final int MULTI_STATUS_STATUS = 207;
+
+  /** Title of {@link #MULTI_STATUS}. */
+  public static final String MULTI_STATUS_TITLE = "Multi-Status";
+
+  /** Status of {@link #ALREADY_REPORTED}. */
+  public static final int ALREADY_REPORTED_STATUS = 208;
+
+  /** Title of {@link #ALREADY_REPORTED}. */
+  public static final String ALREADY_REPORTED_TITLE = "Already Reported";
+
+  /** Status of {@link #IM_USED}. */
+  public static final int IM_USED_STATUS = 226;
+
+  /** Title of {@link #IM_USED}. */
+  public static final String IM_USED_TITLE = "IM Used";
+
+  /** Status of {@link #MULTIPLE_CHOICES}. */
+  public static final int MULTIPLE_CHOICES_STATUS = 300;
+
+  /** Title of {@link #MULTIPLE_CHOICES}. */
+  public static final String MULTIPLE_CHOICES_TITLE = "Multiple Choices";
+
+  /** Status of {@link #MOVED_PERMANENTLY}. */
+  public static final int MOVED_PERMANENTLY_STATUS = 301;
+
+  /** Title of {@link #MOVED_PERMANENTLY}. */
+  public static final String MOVED_PERMANENTLY_TITLE = "Moved Permanently";
+
+  /** Status of {@link #FOUND}. */
+  public static final int FOUND_STATUS = 302;
+
+  /** Title of {@link #FOUND}. */
+  public static final String FOUND_TITLE = "Found";
+
+  /** Status of {@link #SEE_OTHER}. */
+  public static final int SEE_OTHER_STATUS = 303;
+
+  /** Title of {@link #SEE_OTHER}. */
+  public static final String SEE_OTHER_TITLE = "See Other";
+
+  /** Status of {@link #NOT_MODIFIED}. */
+  public static final int NOT_MODIFIED_STATUS = 304;
+
+  /** Title of {@link #NOT_MODIFIED}. */
+  public static final String NOT_MODIFIED_TITLE = "Not Modified";
+
+  /** Status of {@link #USE_PROXY}. */
+  public static final int USE_PROXY_STATUS = 305;
+
+  /** Title of {@link #USE_PROXY}. */
+  public static final String USE_PROXY_TITLE = "Use Proxy";
+
+  /** Status of {@link #TEMPORARY_REDIRECT}. */
+  public static final int TEMPORARY_REDIRECT_STATUS = 307;
+
+  /** Title of {@link #TEMPORARY_REDIRECT}. */
+  public static final String TEMPORARY_REDIRECT_TITLE = "Temporary Redirect";
+
+  /** Status of {@link #PERMANENT_REDIRECT}. */
+  public static final int PERMANENT_REDIRECT_STATUS = 308;
+
+  /** Title of {@link #PERMANENT_REDIRECT}. */
+  public static final String PERMANENT_REDIRECT_TITLE = "Permanent Redirect";
+
+  /** Status of {@link #BAD_REQUEST}. */
+  public static final int BAD_REQUEST_STATUS = 400;
+
+  /** Title of {@link #BAD_REQUEST}. */
+  public static final String BAD_REQUEST_TITLE = "Bad Request";
+
+  /** Status of {@link #UNAUTHORIZED}. */
+  public static final int UNAUTHORIZED_STATUS = 401;
+
+  /** Title of {@link #UNAUTHORIZED}. */
+  public static final String UNAUTHORIZED_TITLE = "Unauthorized";
+
+  /** Status of {@link #PAYMENT_REQUIRED}. */
+  public static final int PAYMENT_REQUIRED_STATUS = 402;
+
+  /** Title of {@link #PAYMENT_REQUIRED}. */
+  public static final String PAYMENT_REQUIRED_TITLE = "Payment Required";
+
+  /** Status of {@link #FORBIDDEN}. */
+  public static final int FORBIDDEN_STATUS = 403;
+
+  /** Title of {@link #FORBIDDEN}. */
+  public static final String FORBIDDEN_TITLE = "Forbidden";
+
+  /** Status of {@link #NOT_FOUND}. */
+  public static final int NOT_FOUND_STATUS = 404;
+
+  /** Title of {@link #NOT_FOUND}. */
+  public static final String NOT_FOUND_TITLE = "Not Found";
+
+  /** Status of {@link #METHOD_NOT_ALLOWED}. */
+  public static final int METHOD_NOT_ALLOWED_STATUS = 405;
+
+  /** Title of {@link #METHOD_NOT_ALLOWED}. */
+  public static final String METHOD_NOT_ALLOWED_TITLE = "Method Not Allowed";
+
+  /** Status of {@link #NOT_ACCEPTABLE}. */
+  public static final int NOT_ACCEPTABLE_STATUS = 406;
+
+  /** Title of {@link #NOT_ACCEPTABLE}. */
+  public static final String NOT_ACCEPTABLE_TITLE = "Not Acceptable";
+
+  /** Status of {@link #PROXY_AUTHENTICATION_REQUIRED}. */
+  public static final int PROXY_AUTHENTICATION_REQUIRED_STATUS = 407;
+
+  /** Title of {@link #PROXY_AUTHENTICATION_REQUIRED}. */
+  public static final String PROXY_AUTHENTICATION_REQUIRED_TITLE = "Proxy Authentication Required";
+
+  /** Status of {@link #REQUEST_TIMEOUT}. */
+  public static final int REQUEST_TIMEOUT_STATUS = 408;
+
+  /** Title of {@link #REQUEST_TIMEOUT}. */
+  public static final String REQUEST_TIMEOUT_TITLE = "Request Timeout";
+
+  /** Status of {@link #CONFLICT}. */
+  public static final int CONFLICT_STATUS = 409;
+
+  /** Title of {@link #CONFLICT}. */
+  public static final String CONFLICT_TITLE = "Conflict";
+
+  /** Status of {@link #GONE}. */
+  public static final int GONE_STATUS = 410;
+
+  /** Title of {@link #GONE}. */
+  public static final String GONE_TITLE = "Gone";
+
+  /** Status of {@link #LENGTH_REQUIRED}. */
+  public static final int LENGTH_REQUIRED_STATUS = 411;
+
+  /** Title of {@link #LENGTH_REQUIRED}. */
+  public static final String LENGTH_REQUIRED_TITLE = "Length Required";
+
+  /** Status of {@link #PRECONDITION_FAILED}. */
+  public static final int PRECONDITION_FAILED_STATUS = 412;
+
+  /** Title of {@link #PRECONDITION_FAILED}. */
+  public static final String PRECONDITION_FAILED_TITLE = "Precondition Failed";
+
+  /** Status of {@link #REQUEST_ENTITY_TOO_LARGE}. */
+  public static final int REQUEST_ENTITY_TOO_LARGE_STATUS = 413;
+
+  /** Title of {@link #REQUEST_ENTITY_TOO_LARGE}. */
+  public static final String REQUEST_ENTITY_TOO_LARGE_TITLE = "Request Entity Too Large";
+
+  /** Status of {@link #PAYLOAD_TOO_LARGE}. */
+  public static final int PAYLOAD_TOO_LARGE_STATUS = 413;
+
+  /** Title of {@link #PAYLOAD_TOO_LARGE}. */
+  public static final String PAYLOAD_TOO_LARGE_TITLE = "Payload Too Large";
+
+  /** Status of {@link #CONTENT_TOO_LARGE}. */
+  public static final int CONTENT_TOO_LARGE_STATUS = 413;
+
+  /** Title of {@link #CONTENT_TOO_LARGE}. */
+  public static final String CONTENT_TOO_LARGE_TITLE = "Content Too Large";
+
+  /** Status of {@link #REQUEST_URI_TOO_LONG}. */
+  public static final int REQUEST_URI_TOO_LONG_STATUS = 414;
+
+  /** Title of {@link #REQUEST_URI_TOO_LONG}. */
+  public static final String REQUEST_URI_TOO_LONG_TITLE = "Request-URI Too Long";
+
+  /** Status of {@link #URI_TOO_LONG}. */
+  public static final int URI_TOO_LONG_STATUS = 414;
+
+  /** Title of {@link #URI_TOO_LONG}. */
+  public static final String URI_TOO_LONG_TITLE = "URI Too Long";
+
+  /** Status of {@link #UNSUPPORTED_MEDIA_TYPE}. */
+  public static final int UNSUPPORTED_MEDIA_TYPE_STATUS = 415;
+
+  /** Title of {@link #UNSUPPORTED_MEDIA_TYPE}. */
+  public static final String UNSUPPORTED_MEDIA_TYPE_TITLE = "Unsupported Media Type";
+
+  /** Status of {@link #REQUESTED_RANGE_NOT_SATISFIABLE}. */
+  public static final int REQUESTED_RANGE_NOT_SATISFIABLE_STATUS = 416;
+
+  /** Title of {@link #REQUESTED_RANGE_NOT_SATISFIABLE}. */
+  public static final String REQUESTED_RANGE_NOT_SATISFIABLE_TITLE =
+      "Requested Range Not Satisfiable";
+
+  /** Status of {@link #RANGE_NOT_SATISFIABLE}. */
+  public static final int RANGE_NOT_SATISFIABLE_STATUS = 416;
+
+  /** Title of {@link #RANGE_NOT_SATISFIABLE}. */
+  public static final String RANGE_NOT_SATISFIABLE_TITLE = "Range Not Satisfiable";
+
+  /** Status of {@link #EXPECTATION_FAILED}. */
+  public static final int EXPECTATION_FAILED_STATUS = 417;
+
+  /** Title of {@link #EXPECTATION_FAILED}. */
+  public static final String EXPECTATION_FAILED_TITLE = "Expectation Failed";
+
+  /** Status of {@link #I_AM_A_TEAPOT}. */
+  public static final int I_AM_A_TEAPOT_STATUS = 418;
+
+  /** Title of {@link #I_AM_A_TEAPOT}. */
+  public static final String I_AM_A_TEAPOT_TITLE = "I'm a teapot";
+
+  /** Status of {@link #MISDIRECTED_REQUEST}. */
+  public static final int MISDIRECTED_REQUEST_STATUS = 421;
+
+  /** Title of {@link #MISDIRECTED_REQUEST}. */
+  public static final String MISDIRECTED_REQUEST_TITLE = "Misdirected Request";
+
+  /** Status of {@link #UNPROCESSABLE_ENTITY}. */
+  public static final int UNPROCESSABLE_ENTITY_STATUS = 422;
+
+  /** Title of {@link #UNPROCESSABLE_ENTITY}. */
+  public static final String UNPROCESSABLE_ENTITY_TITLE = "Unprocessable Entity";
+
+  /** Status of {@link #UNPROCESSABLE_CONTENT}. */
+  public static final int UNPROCESSABLE_CONTENT_STATUS = 422;
+
+  /** Title of {@link #UNPROCESSABLE_CONTENT}. */
+  public static final String UNPROCESSABLE_CONTENT_TITLE = "Unprocessable Content";
+
+  /** Status of {@link #LOCKED}. */
+  public static final int LOCKED_STATUS = 423;
+
+  /** Title of {@link #LOCKED}. */
+  public static final String LOCKED_TITLE = "Locked";
+
+  /** Status of {@link #FAILED_DEPENDENCY}. */
+  public static final int FAILED_DEPENDENCY_STATUS = 424;
+
+  /** Title of {@link #FAILED_DEPENDENCY}. */
+  public static final String FAILED_DEPENDENCY_TITLE = "Failed Dependency";
+
+  /** Status of {@link #TOO_EARLY}. */
+  public static final int TOO_EARLY_STATUS = 425;
+
+  /** Title of {@link #TOO_EARLY}. */
+  public static final String TOO_EARLY_TITLE = "Too Early";
+
+  /** Status of {@link #UPGRADE_REQUIRED}. */
+  public static final int UPGRADE_REQUIRED_STATUS = 426;
+
+  /** Title of {@link #UPGRADE_REQUIRED}. */
+  public static final String UPGRADE_REQUIRED_TITLE = "Upgrade Required";
+
+  /** Status of {@link #PRECONDITION_REQUIRED}. */
+  public static final int PRECONDITION_REQUIRED_STATUS = 428;
+
+  /** Title of {@link #PRECONDITION_REQUIRED}. */
+  public static final String PRECONDITION_REQUIRED_TITLE = "Precondition Required";
+
+  /** Status of {@link #TOO_MANY_REQUESTS}. */
+  public static final int TOO_MANY_REQUESTS_STATUS = 429;
+
+  /** Title of {@link #TOO_MANY_REQUESTS}. */
+  public static final String TOO_MANY_REQUESTS_TITLE = "Too Many Requests";
+
+  /** Status of {@link #REQUEST_HEADER_FIELDS_TOO_LARGE}. */
+  public static final int REQUEST_HEADER_FIELDS_TOO_LARGE_STATUS = 431;
+
+  /** Title of {@link #REQUEST_HEADER_FIELDS_TOO_LARGE}. */
+  public static final String REQUEST_HEADER_FIELDS_TOO_LARGE_TITLE =
+      "Request Header Fields Too Large";
+
+  /** Status of {@link #UNAVAILABLE_FOR_LEGAL_REASONS}. */
+  public static final int UNAVAILABLE_FOR_LEGAL_REASONS_STATUS = 451;
+
+  /** Title of {@link #UNAVAILABLE_FOR_LEGAL_REASONS}. */
+  public static final String UNAVAILABLE_FOR_LEGAL_REASONS_TITLE = "Unavailable For Legal Reasons";
+
+  /** Status of {@link #INTERNAL_SERVER_ERROR}. */
+  public static final int INTERNAL_SERVER_ERROR_STATUS = 500;
+
+  /** Title of {@link #INTERNAL_SERVER_ERROR}. */
+  public static final String INTERNAL_SERVER_ERROR_TITLE = "Internal Server Error";
+
+  /** Status of {@link #NOT_IMPLEMENTED}. */
+  public static final int NOT_IMPLEMENTED_STATUS = 501;
+
+  /** Title of {@link #NOT_IMPLEMENTED}. */
+  public static final String NOT_IMPLEMENTED_TITLE = "Not Implemented";
+
+  /** Status of {@link #BAD_GATEWAY}. */
+  public static final int BAD_GATEWAY_STATUS = 502;
+
+  /** Title of {@link #BAD_GATEWAY}. */
+  public static final String BAD_GATEWAY_TITLE = "Bad Gateway";
+
+  /** Status of {@link #SERVICE_UNAVAILABLE}. */
+  public static final int SERVICE_UNAVAILABLE_STATUS = 503;
+
+  /** Title of {@link #SERVICE_UNAVAILABLE}. */
+  public static final String SERVICE_UNAVAILABLE_TITLE = "Service Unavailable";
+
+  /** Status of {@link #GATEWAY_TIMEOUT}. */
+  public static final int GATEWAY_TIMEOUT_STATUS = 504;
+
+  /** Title of {@link #GATEWAY_TIMEOUT}. */
+  public static final String GATEWAY_TIMEOUT_TITLE = "Gateway Timeout";
+
+  /** Status of {@link #HTTP_VERSION_NOT_SUPPORTED}. */
+  public static final int HTTP_VERSION_NOT_SUPPORTED_STATUS = 505;
+
+  /** Title of {@link #HTTP_VERSION_NOT_SUPPORTED}. */
+  public static final String HTTP_VERSION_NOT_SUPPORTED_TITLE = "HTTP Version Not Supported";
+
+  /** Status of {@link #VARIANT_ALSO_NEGOTIATES}. */
+  public static final int VARIANT_ALSO_NEGOTIATES_STATUS = 506;
+
+  /** Title of {@link #VARIANT_ALSO_NEGOTIATES}. */
+  public static final String VARIANT_ALSO_NEGOTIATES_TITLE = "Variant Also Negotiates";
+
+  /** Status of {@link #INSUFFICIENT_STORAGE}. */
+  public static final int INSUFFICIENT_STORAGE_STATUS = 507;
+
+  /** Title of {@link #INSUFFICIENT_STORAGE}. */
+  public static final String INSUFFICIENT_STORAGE_TITLE = "Insufficient Storage";
+
+  /** Status of {@link #LOOP_DETECTED}. */
+  public static final int LOOP_DETECTED_STATUS = 508;
+
+  /** Title of {@link #LOOP_DETECTED}. */
+  public static final String LOOP_DETECTED_TITLE = "Loop Detected";
+
+  /** Status of {@link #BANDWIDTH_LIMIT_EXCEEDED}. */
+  public static final int BANDWIDTH_LIMIT_EXCEEDED_STATUS = 509;
+
+  /** Title of {@link #BANDWIDTH_LIMIT_EXCEEDED}. */
+  public static final String BANDWIDTH_LIMIT_EXCEEDED_TITLE = "Bandwidth Limit Exceeded";
+
+  /** Status of {@link #NOT_EXTENDED}. */
+  public static final int NOT_EXTENDED_STATUS = 510;
+
+  /** Title of {@link #NOT_EXTENDED}. */
+  public static final String NOT_EXTENDED_TITLE = "Not Extended";
+
+  /** Status of {@link #NETWORK_AUTHENTICATION_REQUIRED}. */
+  public static final int NETWORK_AUTHENTICATION_REQUIRED_STATUS = 511;
+
+  /** Title of {@link #NETWORK_AUTHENTICATION_REQUIRED}. */
+  public static final String NETWORK_AUTHENTICATION_REQUIRED_TITLE =
+      "Network Authentication Required";
 
   /**
    * Lookup map from integer HTTP status code to {@link ProblemStatus} enum constant.
    *
-   * <p>This map is created once at class initialization using {@link
-   * java.util.Arrays#stream(Object[])} and {@link java.util.stream.Collectors#toMap}. The map is
-   * used by {@link #findValue(int)} to provide an efficient code-to-enum lookup.
+   * <p>This map is created once at class initialization using {@link Arrays#stream(Object[])} and
+   * {@link Collectors#toMap}. The map is used by {@link #findValue(int)} to provide an efficient
+   * code-to-enum lookup.
    */
   private static final Map<Integer, ProblemStatus> STATUSES_BY_CODE =
       Arrays.stream(values())
@@ -656,8 +1106,8 @@ public enum ProblemStatus {
    * Return the {@link ProblemStatus} matching the given integer HTTP status code.
    *
    * @param status the HTTP status code to look up (for example {@code 404})
-   * @return an {@link java.util.Optional} containing the matching {@link ProblemStatus} if present,
-   *     or empty if there is no enum constant for the provided code
+   * @return an {@link Optional} containing the matching {@link ProblemStatus} if present, or empty
+   *     if there is no enum constant for the provided code
    */
   public static Optional<ProblemStatus> findValue(int status) {
     return Optional.ofNullable(STATUSES_BY_CODE.get(status));

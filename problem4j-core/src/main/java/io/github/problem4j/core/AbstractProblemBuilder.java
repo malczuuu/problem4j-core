@@ -42,12 +42,12 @@ public abstract class AbstractProblemBuilder implements ProblemBuilder, Serializ
   /**
    * Creates a new, empty {@code AbstractProblemBuilder}.
    *
-   * <p>Use this builder to incrementally construct an {@link AbstractProblem} instance.
+   * <p>Use this builder to incrementally construct an {@link Problem} instance.
    */
   public AbstractProblemBuilder() {}
 
   /**
-   * Creates a new {@code AbstractProblemBuilder} initialized with values from an existing {@link
+   * Creates a new {@code AbstractProblemBuilder} initialized with values from an existing {@code
    * Problem}.
    *
    * <p>This copies all properties from the given {@code problem} so that modifications to the
