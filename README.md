@@ -90,14 +90,14 @@ higher is required to use this library.
        <dependency>
            <groupId>io.github.problem4j</groupId>
            <artifactId>problem4j-core</artifactId>
-           <version>1.3.0-RC1</version>
+           <version>1.3.0</version>
        </dependency>
    </dependencies>
    ```
 2. Gradle (Groovy or Kotlin DSL):
    ```groovy
    dependencies {
-       implementation("io.github.problem4j:problem4j-core:1.3.0-RC1")
+       implementation("io.github.problem4j:problem4j-core:1.3.0")
    }
     ```
 
