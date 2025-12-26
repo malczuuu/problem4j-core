@@ -34,8 +34,11 @@ import java.util.Set;
  *   <li>{@code instance} – a URI identifying the specific occurrence of the problem
  * </ul>
  *
- * In addition, custom extensions can be added to provide extra context.
+ * <p>In addition, custom extensions can be added to provide extra context.
+ *
+ * @deprecated migrated to {@code io.github.problem4j:problem4j-core} namespace.
  */
+@Deprecated
 public interface Problem extends Serializable {
 
   /** Default type URI for generic problems. */
@@ -144,7 +147,12 @@ public interface Problem extends Serializable {
     return getType() != null && !getType().equals(BLANK_TYPE) && !getType().toString().isEmpty();
   }
 
-  /** Represents a single key-value extension in a {@link Problem}. */
+  /**
+   * Represents a single key-value extension in a {@link Problem}.
+   *
+   * @deprecated migrated to {@code io.github.problem4j:problem4j-core} namespace.
+   */
+  @Deprecated
   interface Extension extends Map.Entry<String, Object>, Serializable {
 
     /**

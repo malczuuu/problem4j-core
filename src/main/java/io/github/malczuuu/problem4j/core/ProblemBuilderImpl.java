@@ -21,6 +21,10 @@ import java.util.Map;
 import java.util.Optional;
 import java.util.stream.Stream;
 
+/**
+ * @deprecated migrated to {@code io.github.problem4j:problem4j-core} namespace.
+ */
+@Deprecated
 final class ProblemBuilderImpl implements ProblemBuilder {
 
   private URI type;

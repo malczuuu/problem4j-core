@@ -20,7 +20,10 @@ package io.github.malczuuu.problem4j.core;
  * <p>Provides a convenient way to throw exceptions associated with problem details according to RFC
  * 7807. The exception message is automatically generated from the problem's title, detail, and
  * status unless explicitly provided.
+ *
+ * @deprecated migrated to {@code io.github.problem4j:problem4j-core} namespace.
  */
+@Deprecated
 public class ProblemException extends RuntimeException {
 
   private static final long serialVersionUID = 1L;

@@ -23,7 +23,10 @@ import java.util.Map;
  *
  * <p>Provides a fluent API to set standard fields and custom extensions before creating an
  * immutable {@link Problem}.
+ *
+ * @deprecated migrated to {@code io.github.problem4j:problem4j-core} namespace.
  */
+@Deprecated
 public interface ProblemBuilder {
 
   /**

@@ -22,7 +22,10 @@ import java.util.Map;
  *
  * <p>Replaces control characters, special characters, and Unicode ranges with appropriate escape
  * sequences to produce valid JSON string literals.
+ *
+ * @deprecated migrated to {@code io.github.problem4j:problem4j-core} namespace.
  */
+@Deprecated
 final class JsonEscape {
 
   /** Mapping of characters to their JSON escape sequences. */

@@ -24,6 +24,10 @@ import java.util.Objects;
 import java.util.Set;
 import java.util.stream.Collectors;
 
+/**
+ * @deprecated migrated to {@code io.github.problem4j:problem4j-core} namespace.
+ */
+@Deprecated
 final class ProblemImpl implements Problem {
 
   private static final long serialVersionUID = 1L;
@@ -180,6 +184,10 @@ final class ProblemImpl implements Problem {
     return "\"" + field + "\" : \"" + className + ":" + quote(value.toString()) + "\"";
   }
 
+  /**
+   * @deprecated migrated to {@code io.github.problem4j:problem4j-core} namespace.
+   */
+  @Deprecated
   static final class ExtensionImpl implements Problem.Extension {
 
     private static final long serialVersionUID = 1L;

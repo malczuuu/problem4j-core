@@ -96,7 +96,9 @@ import java.util.stream.Collectors;
  * @see <a href="https://http.cat/">HTTP Cats</a>
  * @see <a href="https://developer.mozilla.org/en-US/docs/Web/HTTP/Reference/Status">HTTP response
  *     status codes - HTTP | MDN</a>
+ * @deprecated migrated to {@code io.github.problem4j:problem4j-core} namespace.
  */
+@Deprecated
 public enum ProblemStatus {
 
   /**
